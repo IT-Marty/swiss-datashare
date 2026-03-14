@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useCallback, useContext, useMemo } from "react";
 import configService from "../services/config.service";
 import { ConfigHook } from "../types/config.type";
 
@@ -9,10 +9,23 @@ export const ConfigContext = createContext<ConfigHook>({
 
 const useConfig = () => {
   const configContext = useContext(ConfigContext);
-  return {
-    get: (key: string) => configService.get(key, configContext.configVariables),
-    refresh: async () => configContext.refresh(),
-  };
+  const get = useCallback(
+    (key: string) => configService.get(key, configContext.configVariables),
+    [configContext.configVariables],
+  );
+
+  const refresh = useCallback(
+    async () => configContext.refresh(),
+    [configContext.refresh],
+  );
+
+  return useMemo(
+    () => ({
+      get,
+      refresh,
+    }),
+    [get, refresh],
+  );
 };
 
 export default useConfig;

@@ -4,6 +4,7 @@ import {
   UpdateCurrentUser,
   UpdateUser,
 } from "../types/user.type";
+import { getCookie } from "cookies-next";
 import api from "./api.service";
 import authService from "./auth.service";
 
@@ -33,6 +34,9 @@ const removeCurrentUser = async () => {
 
 const getCurrentUser = async (): Promise<CurrentUser | null> => {
   try {
+    // Skip request when user has no auth cookie.
+    if (!getCookie("access_token")) return null;
+
     await authService.refreshAccessToken();
     return (await api.get("users/me")).data;
   } catch {

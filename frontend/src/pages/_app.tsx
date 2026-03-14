@@ -4,7 +4,7 @@ import "moment/min/locales";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { IntlProvider } from "react-intl";
 import Header from "../components/header/Header";
 import { ConfigContext } from "../hooks/config.hook";

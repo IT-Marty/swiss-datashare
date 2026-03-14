@@ -1,4 +1,3 @@
-import axios from "axios";
 import Config, { AdminConfig, UpdateConfig } from "../types/config.type";
 import api from "./api.service";
 import { stringToTimespan } from "../utils/date.util";
@@ -51,11 +50,11 @@ const sendTestEmail = async (email: string) => {
 };
 
 const isNewReleaseAvailable = async () => {
-  const response = (
-    await axios.get(
+  const response = (await (
+    await fetch(
       "https://api.github.com/repos/swissmakers/swiss-datashare/releases/latest",
     )
-  ).data;
+  ).json()) as { tag_name: string };
   return response.tag_name.replace("v", "") != process.env.VERSION;
 };
 

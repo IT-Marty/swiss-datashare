@@ -24,11 +24,15 @@ const UploadProgressIndicator = ({ progress }: { progress: number }) => {
             fill="none"
             strokeDasharray={`${2 * Math.PI * 10}`}
             strokeDashoffset={`${2 * Math.PI * 10 * (1 - progress / 100)}`}
-            className="text-primary-500 transition-all duration-300"
+            className="transition-all duration-300"
+            style={{ color: "rgb(122 156 243)" }}
             strokeLinecap="round"
           />
         </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-xs font-medium text-primary-500">
+        <span
+          className="absolute inset-0 flex items-center justify-center text-xs font-medium"
+          style={{ color: "rgb(122 156 243)" }}
+        >
           {Math.round(progress)}%
         </span>
       </div>

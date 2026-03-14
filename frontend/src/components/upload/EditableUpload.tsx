@@ -29,7 +29,12 @@ const EditableUpload = ({
   const router = useRouter();
   const config = useConfig();
 
-  const chunkSize = useRef(parseInt(config.get("share.chunkSize")));
+  // Default chunk size: 10MB (10000000 bytes)
+  const defaultChunkSize = 10000000;
+  const chunkSizeValue = parseInt(config.get("share.chunkSize"));
+  const chunkSize = useRef(
+    isNaN(chunkSizeValue) || chunkSizeValue <= 0 ? defaultChunkSize : chunkSizeValue
+  );
 
   const [existingFiles, setExistingFiles] =
     useState<Array<FileMetaData & { deleted?: boolean }>>(savedFiles);
@@ -61,6 +66,11 @@ const EditableUpload = ({
   maxShareSize ??= parseInt(config.get("share.maxSize"));
 
   const uploadFiles = async (files: FileUpload[]) => {
+    // Ensure chunkSize is valid at upload time
+    if (isNaN(chunkSize.current) || chunkSize.current <= 0) {
+      console.warn(`[EditableUpload] Invalid chunkSize detected, resetting to default: ${chunkSize.current} -> ${defaultChunkSize}`);
+      chunkSize.current = defaultChunkSize;
+    }
     console.log(`[EditableUpload] Starting upload of ${files.length} files to share ${shareId}`);
     
     const fileUploadPromises = files.map(async (file, fileIndex) =>
@@ -82,10 +92,23 @@ const EditableUpload = ({
         console.log(`[EditableUpload] Starting upload of file ${fileIndex + 1}/${files.length}: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`);
         setFileProgress(1);
 
+        // Validate chunkSize is valid
+        if (isNaN(chunkSize.current) || chunkSize.current <= 0) {
+          console.error(`[EditableUpload] Invalid chunkSize: ${chunkSize.current}, using default 10MB`);
+          chunkSize.current = defaultChunkSize;
+        }
+
         let chunks = Math.ceil(file.size / chunkSize.current);
 
         // If the file is 0 bytes, we still need to upload 1 chunk
         if (chunks == 0) chunks++;
+
+        // Validate chunks is valid
+        if (isNaN(chunks) || chunks <= 0) {
+          console.error(`[EditableUpload] Invalid chunks calculation for file ${file.name}: chunks=${chunks}, file.size=${file.size}, chunkSize=${chunkSize.current}`);
+          setFileProgress(-1);
+          return;
+        }
 
         console.log(`[EditableUpload] File ${file.name} will be uploaded in ${chunks} chunks (chunk size: ${(chunkSize.current / 1024 / 1024).toFixed(2)} MB)`);
 

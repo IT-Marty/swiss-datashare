@@ -1,6 +1,5 @@
 import { jwtDecode } from "jwt-decode";
 import { NextRequest, NextResponse } from "next/server";
-import configService from "./services/config.service";
 
 // This middleware redirects based on different conditions:
 // - Authentication state
@@ -29,10 +28,24 @@ export async function middleware(request: NextRequest) {
 
   // Get config from backend
   const apiUrl = process.env.API_URL || "http://localhost:8080";
-  const config = await (await fetch(`${apiUrl}/api/configs`)).json();
+  const config = (await (
+    await fetch(`${apiUrl}/api/configs`)
+  ).json()) as Array<{
+    key: string;
+    value: string | null;
+    defaultValue: string;
+    type: string;
+  }>;
 
   const getConfig = (key: string) => {
-    return configService.get(key, config);
+    const variable = config.find((entry) => entry.key === key);
+    if (!variable) return null;
+
+    const value = variable.value ?? variable.defaultValue;
+    if (variable.type === "number" || variable.type === "filesize")
+      return parseInt(value, 10);
+    if (variable.type === "boolean") return value === "true";
+    return value;
   };
 
   const route = request.nextUrl.pathname;
@@ -121,6 +134,7 @@ export async function middleware(request: NextRequest) {
   for (const rule of rules) {
     if (rule.condition) {
       let { path } = rule;
+      if (typeof path !== "string") continue;
 
       if (path == "/auth/signIn") {
         path = path + "?redirect=" + encodeURIComponent(route);
