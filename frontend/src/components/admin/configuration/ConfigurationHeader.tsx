@@ -14,7 +14,7 @@ const ConfigurationHeader = ({
 }) => {
   const config = useConfig();
   return (
-    <header className="h-16 px-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+    <header className="sticky top-0 z-50 h-16 px-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
       <div className="flex items-center h-full">
         <button
           className="md:hidden mr-4 p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"

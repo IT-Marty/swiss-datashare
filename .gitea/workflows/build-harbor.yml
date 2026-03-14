@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Free disk before build
+        run: |
+          podman system prune -af --volumes || true
+          df -h
+
       - name: Login to Harbor (Robot)
         if: ${{ secrets.HARBOR_REGISTRY && secrets.HARBOR_USERNAME && secrets.HARBOR_PASSWORD }}
         env:
