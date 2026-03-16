@@ -75,6 +75,7 @@ WORKDIR /opt/app/backend
 COPY --from=backend-builder /opt/app/backend/node_modules ./node_modules
 COPY --from=backend-builder /opt/app/backend/dist ./dist
 COPY --from=backend-builder /opt/app/backend/prisma ./prisma
+COPY --from=backend-builder /opt/app/backend/prisma.config.ts ./prisma.config.ts
 COPY --from=backend-builder /opt/app/backend/package.json ./
 COPY --from=backend-builder /opt/app/backend/tsconfig.json ./
 

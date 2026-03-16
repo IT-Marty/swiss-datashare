@@ -31,7 +31,7 @@ For installation specific configuration, you can use environment variables. The 
 | Variable         | Default Value                                      | Description                                                                                              |
 | ---------------- | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | `BACKEND_PORT`   | `8080`                                             | The port on which the backend listens.                                                                   |
-| `DATABASE_URL`   | `file:../data/swiss-datashare.db?connection_limit=1` | The URL of the SQLite database.                                                                          |
+| `DATABASE_URL`   | `file:./data/swiss-datashare.db` | The URL of the SQLite database.                                                                          |
 | `DATA_DIRECTORY` | `./data`                                           | The directory where data is stored.                                                                      |
 | `CONFIG_FILE`    | `../config.yaml`                                   | Path to the configuration file                                                                           |
 | `CLAMAV_HOST`    | `127.0.0.1` or `clamav` when running with Docker/Podman   | The IP address of the ClamAV server. See the [ClamAV docs](integrations.md#clamav) for more information. |

@@ -431,7 +431,7 @@ const prisma = new PrismaClient({
   adapter: new PrismaBetterSqlite3({
     url:
       process.env.DATABASE_URL ||
-      "file:../data/swiss-datashare.db?connection_limit=1",
+        "file:./data/swiss-datashare.db",
   }),
 });
 
