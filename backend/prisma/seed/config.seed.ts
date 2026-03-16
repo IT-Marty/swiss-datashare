@@ -35,6 +35,16 @@ export const configVariables = {
       defaultValue: "3 months",
       secret: false,
     },
+    location: {
+      type: "string",
+      defaultValue: "",
+      secret: false,
+    },
+    useCase: {
+      type: "string",
+      defaultValue: "default",
+      secret: false,
+    },
   },
   share: {
     allowRegistration: {

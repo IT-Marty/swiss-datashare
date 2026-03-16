@@ -1,10 +1,25 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
+const themeInitScript = `
+(() => {
+  try {
+    const match = document.cookie.match(/(?:^|; )theme=([^;]+)/);
+    const savedTheme = match ? decodeURIComponent(match[1]) : "system";
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldUseDark = savedTheme === "dark" || (savedTheme === "system" && prefersDark);
+    document.documentElement.classList.toggle("dark", shouldUseDark);
+  } catch (_) {}
+})();
+`;
+
 export default class _Document extends Document {
   render() {
     return (
-      <Html>
+      <Html suppressHydrationWarning>
         <Head>
+          <script
+            dangerouslySetInnerHTML={{ __html: themeInitScript }}
+          />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
           <link rel="apple-touch-icon" href="/img/icons/icon-128x128.png" />

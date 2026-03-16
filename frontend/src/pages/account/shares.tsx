@@ -34,15 +34,15 @@ const MyShares = () => {
     <>
       <Meta title={t("account.shares.title")} />
       <Container>
-        <h2 className="text-2xl font-bold mb-8 text-text dark:text-text-dark">
+        <h1 className="page-title mb-8">
           <FormattedMessage id="account.shares.title" />
-        </h2>
+        </h1>
         {shares.length == 0 ? (
-          <div className="flex flex-col items-center justify-center" style={{ height: "70vh" }}>
-            <h3 className="text-xl font-bold mb-2 text-text dark:text-text-dark">
+          <div className="flex h-[60vh] flex-col items-center justify-center">
+            <h3 className="section-title mb-2 text-center">
               <FormattedMessage id="account.shares.title.empty" />
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            <p className="body-text mb-4 text-center">
               <FormattedMessage id="account.shares.description.empty" />
             </p>
             <Button as={Link} href="/upload" variant="outline">

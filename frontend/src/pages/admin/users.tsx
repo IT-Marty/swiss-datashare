@@ -60,10 +60,10 @@ const Users = () => {
     <>
       <Meta title={t("admin.users.title")} />
       <Container>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-4 mb-5">
-          <h2 className="text-2xl font-bold text-text dark:text-text-dark">
+        <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-baseline sm:justify-between">
+          <h1 className="page-title">
             <FormattedMessage id="admin.users.title" />
-          </h2>
+          </h1>
           <Button
             onClick={() =>
               showCreateUserModal(modals, config.get("smtp.enabled"), getUsers)

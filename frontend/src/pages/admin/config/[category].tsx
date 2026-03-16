@@ -127,7 +127,7 @@ export default function AdminConfigPage() {
                       <FormattedMessage id="admin.config.config-file-warning.description" />
                     </Alert>
                   )}
-                  <h2 className="text-2xl font-bold text-text dark:text-text-dark mb-6">
+                  <h2 className="page-title mb-6">
                     {t("admin.config.category." + categoryId)}
                   </h2>
                   {configVariables.map((configVariable) => (
@@ -136,7 +136,7 @@ export default function AdminConfigPage() {
                       className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 border-b border-gray-200 dark:border-gray-700 last:border-0"
                     >
                       <div className="flex-1 sm:max-w-[40%]">
-                        <h3 className="text-sm font-semibold text-text dark:text-text-dark mb-1">
+                        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">
                           <FormattedMessage
                             id={`admin.config.${camelToKebab(
                               configVariable.key,
@@ -144,7 +144,7 @@ export default function AdminConfigPage() {
                           />
                         </h3>
                         <p
-                          className="text-sm text-gray-500 dark:text-gray-400 whitespace-pre-line"
+                          className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line"
                         >
                           <FormattedMessage
                             id={`admin.config.${camelToKebab(

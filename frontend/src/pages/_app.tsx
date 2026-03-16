@@ -22,6 +22,7 @@ import { ModalProvider } from "../contexts/ModalContext";
 import { useToast } from "../hooks/useToast";
 import { ToastContainer } from "../components/ui";
 import { setGlobalToast } from "../utils/toast.util";
+import { mergeMessagesForUseCase } from "../i18n/useCaseOverrides";
 import "../styles/globals.css";
 
 const excludeDefaultLayoutRoutes = ["/admin/config/[category]"];
@@ -92,6 +93,36 @@ function App({ Component, pageProps }: AppProps) {
     moment.locale(lang);
   }, []);
 
+  const selectedLocale = useMemo(
+    () => i18nUtil.getLocaleByCode(language) ?? LOCALES.ENGLISH,
+    [language],
+  );
+
+  const currentUseCase = useMemo(() => {
+    const useCaseConfig = configVariables.find(
+      (configVariable) => configVariable.key === "general.useCase",
+    );
+    return (useCaseConfig?.value ?? useCaseConfig?.defaultValue ?? "default")
+      .toString()
+      .trim()
+      .toLowerCase();
+  }, [configVariables]);
+
+  const mergedMessages = useMemo(
+    () =>
+      mergeMessagesForUseCase(
+        selectedLocale.code,
+        selectedLocale.messages,
+        currentUseCase,
+      ),
+    [selectedLocale, currentUseCase],
+  );
+
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.setAttribute("data-usecase", currentUseCase || "default");
+  }, [currentUseCase]);
+
   return (
     <>
       <Head>
@@ -101,7 +132,7 @@ function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       <IntlProvider
-        messages={i18nUtil.getLocaleByCode(language)?.messages}
+        messages={mergedMessages}
         locale={language}
         defaultLocale={LOCALES.ENGLISH.code}
       >

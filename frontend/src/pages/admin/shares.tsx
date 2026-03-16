@@ -56,9 +56,9 @@ const Shares = () => {
     <>
       <Meta title={t("admin.shares.title")} />
       <Container>
-        <h2 className="text-2xl font-bold mb-8 text-text dark:text-text-dark">
+        <h1 className="page-title mb-8">
           <FormattedMessage id="admin.shares.title" />
-        </h2>
+        </h1>
 
         <ManageShareTable
           shares={shares}

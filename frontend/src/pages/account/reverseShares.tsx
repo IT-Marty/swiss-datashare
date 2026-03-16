@@ -42,11 +42,11 @@ const MyShares = () => {
     <>
       <Meta title={t("account.reverseShares.title")} />
       <Container>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-4 mb-5">
+        <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-baseline sm:justify-between">
           <div className="flex items-center gap-2">
-            <h2 className="text-2xl font-bold text-text dark:text-text-dark">
+            <h1 className="page-title">
               <FormattedMessage id="account.reverseShares.title" />
-            </h2>
+            </h1>
             <Tooltip
               position="bottom"
               multiline
@@ -73,11 +73,11 @@ const MyShares = () => {
           </Button>
         </div>
         {reverseShares.length == 0 ? (
-          <div className="flex flex-col items-center justify-center" style={{ height: "70vh" }}>
-            <h3 className="text-xl font-bold mb-2 text-text dark:text-text-dark">
+          <div className="flex h-[60vh] flex-col items-center justify-center">
+            <h3 className="section-title mb-2 text-center">
               <FormattedMessage id="account.reverseShares.title.empty" />
             </h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="body-text text-center">
               <FormattedMessage id="account.reverseShares.description.empty" />
             </p>
           </div>

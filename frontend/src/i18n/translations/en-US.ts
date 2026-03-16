@@ -453,6 +453,12 @@ export default {
   "admin.config.general.session-duration": "Session Duration",
   "admin.config.general.session-duration.description":
     "Time after which a user must log in again (default: 3 months).",
+  "admin.config.general.location": "Location",
+  "admin.config.general.location.description":
+    "Controls location-specific UI content (e.g. \"swiss\"). Leave empty for default behavior.",
+  "admin.config.general.use-case": "Use case",
+  "admin.config.general.use-case.description":
+    "Active use case for design and wording variants (e.g. \"lawyer\").",
   "admin.config.general.logo": "Logo",
   "admin.config.general.logo.description":
     "Change your logo by uploading a new image. The image must be a PNG and should have the format 1:1.",

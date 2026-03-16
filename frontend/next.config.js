@@ -7,6 +7,5 @@ module.exports = {
   },
   env: {
     VERSION: version,
-    LOCATION: process.env.LOCATION || "",
   },
 };

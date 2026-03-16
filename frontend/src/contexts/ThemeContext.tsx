@@ -37,14 +37,19 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  // Initialize with a safe default to avoid hydration mismatches
+  // Keep initial render aligned with pre-hydration script in _document
   const [theme, setThemeState] = useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
+  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() => {
+    if (typeof document !== "undefined") {
+      return document.documentElement.classList.contains("dark") ? "dark" : "light";
+    }
+    return "light";
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const savedTheme = (getCookie("theme") as Theme) || "system";
+    setMounted(true);
     setThemeState(savedTheme);
     const resolved = getResolvedTheme(savedTheme);
     setResolvedTheme(resolved);
@@ -107,7 +112,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const contextValue = useMemo(
     () => ({
       theme: mounted ? theme : "system",
-      resolvedTheme: mounted ? resolvedTheme : "light",
+      resolvedTheme,
       setTheme,
       toggleTheme,
     }),

@@ -105,13 +105,13 @@ const Share = ({ shareId }: { shareId: string }) => {
         description={t("share.description")}
       />
       <Container>
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+        <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex-1 max-w-[70%]">
-            <h1 className="text-2xl font-bold text-text dark:text-text-dark mb-2">
+            <h1 className="page-title mb-2">
               {share?.name || share?.id}
             </h1>
             {share?.description && (
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+              <p className="body-text mb-2">
                 {share.description}
               </p>
             )}

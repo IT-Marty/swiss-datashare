@@ -243,7 +243,15 @@ const Upload = ({
     <>
       <Meta title={t("upload.title")} />
       <Container>
-        <div className="flex justify-end mb-8">
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <h1 className="page-title">{t("upload.title")}</h1>
+            <p className="body-text mt-1">
+              {!autoOpenCreateUploadModal
+                ? t("upload.flow.hint.manual-open")
+                : t("upload.dropzone.title")}
+            </p>
+          </div>
           <Button
             loading={isUploading}
             disabled={files.length <= 0}
@@ -252,11 +260,6 @@ const Upload = ({
             <FormattedMessage id="common.button.share" />
           </Button>
         </div>
-        {!autoOpenCreateUploadModal && (
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-            <FormattedMessage id="upload.flow.hint.manual-open" />
-          </p>
-        )}
         <Dropzone
           title={
             !autoOpenCreateUploadModal && files.length > 0

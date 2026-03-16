@@ -43,7 +43,20 @@ export default function Home() {
     return signupEnabled ? "/auth/signUp" : "/auth/signIn";
   };
 
-  const isSwissLocation = (process.env.LOCATION || "").toLowerCase() === "swiss";
+  let location = "";
+  try {
+    location = (config.get("general.location") || "").toString().toLowerCase();
+  } catch {
+    location = "";
+  }
+  const isSwissLocation = location === "swiss";
+  let useCase = "default";
+  try {
+    useCase = (config.get("general.useCase") || "default").toString().toLowerCase();
+  } catch {
+    useCase = "default";
+  }
+  const isLawyerUseCase = useCase === "lawyer";
 
   const trustItems = [
     {
@@ -92,7 +105,13 @@ export default function Home() {
   return (
     <>
       <Meta title="Home" />
-      <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/10">
+      <div
+        className={
+          isLawyerUseCase
+            ? "min-h-screen bg-gradient-to-br from-slate-100 via-white to-amber-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-amber-900/10"
+            : "min-h-screen bg-gradient-to-br from-background via-background to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/10"
+        }
+      >
         <Container>
           <div className="pt-12 pb-10 lg:pt-20 lg:pb-16">
             <div className="text-center max-w-4xl mx-auto mb-10">
@@ -105,7 +124,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-text dark:text-text-dark mb-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-text dark:text-text-dark mb-4">
                 <FormattedMessage
                   id="home.title"
                   values={{
@@ -121,7 +140,7 @@ export default function Home() {
                 />
               </h1>
 
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-6 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 max-w-3xl mx-auto leading-relaxed">
                 <FormattedMessage id="home.description" />
               </p>
 
@@ -130,7 +149,7 @@ export default function Home() {
                   as={Link}
                   href={getButtonHref()}
                   size="lg"
-                  className="w-full sm:w-auto px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
                 >
                   <FormattedMessage id="home.button.start" />
                   <TbArrowRight className="ml-2 h-5 w-5" />
@@ -141,7 +160,7 @@ export default function Home() {
                   target="_blank"
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                  className="w-full sm:w-auto px-8 py-3.5 text-base font-semibold"
                 >
                   <FormattedMessage id="home.button.source" />
                 </Button>
@@ -149,7 +168,7 @@ export default function Home() {
             </div>
 
             <div className="max-w-6xl mx-auto mb-12">
-              <h2 className="text-2xl lg:text-3xl font-bold text-text dark:text-text-dark mb-6 text-center">
+              <h2 className="text-xl lg:text-2xl font-bold text-text dark:text-text-dark mb-6 text-center">
                 <FormattedMessage id="home.trust.title" />
               </h2>
               <Card
@@ -204,7 +223,7 @@ export default function Home() {
             </div>
 
             <div className="max-w-6xl mx-auto">
-              <h2 className="text-2xl lg:text-3xl font-bold text-text dark:text-text-dark mb-6 text-center">
+              <h2 className="text-xl lg:text-2xl font-bold text-text dark:text-text-dark mb-6 text-center">
                 <FormattedMessage id="home.how.title" />
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
