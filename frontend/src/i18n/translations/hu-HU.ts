@@ -178,7 +178,7 @@ export default {
   "admin.title": "Admin ügyek",
   "admin.button.users": "Felhasználókezelés",
   "admin.button.shares": "Megosztáskezelés",
-  "admin.button.config": "Konfiguráció",
+  "admin.button.config": "Rendszerbeállítások",
   "admin.version": "Verzió",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Megnevezés",
   "upload.filelist.size": "Méret",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Megosztás létrehozása",
+  "upload.modal.title": "Feltöltési link létrehozása",
   "upload.modal.link.error.invalid": "Csak betű, szám, aláhúzás és kötőjel karaktereket tartalmazhat",
   "upload.modal.link.error.taken": "Ez a hivatkozás név már használatban van",
   "upload.modal.not-signed-in": "Nincs bejelentkezve",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Mégse",
   "common.button.confirm": "Megerősítés",
   "common.button.disable": "Letiltás",
-  "common.button.share": "Megosztás",
+  "common.button.share": "Fájlok küldése",
   "common.button.generate": "Létrehozás",
   "common.button.done": "Kész",
   "common.text.link": "Hivatkozás",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "vagy",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "1. lépés: fájlok hozzáadása. 2. lépés: kattintson a Fájlok küldése gombra a feltöltési link beállításához és létrehozásához.",
   "common.button.go-back": "Vissza",
   "common.button.go-home": "Kezdőlap",
   "common.notify.copied": "A hivatkozást a Vágólapra másoltuk",

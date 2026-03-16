@@ -178,7 +178,7 @@ export default {
   "admin.title": "管理",
   "admin.button.users": "使用者管理",
   "admin.button.shares": "檔案管理",
-  "admin.button.config": "配置管理",
+  "admin.button.config": "系統設定",
   "admin.version": "版本",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "檔案名稱",
   "upload.filelist.size": "檔案大小",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "建立分享",
+  "upload.modal.title": "建立上傳連結",
   "upload.modal.link.error.invalid": "只能包括字母，數字，下劃線(_)，和橫線(-)",
   "upload.modal.link.error.taken": "這個分享代號已經存在了",
   "upload.modal.not-signed-in": "當前沒有登入",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "取消",
   "common.button.confirm": "確認",
   "common.button.disable": "關閉",
-  "common.button.share": "分享",
+  "common.button.share": "傳送檔案",
   "common.button.generate": "自動產生",
   "common.button.done": "完成",
   "common.text.link": "連結",
   "common.text.navigate-to-link": "瀏覽連結",
   "common.text.or": "或",
   "common.text.redirecting": "正在跳轉中...",
+  "upload.flow.hint.manual-open": "步驟 1：新增檔案。步驟 2：點擊「傳送檔案」以設定並建立上傳連結。",
   "common.button.go-back": "返回",
   "common.button.go-home": "返回首頁",
   "common.notify.copied": "已複製到剪貼簿",

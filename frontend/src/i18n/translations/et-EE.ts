@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administreerimine",
   "admin.button.users": "Kasutajate haldamine",
   "admin.button.shares": "Jagamiste haldamine",
-  "admin.button.config": "Seaded",
+  "admin.button.config": "Süsteemi seaded",
   "admin.version": "Versioon",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nimi",
   "upload.filelist.size": "Suurus",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Loo jagamine",
+  "upload.modal.title": "Loo üleslaadimislink",
   "upload.modal.link.error.invalid": "Võib sisaldada ainult tähti, numbreid, alakriipse ja kriipse",
   "upload.modal.link.error.taken": "See link on juba kasutusel",
   "upload.modal.not-signed-in": "Sa ei ole sisse logitud",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Tühista",
   "common.button.confirm": "Kinnita",
   "common.button.disable": "Lülita välja",
-  "common.button.share": "Jaga",
+  "common.button.share": "Saada failid",
   "common.button.generate": "Genereeri",
   "common.button.done": "Valmis",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Külastage linki",
   "common.text.or": "või",
   "common.text.redirecting": "Ümbersuunamine...",
+  "upload.flow.hint.manual-open": "Samm 1: lisa failid. Samm 2: klõpsa nupul Saada failid, et seadistada ja luua üleslaadimislink.",
   "common.button.go-back": "Mine tagasi",
   "common.button.go-home": "Mine avalehele",
   "common.notify.copied": "Sinu link kopeeriti lõikelauale",

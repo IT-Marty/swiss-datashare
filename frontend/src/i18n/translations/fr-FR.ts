@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administration",
   "admin.button.users": "Gestion des utilisateurs",
   "admin.button.shares": "Gestion des partages",
-  "admin.button.config": "Paramètres",
+  "admin.button.config": "Paramètres système",
   "admin.version": "Version",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nom",
   "upload.filelist.size": "Taille",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Créer un partage",
+  "upload.modal.title": "Créer un lien de téléversement",
   "upload.modal.link.error.invalid": "Ne peut contenir que des lettres, des chiffres, des tirets bas et des traits d'union",
   "upload.modal.link.error.taken": "Ce lien est déjà utilisé",
   "upload.modal.not-signed-in": "Vous n'êtes pas connecté",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Annuler",
   "common.button.confirm": "Confirmer",
   "common.button.disable": "Désactiver",
-  "common.button.share": "Partager",
+  "common.button.share": "Envoyer les fichiers",
   "common.button.generate": "Générer",
   "common.button.done": "Terminer",
   "common.text.link": "Lien",
   "common.text.navigate-to-link": "Visiter le lien",
   "common.text.or": "ou",
   "common.text.redirecting": "Redirection...",
+  "upload.flow.hint.manual-open": "Étape 1 : ajoutez des fichiers. Étape 2 : cliquez sur Envoyer les fichiers pour configurer et créer votre lien de téléversement.",
   "common.button.go-back": "Précédent",
   "common.button.go-home": "Accueil",
   "common.notify.copied": "Votre lien a été copié dans le presse-papiers",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "الإدارة",
   "admin.button.users": "إدارة المستخدم",
   "admin.button.shares": "إدارة المشاركة",
-  "admin.button.config": "الإعدادات",
+  "admin.button.config": "إعدادات النظام",
   "admin.version": "الإصدار",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "الاسم",
   "upload.filelist.size": "الحجم",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "إنشاء مشاركة",
+  "upload.modal.title": "إنشاء رابط رفع",
   "upload.modal.link.error.invalid": "يمكن أن يحتوي فقط على الأحرف والأرقام والشرطات السفلية والواصلات",
   "upload.modal.link.error.taken": "هذا الرابط مستخدم مسبقاً",
   "upload.modal.not-signed-in": "لم تقم بتسجيل الدخول",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "إلغاء",
   "common.button.confirm": "تأكيد",
   "common.button.disable": "إيقاف",
-  "common.button.share": "مشاركة",
+  "common.button.share": "إرسال الملفات",
   "common.button.generate": "توليد",
   "common.button.done": "تم",
   "common.text.link": "الرابط",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "أو",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "الخطوة 1: أضف الملفات. الخطوة 2: انقر على إرسال الملفات لتهيئة رابط الرفع وإنشائه.",
   "common.button.go-back": "العودة",
   "common.button.go-home": "العودة للصفحة الرئيسية",
   "common.notify.copied": "تم نسخ الرابط إلى الحافظة",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administrace",
   "admin.button.users": "Správa uživatelů",
   "admin.button.shares": "Správa sdílení",
-  "admin.button.config": "Nastavení",
+  "admin.button.config": "Nastavení systému",
   "admin.version": "Verze",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Název",
   "upload.filelist.size": "Velikost",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Vytvořit sdílení",
+  "upload.modal.title": "Vytvořit odkaz pro nahrání",
   "upload.modal.link.error.invalid": "Může obsahovat pouze písmena, číslice, podtržítka a pomlčky",
   "upload.modal.link.error.taken": "Tento odkaz je již používán",
   "upload.modal.not-signed-in": "Nejste přihlášeni",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Zrušit",
   "common.button.confirm": "Potvrdit",
   "common.button.disable": "Zakázat",
-  "common.button.share": "Sdílet",
+  "common.button.share": "Odeslat soubory",
   "common.button.generate": "Generovat",
   "common.button.done": "Hotovo",
   "common.text.link": "Odkaz",
   "common.text.navigate-to-link": "Navštívit odkaz",
   "common.text.or": "nebo",
   "common.text.redirecting": "Přesměrování...",
+  "upload.flow.hint.manual-open": "Krok 1: přidejte soubory. Krok 2: klikněte na Odeslat soubory, nastavte odkaz pro nahrání a vytvořte jej.",
   "common.button.go-back": "Vrátit se zpět",
   "common.button.go-home": "Jít domů",
   "common.notify.copied": "Váš odkaz byl zkopírován do schránky",

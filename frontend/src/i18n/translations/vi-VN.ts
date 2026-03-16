@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administration",
   "admin.button.users": "User management",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Configuration",
+  "admin.button.config": "Cài đặt hệ thống",
   "admin.version": "Phiên bản",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Tên",
   "upload.filelist.size": "Kích thước",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Create Share",
+  "upload.modal.title": "Tạo liên kết tải lên",
   "upload.modal.link.error.invalid": "Chỉ được phép sử dụng chữ, số, dấu gạch dưới và dấu gạch ngang",
   "upload.modal.link.error.taken": "Liên kết đã được sử dụng",
   "upload.modal.not-signed-in": "Bạn chưa đăng nhập",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Hủy",
   "common.button.confirm": "Xác nhận",
   "common.button.disable": "Disable",
-  "common.button.share": "Share",
+  "common.button.share": "Gửi tệp",
   "common.button.generate": "Generate",
   "common.button.done": "Done",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "hoặc",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Bước 1: thêm tệp. Bước 2: nhấp Gửi tệp để cấu hình và tạo liên kết tải lên.",
   "common.button.go-back": "Quay lại",
   "common.button.go-home": "Về trang chủ",
   "common.notify.copied": "Đã sao chép liên kết vào bộ nhớ",

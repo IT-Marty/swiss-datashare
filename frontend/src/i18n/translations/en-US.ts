@@ -17,7 +17,7 @@ export default {
   "home.title": "A <h>self-hosted</h> file sharing platform.",
 
   "home.description":
-    "Do you really want to give your personal files in the hand of third parties like WeTransfer?",
+    "Send large files with your own secure link. Upload, create the link, and share it in seconds.",
   "home.bullet.a.name": "Self-Hosted",
   "home.bullet.a.description": "Host Swiss DataShare on your own machine.",
   "home.bullet.b.name": "Privacy",
@@ -27,7 +27,7 @@ export default {
   "home.bullet.c.description":
     "Upload files as big as you want. Only your hard drive will be your limit.",
 
-  "home.button.start": "Get started",
+  "home.button.start": "Start sharing",
   "home.button.source": "Source code",
   // END /
 
@@ -150,7 +150,7 @@ export default {
   "account.shares.description.empty": "You don't have any shares.",
   "account.shares.button.create": "Create one",
 
-  "account.shares.info.title": "Share informations",
+  "account.shares.info.title": "Share information",
   "account.shares.table.id": "ID",
   "account.shares.table.name": "Name",
   "account.shares.table.description": "Description",
@@ -162,7 +162,7 @@ export default {
   "account.shares.table.visitor-count": "{count} of {max}",
   "account.shares.table.expiry-never": "Never",
 
-  "account.shares.modal.share-informations": "Share informations",
+  "account.shares.modal.share-informations": "Share information",
   "account.shares.modal.share-link": "Share link",
 
   "account.shares.modal.delete.title": "Delete share: {share}",
@@ -174,7 +174,7 @@ export default {
   // /account/reverseShares
   "account.reverseShares.title": "Reverse shares",
   "account.reverseShares.description":
-    "A reverse share allows you to generate a unique URL that allows external users to create a share.",
+    "Create an upload request link so external users can securely send files to you.",
 
   "account.reverseShares.title.empty": "It's empty here 👀",
   "account.reverseShares.description.empty":
@@ -237,7 +237,7 @@ export default {
   "admin.title": "Administration",
   "admin.button.users": "User management",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Configuration",
+  "admin.button.config": "System settings",
   "admin.version": "Version",
   // END /admin
 
@@ -301,7 +301,7 @@ export default {
   // Dropzone.tsx
   "upload.dropzone.title": "Upload files",
   "upload.dropzone.description":
-    "Drag'n'drop files here to start your share. We only accept files up to {maxSize} in total.",
+    "Drag and drop files here (or select files), then click \"Send files\" to create and send your upload link. Maximum total size: {maxSize}.",
   "upload.dropzone.button.select": "Select files",
   "upload.dropzone.notify.file-too-big":
     "Your files exceed the maximum share size of {maxSize}.",
@@ -311,20 +311,20 @@ export default {
   "upload.filelist.size": "Size",
 
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Create Share",
+  "upload.modal.title": "Create upload link",
   "upload.modal.link.error.invalid":
     "Can only contain letters, numbers, underscores, and hyphens",
   "upload.modal.link.error.taken": "This link is already in use",
   "upload.modal.not-signed-in": "You're not signed in",
   "upload.modal.not-signed-in-description":
-    "You will be unable to delete your share manually and view the visitor count.",
+    "Sign in to manage this upload later. Without sign-in, you cannot delete it manually or see visitor count.",
 
   "upload.modal.expires.never": "never",
   "upload.modal.expires.never-long": "Permanent share",
   "upload.modal.expires.error.too-long":
     "Expiration date exceeds the maximum of {max}.",
 
-  "upload.modal.link.label": "Link",
+  "upload.modal.link.label": "Link ID",
   "upload.modal.expires.label": "Expiration",
   "upload.modal.expires.minute-singular": "Minute",
   "upload.modal.expires.minute-plural": "Minutes",
@@ -358,7 +358,7 @@ export default {
   "upload.modal.completed.never-expires": "This share will never expire.",
   "upload.modal.completed.expires-on":
     "This share will expire on {expiration}.",
-  "upload.modal.completed.share-ready": "Share ready",
+  "upload.modal.completed.share-ready": "Upload complete",
   "upload.modal.completed.notified-reverse-share-creator":
     "We have notified the creator of the reverse share. You can also manually share this link with them through other means.",
 
@@ -737,13 +737,14 @@ export default {
   "common.button.cancel": "Cancel",
   "common.button.confirm": "Confirm",
   "common.button.disable": "Disable",
-  "common.button.share": "Share",
+  "common.button.share": "Send files",
   "common.button.generate": "Generate",
   "common.button.done": "Done",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "or",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Step 1: add files. Step 2: click Send files to configure and create your upload link.",
   "common.button.go-back": "Go back",
   "common.button.go-home": "Go home",
   "common.notify.copied": "Your link was copied to the clipboard",

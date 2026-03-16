@@ -178,7 +178,7 @@ export default {
   "admin.title": "Διαχείριση",
   "admin.button.users": "Διαχείριση χρηστών",
   "admin.button.shares": "Διαχείριση κοινοποιήσεων",
-  "admin.button.config": "Διαμόρφωση",
+  "admin.button.config": "Ρυθμίσεις συστήματος",
   "admin.version": "Έκδοση",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Όνομα",
   "upload.filelist.size": "Μέγεθος",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Δημιουργία Κοινοποίησης",
+  "upload.modal.title": "Δημιουργία συνδέσμου μεταφόρτωσης",
   "upload.modal.link.error.invalid": "Μπορεί να περιέχει μόνο γράμματα, αριθμούς, κάτω παύλες και παύλες",
   "upload.modal.link.error.taken": "Αυτός ο σύνδεσμος χρησιμοποιείται ήδη",
   "upload.modal.not-signed-in": "Δεν είστε συνδεδεμένος/η",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Ακύρωση",
   "common.button.confirm": "Επιβεβαίωση",
   "common.button.disable": "Απενεργοποίηση",
-  "common.button.share": "Διαμοιρασμός",
+  "common.button.share": "Αποστολή αρχείων",
   "common.button.generate": "Δημιουργία",
   "common.button.done": "Ολοκληρώθηκε",
   "common.text.link": "Σύνδεσμος",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "ή",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Βήμα 1: προσθέστε αρχεία. Βήμα 2: πατήστε Αποστολή αρχείων για να ρυθμίσετε και να δημιουργήσετε τον σύνδεσμο μεταφόρτωσης.",
   "common.button.go-back": "Επιστροφή",
   "common.button.go-home": "Μετάβαση στην αρχική",
   "common.notify.copied": "Ο σύνδεσμος σας αντιγράφηκε στο πρόχειρο",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administration",
   "admin.button.users": "Användarhantering",
   "admin.button.shares": "Delningshantering",
-  "admin.button.config": "Konfiguration",
+  "admin.button.config": "Systeminställningar",
   "admin.version": "Version",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Namn",
   "upload.filelist.size": "Storlek",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Skapa delning",
+  "upload.modal.title": "Skapa uppladdningslänk",
   "upload.modal.link.error.invalid": "Kan endast innehålla bokstäver, siffror, understreck och bindestreck",
   "upload.modal.link.error.taken": "Denna länk används redan",
   "upload.modal.not-signed-in": "Du är inte inloggad",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Avbryt",
   "common.button.confirm": "Bekräfta",
   "common.button.disable": "Inaktivera",
-  "common.button.share": "Delning",
+  "common.button.share": "Skicka filer",
   "common.button.generate": "Generera",
   "common.button.done": "Klar",
   "common.text.link": "Länk",
   "common.text.navigate-to-link": "Besök länk",
   "common.text.or": "eller",
   "common.text.redirecting": "Omdirigerar...",
+  "upload.flow.hint.manual-open": "Steg 1: lägg till filer. Steg 2: klicka på Skicka filer för att konfigurera och skapa din uppladdningslänk.",
   "common.button.go-back": "Gå tillbaka",
   "common.button.go-home": "Gå hem",
   "common.notify.copied": "Din länk har kopierats till urklipp",

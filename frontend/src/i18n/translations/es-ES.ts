@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administración",
   "admin.button.users": "Gestión de usuarios",
   "admin.button.shares": "Gestión de comparticiones",
-  "admin.button.config": "Configuración",
+  "admin.button.config": "Configuración del sistema",
   "admin.version": "Versión",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nombre",
   "upload.filelist.size": "Tamaño",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Crear compartido",
+  "upload.modal.title": "Crear enlace de carga",
   "upload.modal.link.error.invalid": "Solo puede contener letras, números, guiones y guiones bajos",
   "upload.modal.link.error.taken": "Este enlace ya está en uso",
   "upload.modal.not-signed-in": "No has iniciado sesión",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Cancelar",
   "common.button.confirm": "Confirmar",
   "common.button.disable": "Deshabilitar",
-  "common.button.share": "Compartir",
+  "common.button.share": "Enviar archivos",
   "common.button.generate": "Generar",
   "common.button.done": "Listo",
   "common.text.link": "Enlace",
   "common.text.navigate-to-link": "Visitar enlace",
   "common.text.or": "o",
   "common.text.redirecting": "Redirigiendo...",
+  "upload.flow.hint.manual-open": "Paso 1: añade archivos. Paso 2: haz clic en Enviar archivos para configurar y crear tu enlace de carga.",
   "common.button.go-back": "Volver",
   "common.button.go-home": "Página de inicio",
   "common.notify.copied": "Tu enlace se ha copiado al portapapeles",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "แผงควบคุมระบบ",
   "admin.button.users": "การจัดการผู้ใช้",
   "admin.button.shares": "Share management",
-  "admin.button.config": "การตั้งค่า",
+  "admin.button.config": "การตั้งค่าระบบ",
   "admin.version": "เวอร์ชัน",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "ชื่อ",
   "upload.filelist.size": "ขนาด",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "สร้างการแชร์",
+  "upload.modal.title": "สร้างลิงก์อัปโหลด",
   "upload.modal.link.error.invalid": "สามารถใช้ได้เฉพาะตัวอักษร ตัวเลข ขีดล่าง และขีดเส้น",
   "upload.modal.link.error.taken": "ลิงก์นี้ถูกใช้งานแล้ว",
   "upload.modal.not-signed-in": "คุณยังไม่ได้เข้าสู่ระบบ",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "ยกเลิก",
   "common.button.confirm": "ยืนยัน",
   "common.button.disable": "ปิดการใช้งาน",
-  "common.button.share": "แชร์",
+  "common.button.share": "ส่งไฟล์",
   "common.button.generate": "สุ่ม",
   "common.button.done": "เสร็จสิ้น",
   "common.text.link": "ลิงค์",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "หรือ",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "ขั้นตอนที่ 1: เพิ่มไฟล์ ขั้นตอนที่ 2: คลิก ส่งไฟล์ เพื่อกำหนดค่าและสร้างลิงก์อัปโหลดของคุณ",
   "common.button.go-back": "ย้อนกลับ",
   "common.button.go-home": "Go home",
   "common.notify.copied": "คัดลอกไปยังคลิปบอร์ดแล้ว",

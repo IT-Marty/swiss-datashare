@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administração",
   "admin.button.users": "Gerenciamento de usuários",
   "admin.button.shares": "Gerenciamento de compartilhamentos",
-  "admin.button.config": "Configuração",
+  "admin.button.config": "Configurações do sistema",
   "admin.version": "Versão",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nome",
   "upload.filelist.size": "Tamanho",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Criar Compartilhamento",
+  "upload.modal.title": "Criar link de upload",
   "upload.modal.link.error.invalid": "Pode conter apenas letras, números, sublinhados e hífens",
   "upload.modal.link.error.taken": "Este link já está em uso",
   "upload.modal.not-signed-in": "Você não está conectado",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Cancelar",
   "common.button.confirm": "Confirmar",
   "common.button.disable": "Desativar",
-  "common.button.share": "Compartilhamento",
+  "common.button.share": "Enviar arquivos",
   "common.button.generate": "Gerar",
   "common.button.done": "Concluído",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visitar Link",
   "common.text.or": "ou",
   "common.text.redirecting": "Redirecionando...",
+  "upload.flow.hint.manual-open": "Etapa 1: adicione arquivos. Etapa 2: clique em Enviar arquivos para configurar e criar seu link de upload.",
   "common.button.go-back": "Voltar",
   "common.button.go-home": "Voltar para o Início",
   "common.notify.copied": "O seu link foi copiado para a área de transferência",

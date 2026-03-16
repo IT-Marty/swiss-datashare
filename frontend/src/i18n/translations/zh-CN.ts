@@ -178,7 +178,7 @@ export default {
   "admin.title": "管理",
   "admin.button.users": "用户管理",
   "admin.button.shares": "共享管理",
-  "admin.button.config": "配置管理",
+  "admin.button.config": "系统设置",
   "admin.version": "版本",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "文件名",
   "upload.filelist.size": "文件大小",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "创建共享",
+  "upload.modal.title": "创建上传链接",
   "upload.modal.link.error.invalid": "只能包括字母，数字，下划线(_)，和横线(-)",
   "upload.modal.link.error.taken": "这个链接已经存在了",
   "upload.modal.not-signed-in": "当前没有登录",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "取消",
   "common.button.confirm": "确认",
   "common.button.disable": "关闭",
-  "common.button.share": "共享",
+  "common.button.share": "发送文件",
   "common.button.generate": "生成",
   "common.button.done": "完成",
   "common.text.link": "链接",
   "common.text.navigate-to-link": "访问链接",
   "common.text.or": "或",
   "common.text.redirecting": "正在跳转中...",
+  "upload.flow.hint.manual-open": "第 1 步：添加文件。第 2 步：点击“发送文件”来配置并创建上传链接。",
   "common.button.go-back": "返回",
   "common.button.go-home": "返回主页",
   "common.notify.copied": "已复制到剪贴板",

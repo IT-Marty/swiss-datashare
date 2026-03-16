@@ -178,7 +178,7 @@ export default {
   "admin.title": "Администрирование",
   "admin.button.users": "Управление пользователями",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Конфигурация",
+  "admin.button.config": "Системные настройки",
   "admin.version": "Версия",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Название",
   "upload.filelist.size": "Размер",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Загрузить",
+  "upload.modal.title": "Создать ссылку для загрузки",
   "upload.modal.link.error.invalid": "Имя пользователя должно состоять только из букв, цифр, подчёркиваний и дефисов",
   "upload.modal.link.error.taken": "Эта ссылка уже используется",
   "upload.modal.not-signed-in": "Вы не авторизованы",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Отмена",
   "common.button.confirm": "Подтвердить",
   "common.button.disable": "Отключить",
-  "common.button.share": "Поделиться",
+  "common.button.share": "Отправить файлы",
   "common.button.generate": "Сгенерировать",
   "common.button.done": "Готово",
   "common.text.link": "Ссылка",
   "common.text.navigate-to-link": "Перейти по ссылке",
   "common.text.or": "или",
   "common.text.redirecting": "Идет перенаправление...",
+  "upload.flow.hint.manual-open": "Шаг 1: добавьте файлы. Шаг 2: нажмите Отправить файлы, чтобы настроить и создать ссылку для загрузки.",
   "common.button.go-back": "Назад",
   "common.button.go-home": "Домой",
   "common.notify.copied": "Ваша ссылка скопирована в буфер обмена",

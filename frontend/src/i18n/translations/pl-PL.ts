@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administracja",
   "admin.button.users": "Zarządzanie użytkownikami",
   "admin.button.shares": "Zarządzanie udostępnieniami",
-  "admin.button.config": "Konfiguracja",
+  "admin.button.config": "Ustawienia systemu",
   "admin.version": "Wersja",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nazwa",
   "upload.filelist.size": "Rozmiar",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Utwórz Udział",
+  "upload.modal.title": "Utwórz link do przesyłania",
   "upload.modal.link.error.invalid": "Może zawierać tylko litery, cyfry, znaki podkreślenia i myślniki",
   "upload.modal.link.error.taken": "Ten link jest już w użyciu",
   "upload.modal.not-signed-in": "Nie jesteś zalogowany/a",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Anuluj",
   "common.button.confirm": "Potwierdź",
   "common.button.disable": "Wyłącz",
-  "common.button.share": "Udostępnij",
+  "common.button.share": "Wyślij pliki",
   "common.button.generate": "Wygeneruj",
   "common.button.done": "Gotowe",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "lub",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Krok 1: dodaj pliki. Krok 2: kliknij Wyślij pliki, aby skonfigurować i utworzyć link do przesyłania.",
   "common.button.go-back": "Wróć",
   "common.button.go-home": "Wróć do ekranu głównego",
   "common.notify.copied": "Link został skopiowany do schowka",

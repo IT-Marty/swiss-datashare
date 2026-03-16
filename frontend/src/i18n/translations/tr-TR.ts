@@ -178,7 +178,7 @@ export default {
   "admin.title": "Yönetim",
   "admin.button.users": "Kullanıcı Yönetimi",
   "admin.button.shares": "Paylaşım Yönetimi",
-  "admin.button.config": "Yapılandırma",
+  "admin.button.config": "Sistem ayarları",
   "admin.version": "Sürüm",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "İsim",
   "upload.filelist.size": "Boyut",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Paylaşım Oluştur",
+  "upload.modal.title": "Yükleme bağlantısı oluştur",
   "upload.modal.link.error.invalid": "Sadece harf, rakam, alt çizgi ve tire içerebilir",
   "upload.modal.link.error.taken": "Bu bağlantı zaten kullanılıyor",
   "upload.modal.not-signed-in": "Giriş yapmadınız",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "İptal",
   "common.button.confirm": "Onayla",
   "common.button.disable": "Devre Dışı Bırak",
-  "common.button.share": "Paylaş",
+  "common.button.share": "Dosyaları gönder",
   "common.button.generate": "Oluştur",
   "common.button.done": "Bitti",
   "common.text.link": "Bağlantı",
   "common.text.navigate-to-link": "Bağlantıya git",
   "common.text.or": "veya",
   "common.text.redirecting": "Yönlendiriliyor...",
+  "upload.flow.hint.manual-open": "Adım 1: dosyaları ekleyin. Adım 2: yükleme bağlantınızı yapılandırıp oluşturmak için Dosyaları gönder düğmesine tıklayın.",
   "common.button.go-back": "Geri dön",
   "common.button.go-home": "Anasayfaya git",
   "common.notify.copied": "Bağlantınız panoya kopyalandı",

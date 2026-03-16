@@ -178,7 +178,7 @@ export default {
   "admin.title": "Instellingen",
   "admin.button.users": "Gebruikers beheer",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Configuratie",
+  "admin.button.config": "Systeeminstellingen",
   "admin.version": "Versie",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Naam",
   "upload.filelist.size": "Grootte",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Share aanmaken",
+  "upload.modal.title": "Uploadlink maken",
   "upload.modal.link.error.invalid": "Het mag alleen letters, cijfers, onderstrepingstekens en koppeltekens bevatten",
   "upload.modal.link.error.taken": "Deze link is al in gebruik",
   "upload.modal.not-signed-in": "U bent niet aangemeld",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Annuleer",
   "common.button.confirm": "Bevestigen",
   "common.button.disable": "Uitschakelen",
-  "common.button.share": "Delen",
+  "common.button.share": "Bestanden verzenden",
   "common.button.generate": "Genereren",
   "common.button.done": "Voltooid",
   "common.text.link": "Koppeling",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "of",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Stap 1: voeg bestanden toe. Stap 2: klik op Bestanden verzenden om je uploadlink te configureren en aan te maken.",
   "common.button.go-back": "Ga terug",
   "common.button.go-home": "Go home",
   "common.notify.copied": "Uw link is gekopieerd naar het klembord",

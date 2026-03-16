@@ -12,14 +12,14 @@ export default {
   // END navbar
   // /
   "home.title": "Eine <h>selbst gehostete</h> Dateifreigabe-Plattform.",
-  "home.description": "Möchtest du wirklich deine persönlichen Dateien an Drittanbieter wie WeTransfer weitergeben?",
+  "home.description": "Versende grosse Dateien mit deinem eigenen sicheren Link: hochladen, Link erstellen und direkt verschicken.",
   "home.bullet.a.name": "Selbst gehostet",
   "home.bullet.a.description": "Betreibe Swiss DataShare auf deinem eigenen Server.",
   "home.bullet.b.name": "Privatsphäre",
   "home.bullet.b.description": "Deine Dateien gehören dir und sind niemals durch Dritte zugänglich.",
   "home.bullet.c.name": "Keine lästige Dateigrössenbegrenzung",
   "home.bullet.c.description": "Lade so grosse Dateien hoch, wie du willst. Nur deine Festplatte ist dein Limit.",
-  "home.button.start": "Lege los",
+  "home.button.start": "Jetzt starten",
   "home.button.source": "Quellcode",
   // END /
   // /auth/signin
@@ -116,7 +116,7 @@ export default {
   "account.shares.title.empty": "Es ist so leer hier 👀",
   "account.shares.description.empty": "Du hast keine Freigaben erstellt.",
   "account.shares.button.create": "Erstelle eine",
-  "account.shares.info.title": "Freigabe Informationen",
+  "account.shares.info.title": "Freigabeinformationen",
   "account.shares.table.id": "ID",
   "account.shares.table.name": "Name",
   "account.shares.table.description": "Beschreibung",
@@ -127,14 +127,14 @@ export default {
   "account.shares.table.password-protected": "Passwortgeschützt",
   "account.shares.table.visitor-count": "{count} von {max}",
   "account.shares.table.expiry-never": "nie",
-  "account.shares.modal.share-informations": "Teile deine Information",
+  "account.shares.modal.share-informations": "Freigabeinformationen",
   "account.shares.modal.share-link": "Freigabe teilen",
   "account.shares.modal.delete.title": "Freigabe löschen: {share}",
   "account.shares.modal.delete.description": "Möchtest du diese Freigabe wirklich löschen?",
   // END /account/shares
   // /account/reverseShares
   "account.reverseShares.title": "Datei Anfragen",
-  "account.reverseShares.description": "Eine Datei Anfrage erlaubt dir eine einzigartige URL zu erstellen, die externen Benutzern erlaubt, Dateien hochzuladen.",
+  "account.reverseShares.description": "Erstelle einen Anfrage-Link, damit externe Personen dir Dateien sicher senden koennen.",
   "account.reverseShares.title.empty": "Es ist leer hier 👀",
   "account.reverseShares.description.empty": "Du hast keine Datei Anfrage.",
   // showCreateReverseShareModal.tsx
@@ -178,7 +178,7 @@ export default {
   "admin.title": "Verwaltung",
   "admin.button.users": "Benutzerverwaltung",
   "admin.button.shares": "Freigaben Verwaltung",
-  "admin.button.config": "Konfiguration",
+  "admin.button.config": "Systemeinstellungen",
   "admin.version": "Version",
   // END /admin
   // /admin/users
@@ -222,22 +222,22 @@ export default {
   "upload.reverse-share.error.invalid.description": "Diese externe Freigabe ist abgelaufen oder ungültig.",
   // Dropzone.tsx
   "upload.dropzone.title": "Dateien hochladen",
-  "upload.dropzone.description": "Ziehe Dateien per Drag'n'Drop hierher, um deine Freigabe zu starten. Wir akzeptieren nur Dateien mit einer Gesamtgrösse von bis zu {maxSize}.",
+  "upload.dropzone.description": "Ziehe Dateien hierher (oder waehle sie aus) und klicke danach auf \"Versenden\", um deinen Upload-Link zu erstellen. Maximale Gesamtgroesse: {maxSize}.",
   "upload.dropzone.button.select": "Dateien auswählen",
   "upload.dropzone.notify.file-too-big": "Ihre Dateien überschreiten die maximale Freigabegrösse von {maxSize}.",
   // FileList.tsx
   "upload.filelist.name": "Name",
   "upload.filelist.size": "Grösse",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Erstelle Freigabe",
+  "upload.modal.title": "Upload-Link erstellen",
   "upload.modal.link.error.invalid": "Darf nur Buchstaben, Zahlen, Unterstriche und Bindestriche enthalten",
   "upload.modal.link.error.taken": "Dieser Link wird bereits verwendet",
   "upload.modal.not-signed-in": "Du bist nicht angemeldet",
-  "upload.modal.not-signed-in-description": "Du wirst deine Freigabe nicht löschen können oder die Besucheranzahl sehen.",
+  "upload.modal.not-signed-in-description": "Melde dich an, um diesen Upload spaeter zu verwalten. Ohne Anmeldung kannst du ihn nicht manuell loeschen und keine Besucherzahl sehen.",
   "upload.modal.expires.never": "nie",
   "upload.modal.expires.never-long": "Permanente Freigabe",
   "upload.modal.expires.error.too-long": "Das Ablaufdatum überschreitet das Maximum von {max}.",
-  "upload.modal.link.label": "Link",
+  "upload.modal.link.label": "Link-ID",
   "upload.modal.expires.label": "Gültig bis",
   "upload.modal.expires.minute-singular": "Minute",
   "upload.modal.expires.minute-plural": "Minuten",
@@ -265,7 +265,7 @@ export default {
   // showCompletedUploadModal.tsx
   "upload.modal.completed.never-expires": "Diese Freigabe läuft niemals ab.",
   "upload.modal.completed.expires-on": "Diese Freigabe wird am {expiration} ablaufen.",
-  "upload.modal.completed.share-ready": "Freigabe bereit",
+  "upload.modal.completed.share-ready": "Upload abgeschlossen",
   "upload.modal.completed.notified-reverse-share-creator": "Wir haben den Ersteller der externen Freigabe benachrichtigt. Du kannst den Link auch auf andere Wege teilen.",
   // END /upload
   // /share/[id]
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Abbrechen",
   "common.button.confirm": "Bestätigen",
   "common.button.disable": "Deaktivieren",
-  "common.button.share": "Teilen",
+  "common.button.share": "Versenden",
   "common.button.generate": "Generieren",
   "common.button.done": "Fertig",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Link öffnen",
   "common.text.or": "oder",
   "common.text.redirecting": "Umleitung...",
+  "upload.flow.hint.manual-open": "Schritt 1: Dateien hinzufuegen. Schritt 2: auf Versenden klicken, um den Upload-Link zu konfigurieren und zu erstellen.",
   "common.button.go-back": "Zurück",
   "common.button.go-home": "Zur Startseite",
   "common.notify.copied": "Dein Link wurde in die Zwischenablage kopiert",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "관리자",
   "admin.button.users": "사용자 관리",
   "admin.button.shares": "공유 관리",
-  "admin.button.config": "구성",
+  "admin.button.config": "시스템 설정",
   "admin.version": "버전",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "이름",
   "upload.filelist.size": "크기",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "공유 생성",
+  "upload.modal.title": "업로드 링크 만들기",
   "upload.modal.link.error.invalid": "문자, 숫자, 밑줄 및 하이픈만 포함할 수 있습니다",
   "upload.modal.link.error.taken": "이미 사용 중인 링크입니다",
   "upload.modal.not-signed-in": "로그인하지 않았습니다",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "취소",
   "common.button.confirm": "확인",
   "common.button.disable": "비활성화",
-  "common.button.share": "공유",
+  "common.button.share": "파일 보내기",
   "common.button.generate": "생성",
   "common.button.done": "완료",
   "common.text.link": "링크",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "또는",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "1단계: 파일을 추가하세요. 2단계: 파일 보내기를 클릭해 업로드 링크를 설정하고 생성하세요.",
   "common.button.go-back": "뒤로 가기",
   "common.button.go-home": "첫 페이지",
   "common.notify.copied": "당신의 링크가 클립보드에 복사되었습니다.",

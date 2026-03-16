@@ -178,7 +178,7 @@ export default {
   "admin.title": "Администрација",
   "admin.button.users": "Управљање корисницима",
   "admin.button.shares": "Управљање дељењем",
-  "admin.button.config": "Конфигурација",
+  "admin.button.config": "Системска подешавања",
   "admin.version": "Верзија",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Назив",
   "upload.filelist.size": "Величина",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Направи дељење",
+  "upload.modal.title": "Направи линк за отпремање",
   "upload.modal.link.error.invalid": "Може да садржи само слова, бројеве, доње црте и цртице",
   "upload.modal.link.error.taken": "Овај линк је већ у употреби",
   "upload.modal.not-signed-in": "Нисте пријављени",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Откажи",
   "common.button.confirm": "Потврди",
   "common.button.disable": "Онемогући",
-  "common.button.share": "Дељење",
+  "common.button.share": "Пошаљи датотеке",
   "common.button.generate": "Генериши",
   "common.button.done": "Готово",
   "common.text.link": "Линк",
   "common.text.navigate-to-link": "Посетите линк",
   "common.text.or": "или",
   "common.text.redirecting": "Преусмеравање...",
+  "upload.flow.hint.manual-open": "Корак 1: додајте датотеке. Корак 2: кликните на Пошаљи датотеке да подесите и направите линк за отпремање.",
   "common.button.go-back": "Иди назад",
   "common.button.go-home": "Почетна страница",
   "common.notify.copied": "Ваша веза је копирана у међуспремник",

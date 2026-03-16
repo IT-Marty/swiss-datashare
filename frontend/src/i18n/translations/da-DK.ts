@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administration",
   "admin.button.users": "Brugeradministration",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Konfiguration",
+  "admin.button.config": "Systemindstillinger",
   "admin.version": "Version",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Navn",
   "upload.filelist.size": "Størrelse",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Opret Deling",
+  "upload.modal.title": "Opret uploadlink",
   "upload.modal.link.error.invalid": "Can only contain letters, numbers, underscores, and hyphens",
   "upload.modal.link.error.taken": "Det valgte link er allerede i brug",
   "upload.modal.not-signed-in": "Du er ikke logget ind",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Annuller",
   "common.button.confirm": "Bekræft",
   "common.button.disable": "Deaktiver",
-  "common.button.share": "Del",
+  "common.button.share": "Send filer",
   "common.button.generate": "Generer",
   "common.button.done": "Færdig",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "eller",
   "common.text.redirecting": "Omdirigerer...",
+  "upload.flow.hint.manual-open": "Trin 1: tilføj filer. Trin 2: klik på Send filer for at konfigurere og oprette dit uploadlink.",
   "common.button.go-back": "Gå tilbage",
   "common.button.go-home": "Go home",
   "common.notify.copied": "Linket blev kopieret til udklipsholderen",

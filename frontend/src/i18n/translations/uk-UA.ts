@@ -178,7 +178,7 @@ export default {
   "admin.title": "Адміністрування",
   "admin.button.users": "Управління користувачами",
   "admin.button.shares": "Управління поширенням",
-  "admin.button.config": "Конфігурація",
+  "admin.button.config": "Системні налаштування",
   "admin.version": "Версія",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Назва",
   "upload.filelist.size": "Розмір",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Завантажити",
+  "upload.modal.title": "Створити посилання для завантаження",
   "upload.modal.link.error.invalid": "Ім'я користувача повинно складатися тільки з букв, цифр, підкреслень і дефісів",
   "upload.modal.link.error.taken": "Це посилання вже використовується",
   "upload.modal.not-signed-in": "Ви не авторизовані",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Скасувати",
   "common.button.confirm": "Підтвердити",
   "common.button.disable": "Відключити",
-  "common.button.share": "Поділитися",
+  "common.button.share": "Надіслати файли",
   "common.button.generate": "Згенерувати",
   "common.button.done": "Готово",
   "common.text.link": "Посилання",
   "common.text.navigate-to-link": "Відкрити посилання",
   "common.text.or": "або",
   "common.text.redirecting": "Перенаправлення...",
+  "upload.flow.hint.manual-open": "Крок 1: додайте файли. Крок 2: натисніть Надіслати файли, щоб налаштувати й створити посилання для завантаження.",
   "common.button.go-back": "Назад",
   "common.button.go-home": "Перейти додому",
   "common.notify.copied": "Ваше посилання скопійовано в буфер обміну",

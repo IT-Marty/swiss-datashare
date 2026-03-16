@@ -178,7 +178,7 @@ export default {
   "admin.title": "Amministrazione",
   "admin.button.users": "Gestione degli utenti",
   "admin.button.shares": "Gestione condivisioni",
-  "admin.button.config": "Configurazione",
+  "admin.button.config": "Impostazioni di sistema",
   "admin.version": "Versione",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nome",
   "upload.filelist.size": "Dimensione",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Crea Condivisione",
+  "upload.modal.title": "Crea link di caricamento",
   "upload.modal.link.error.invalid": "Può contenere solo lettere, numeri, underscore e trattini",
   "upload.modal.link.error.taken": "Questo link è gia in uso",
   "upload.modal.not-signed-in": "Non sei loggato",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Annulla",
   "common.button.confirm": "Conferma",
   "common.button.disable": "Disabilita",
-  "common.button.share": "Condividi",
+  "common.button.share": "Invia file",
   "common.button.generate": "Genera",
   "common.button.done": "Fatto",
   "common.text.link": "Collegamento",
   "common.text.navigate-to-link": "Visita il link",
   "common.text.or": "o",
   "common.text.redirecting": "Reindirizzamento...",
+  "upload.flow.hint.manual-open": "Passaggio 1: aggiungi i file. Passaggio 2: fai clic su Invia file per configurare e creare il link di caricamento.",
   "common.button.go-back": "Torna indietro",
   "common.button.go-home": "Vai alla Home Page",
   "common.notify.copied": "Il tuo collegamento e' stato copiato negli appunti",

@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administracija",
   "admin.button.users": "Upravljanje uporabnikov",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Nastavitve",
+  "admin.button.config": "Sistemske nastavitve",
   "admin.version": "Različica",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Ime",
   "upload.filelist.size": "Velikost",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Ustvarite delitev",
+  "upload.modal.title": "Ustvari povezavo za nalaganje",
   "upload.modal.link.error.invalid": "Lahko vsebuje samo črke, številke, podčrtaje in pomišljaje",
   "upload.modal.link.error.taken": "Ta povezava je že v uporabi",
   "upload.modal.not-signed-in": "Niste prijavljeni",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Prekliči",
   "common.button.confirm": "Potrdi",
   "common.button.disable": "Onemogoči",
-  "common.button.share": "Deli",
+  "common.button.share": "Pošlji datoteke",
   "common.button.generate": "Generiraj",
   "common.button.done": "Končano",
   "common.text.link": "Poveži",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "ali",
   "common.text.redirecting": "Redirecting...",
+  "upload.flow.hint.manual-open": "Korak 1: dodajte datoteke. Korak 2: kliknite Pošlji datoteke, da nastavite in ustvarite povezavo za nalaganje.",
   "common.button.go-back": "Nazaj",
   "common.button.go-home": "Pojdi domov",
   "common.notify.copied": "Povezava je bila kopirana v odložišče",

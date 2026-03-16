@@ -178,7 +178,7 @@ export default {
   "admin.title": "Administracija",
   "admin.button.users": "Upravljanje korisnicima",
   "admin.button.shares": "Upravljanje deljenjem",
-  "admin.button.config": "Konfiguracija",
+  "admin.button.config": "Sistemska podešavanja",
   "admin.version": "Verzija",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Naziv",
   "upload.filelist.size": "Veličina",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Napravi deljenje",
+  "upload.modal.title": "Napravi link za otpremanje",
   "upload.modal.link.error.invalid": "Može da sadrži samo slova, brojeve, donje crte i crtice",
   "upload.modal.link.error.taken": "Ovaj link je već u upotrebi",
   "upload.modal.not-signed-in": "Niste prijavljeni",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Otkaži",
   "common.button.confirm": "Potvrdi",
   "common.button.disable": "Onemogući",
-  "common.button.share": "Deljenje",
+  "common.button.share": "Pošalji datoteke",
   "common.button.generate": "Generiši",
   "common.button.done": "Gotovo",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Posetite link",
   "common.text.or": "ili",
   "common.text.redirecting": "Preusmeravanje...",
+  "upload.flow.hint.manual-open": "Korak 1: dodajte datoteke. Korak 2: kliknite na Pošalji datoteke da podesite i napravite link za otpremanje.",
   "common.button.go-back": "Idi nazad",
   "common.button.go-home": "Početna stranica",
   "common.notify.copied": "Vaša veza je kopirana u međuspremnik",

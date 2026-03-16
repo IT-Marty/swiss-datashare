@@ -178,7 +178,7 @@ export default {
   "admin.title": "管理画面",
   "admin.button.users": "ユーザー管理",
   "admin.button.shares": "共有管理",
-  "admin.button.config": "設定",
+  "admin.button.config": "システム設定",
   "admin.version": "バージョン",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "ファイル名",
   "upload.filelist.size": "サイズ",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "共有を作成",
+  "upload.modal.title": "アップロードリンクを作成",
   "upload.modal.link.error.invalid": "文字、数字、アンダースコア、ハイフンのみ使用できます",
   "upload.modal.link.error.taken": "このリンクは既に使用されています",
   "upload.modal.not-signed-in": "サインインしていません",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "キャンセル",
   "common.button.confirm": "確認",
   "common.button.disable": "無効",
-  "common.button.share": "共有",
+  "common.button.share": "ファイルを送信",
   "common.button.generate": "生成",
   "common.button.done": "完了",
   "common.text.link": "リンク",
   "common.text.navigate-to-link": "リンクを開く",
   "common.text.or": "または",
   "common.text.redirecting": "リダイレクトしています...",
+  "upload.flow.hint.manual-open": "手順1: ファイルを追加します。手順2: 「ファイルを送信」をクリックして、アップロードリンクを設定して作成します。",
   "common.button.go-back": "戻る",
   "common.button.go-home": "ホームに戻る",
   "common.notify.copied": "リンクをクリップボードにコピーしました",

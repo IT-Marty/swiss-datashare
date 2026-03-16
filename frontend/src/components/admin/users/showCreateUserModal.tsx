@@ -1,6 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import * as yup from "yup";
 import useTranslate from "../../../hooks/useTranslate.hook";
+import { translateOutsideContext } from "../../../hooks/useTranslate.hook";
 import userService from "../../../services/user.service";
 import toast from "../../../utils/toast.util";
 import { Button, Input, PasswordInput, Switch } from "../../../components/ui";
@@ -12,8 +13,9 @@ const showCreateUserModal = (
   smtpEnabled: boolean,
   getUsers: () => void,
 ) => {
+  const t = translateOutsideContext();
   return modals.openModal({
-    title: "Create user",
+    title: t("admin.users.modal.create.title"),
     children: (
       <Body modals={modals} smtpEnabled={smtpEnabled} getUsers={getUsers} />
     ),

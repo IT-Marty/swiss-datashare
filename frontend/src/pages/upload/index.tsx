@@ -252,6 +252,11 @@ const Upload = ({
             <FormattedMessage id="common.button.share" />
           </Button>
         </div>
+        {!autoOpenCreateUploadModal && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            <FormattedMessage id="upload.flow.hint.manual-open" />
+          </p>
+        )}
         <Dropzone
           title={
             !autoOpenCreateUploadModal && files.length > 0

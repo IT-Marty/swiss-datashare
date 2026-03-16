@@ -178,7 +178,7 @@ export default {
   "admin.title": "Ylläpito",
   "admin.button.users": "Käyttäjien Hallinta",
   "admin.button.shares": "Share management",
-  "admin.button.config": "Asetukset",
+  "admin.button.config": "Järjestelmäasetukset",
   "admin.version": "Versio",
   // END /admin
   // /admin/users
@@ -229,7 +229,7 @@ export default {
   "upload.filelist.name": "Nimi",
   "upload.filelist.size": "Koko",
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Luo Jako",
+  "upload.modal.title": "Luo latauslinkki",
   "upload.modal.link.error.invalid": "Voi sisältää vain kirjaimia, numeroita, alaviivoja ja väliviivoja",
   "upload.modal.link.error.taken": "Tämä linkki on jo käytössä",
   "upload.modal.not-signed-in": "Et ole kirjautunut sisään",
@@ -520,13 +520,14 @@ export default {
   "common.button.cancel": "Peruuta",
   "common.button.confirm": "Vahvista",
   "common.button.disable": "Poista käytöstä",
-  "common.button.share": "Jako",
+  "common.button.share": "Lähetä tiedostot",
   "common.button.generate": "Luo",
   "common.button.done": "Valmis",
   "common.text.link": "Linkki",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "tai",
   "common.text.redirecting": "Uudelleen ohjataan...",
+  "upload.flow.hint.manual-open": "Vaihe 1: lisää tiedostot. Vaihe 2: napsauta Lähetä tiedostot määrittääksesi ja luodaksesi latauslinkin.",
   "common.button.go-back": "Takaisin",
   "common.button.go-home": "Palaa kotinäkymään",
   "common.notify.copied": "Linkki kopioitiin leikepöydälle",
