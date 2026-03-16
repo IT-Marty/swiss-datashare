@@ -4,7 +4,7 @@
 
 ---
 
-Swiss DataShare is a self-hosted file sharing platform and an alternative for WeTransfer. Originally forked from Pingvin Share, this project is now actively maintained and developed by **Swissmakers GmbH** to serve our customers and the open-source community.
+Swiss DataShare is a self-hosted file sharing platform and an alternative for WeTransfer. Originally forked from Pingvin Share, this project is now actively maintained and developed by **Swissmakers GmbH** to serve our customers and the community.
 
 ## ✨ Features
 
@@ -196,7 +196,7 @@ For more installation options and advanced configurations, please refer to the [
 
 ## 🏢 About Swissmakers GmbH
 
-Swiss DataShare is actively maintained and developed by **Swissmakers GmbH**. We are committed to providing a reliable, secure, and feature-rich file sharing solution for our customers and the open-source community.
+Swiss DataShare is actively maintained and developed by **Swissmakers GmbH**. We are committed to providing a reliable, secure, and feature-rich file sharing solution for our customers and the broader user community.
 
 - **Repository**: [https://github.com/swissmakers/swiss-datashare](https://github.com/swissmakers/swiss-datashare)
 - **Active Development**: Yes, we continuously develop and improve Swiss DataShare
@@ -211,4 +211,17 @@ We welcome contributions! You can help by:
 
 ## 📄 License
 
-This project is licensed under the BSD-2-Clause license.
+This project is licensed under **PolyForm Noncommercial 1.0.0**.
+
+- Noncommercial use is allowed under the PolyForm Noncommercial terms.
+- Commercial use is **not** granted by default.
+- Commercial use requires a separate commercial license from **Swissmakers GmbH**.
+
+See:
+
+- [`LICENSE`](LICENSE)
+- [`COMMERCIAL-LICENSE.md`](COMMERCIAL-LICENSE.md)
+
+Historical attribution is preserved, including:
+
+- Copyright (c) 2022, Elias Schneider
