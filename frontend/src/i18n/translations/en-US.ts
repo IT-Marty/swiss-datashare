@@ -36,7 +36,7 @@ export default {
   "home.how.step1.title": "1. Upload your files",
   "home.how.step1.description": "Drag files into the upload area or select them from your device.",
   "home.how.step2.title": "2. Create a secure link",
-  "home.how.step2.description": "Click \"Create secure link\", choose optional settings, and create the secure link.",
+  "home.how.step2.description": "Click \"{actionLabel}\", choose optional settings, and create the secure link.",
   "home.how.step3.title": "3. Share the link",
   "home.how.step3.description": "Copy the generated link and send it to the intended recipient via email.",
   // END /
@@ -311,7 +311,7 @@ export default {
   // Dropzone.tsx
   "upload.dropzone.title": "Upload files",
   "upload.dropzone.description":
-    "Drag and drop files here (or select files), then click \"Create secure link\" to create your upload link. Maximum total size: {maxSize}.",
+    "Drag and drop files here (or select files), then click \"{actionLabel}\" to create your upload link. Maximum total size: {maxSize}.",
   "upload.dropzone.button.select": "Select files",
   "upload.dropzone.notify.file-too-big":
     "Your files exceed the maximum share size of {maxSize}.",
@@ -760,7 +760,7 @@ export default {
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "or",
   "common.text.redirecting": "Redirecting...",
-  "upload.flow.hint.manual-open": "Step 1: add files. Step 2: click Create secure link to configure and create your upload link.",
+  "upload.flow.hint.manual-open": "Step 1: add files. Step 2: click \"{actionLabel}\" to configure and create your upload link.",
   "common.button.go-back": "Go back",
   "common.button.go-home": "Go home",
   "common.notify.copied": "Your link was copied to the clipboard",

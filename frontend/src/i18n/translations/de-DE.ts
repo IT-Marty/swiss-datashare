@@ -31,7 +31,7 @@ export default {
   "home.how.step1.title": "Dateien hochladen",
   "home.how.step1.description": "Dateien in den Upload-Bereich ziehen oder auswählen.",
   "home.how.step2.title": "Sicheren Link erstellen",
-  "home.how.step2.description": "Auf \"Sicheren Link Erstellen\" klicken, optional Einstellungen wählen und den sicheren Link erstellen.",
+  "home.how.step2.description": "Auf \"{actionLabel}\" klicken, optional Einstellungen wählen und den sicheren Link erstellen.",
   "home.how.step3.title": "Sicheren Link teilen",
   "home.how.step3.description": "Den erzeugten sicheren Link kopieren und an die gewünschten Empfänger per E-Mail senden.",
   // END /
@@ -235,7 +235,7 @@ export default {
   "upload.reverse-share.error.invalid.description": "Diese externe Freigabe ist abgelaufen oder ungültig.",
   // Dropzone.tsx
   "upload.dropzone.title": "Dateien hochladen",
-  "upload.dropzone.description": "Ziehe Dateien hierher (oder wähle sie aus) und klicke auf \"Sicheren Link Erstellen\", um die Datenfreigabe zu eröffnen. Maximale Gesamtgrösse: {maxSize}.",
+  "upload.dropzone.description": "Ziehe Dateien hierher (oder wähle sie aus) und klicke auf \"{actionLabel}\", um die Datenfreigabe zu eröffnen. Maximale Gesamtgrösse: {maxSize}.",
   "upload.dropzone.button.select": "Dateien auswählen",
   "upload.dropzone.notify.file-too-big": "Ihre Dateien überschreiten die maximale Freigabegrösse von {maxSize}.",
   // FileList.tsx
@@ -544,7 +544,7 @@ export default {
   "common.text.navigate-to-link": "Link öffnen",
   "common.text.or": "oder",
   "common.text.redirecting": "Umleitung...",
-  "upload.flow.hint.manual-open": "Schritt 1: Dateien hinzufügen. Schritt 2: auf \"Sicheren Link Erstellen\" klicken, um den Link zu konfigurieren und zu erstellen.",
+  "upload.flow.hint.manual-open": "Schritt 1: Dateien hinzufügen. Schritt 2: auf \"{actionLabel}\" klicken, um den Link zu konfigurieren und zu erstellen.",
   "common.button.go-back": "Zurück",
   "common.button.go-home": "Zur Startseite",
   "common.notify.copied": "Dein Link wurde in die Zwischenablage kopiert",

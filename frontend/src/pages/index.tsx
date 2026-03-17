@@ -14,12 +14,14 @@ import Logo from "../components/Logo";
 import Meta from "../components/Meta";
 import useUser from "../hooks/user.hook";
 import useConfig from "../hooks/config.hook";
+import useTranslate from "../hooks/useTranslate.hook";
 import { Button, Container, Card } from "../components/ui";
 
 export default function Home() {
   const { refreshUser } = useUser();
   const router = useRouter();
   const config = useConfig();
+  const t = useTranslate();
   const [signupEnabled, setSignupEnabled] = useState(true);
 
   // If user is already authenticated, redirect to the upload page
@@ -95,6 +97,9 @@ export default function Home() {
     {
       title: "home.how.step2.title",
       description: "home.how.step2.description",
+      descriptionValues: {
+        actionLabel: t("common.button.share"),
+      },
     },
     {
       title: "home.how.step3.title",
@@ -109,7 +114,7 @@ export default function Home() {
         className={
           isLawyerUseCase
             ? "min-h-screen bg-gradient-to-br from-slate-100 via-white to-amber-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-amber-900/10"
-            : "min-h-screen bg-gradient-to-br from-background via-background to-primary-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-primary-900/10"
+            : "min-h-screen bg-gradient-to-br from-slate-100 via-white to-amber-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-amber-900/10"
         }
       >
         <Container>
@@ -238,7 +243,10 @@ export default function Home() {
                         <FormattedMessage id={step.title} />
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        <FormattedMessage id={step.description} />
+                        <FormattedMessage
+                          id={step.description}
+                          values={step.descriptionValues}
+                        />
                       </p>
                     </Card>
                   );

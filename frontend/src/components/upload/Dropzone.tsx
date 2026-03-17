@@ -123,7 +123,10 @@ const Dropzone = ({
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <FormattedMessage
               id="upload.dropzone.description"
-              values={{ maxSize: byteToHumanSizeString(maxShareSize) }}
+              values={{
+                maxSize: byteToHumanSizeString(maxShareSize),
+                actionLabel: t("common.button.share"),
+              }}
             />
           </p>
         </div>

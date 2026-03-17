@@ -31,7 +31,7 @@ export default {
   "home.how.step1.title": "Subir archivos",
   "home.how.step1.description": "Arrastra archivos al área de carga o selecciónalos desde tu dispositivo.",
   "home.how.step2.title": "Crear un enlace seguro",
-  "home.how.step2.description": "Haz clic en «Crear un enlace seguro», elige opciones opcionales y crea el enlace seguro.",
+  "home.how.step2.description": "Haz clic en «{actionLabel}», elige opciones opcionales y crea el enlace seguro.",
   "home.how.step3.title": "Compartir el enlace seguro",
   "home.how.step3.description": "Copia el enlace seguro generado y envíalo por correo electrónico a los destinatarios deseados.",
   // END /
@@ -235,7 +235,7 @@ export default {
   "upload.reverse-share.error.invalid.description": "Este enlace de uso compartido inverso ha caducado o no es válido.",
   // Dropzone.tsx
   "upload.dropzone.title": "Subir archivos",
-  "upload.dropzone.description": "Arrastra los archivos aquí (o selecciónalos) y luego haz clic en «Crear un enlace seguro» para crear tu enlace de carga. Tamaño total máximo: {maxSize}.",
+  "upload.dropzone.description": "Arrastra los archivos aquí (o selecciónalos) y luego haz clic en «{actionLabel}» para crear tu enlace de carga. Tamaño total máximo: {maxSize}.",
   "upload.dropzone.button.select": "Seleccionar archivos",
   "upload.dropzone.notify.file-too-big": "Tus archivos exceden el tamaño máximo de {maxSize}.",
   // FileList.tsx
@@ -544,7 +544,7 @@ export default {
   "common.text.navigate-to-link": "Visitar enlace",
   "common.text.or": "o",
   "common.text.redirecting": "Redirigiendo...",
-  "upload.flow.hint.manual-open": "Paso 1: añade archivos. Paso 2: haz clic en Crear enlace seguro para configurar y crear tu enlace de carga.",
+  "upload.flow.hint.manual-open": "Paso 1: añade archivos. Paso 2: haz clic en «{actionLabel}» para configurar y crear tu enlace de carga.",
   "common.button.go-back": "Volver",
   "common.button.go-home": "Página de inicio",
   "common.notify.copied": "Tu enlace se ha copiado al portapapeles",

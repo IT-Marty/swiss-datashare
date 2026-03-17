@@ -248,8 +248,15 @@ const Upload = ({
             <h1 className="page-title">{t("upload.title")}</h1>
             <p className="body-text mt-1">
               {!autoOpenCreateUploadModal
-                ? t("upload.flow.hint.manual-open")
-                : t("upload.dropzone.title")}
+                ? (
+                  <FormattedMessage
+                    id="upload.flow.hint.manual-open"
+                    values={{ actionLabel: t("common.button.share") }}
+                  />
+                )
+                : (
+                  <FormattedMessage id="upload.dropzone.title" />
+                )}
             </p>
           </div>
           <Button

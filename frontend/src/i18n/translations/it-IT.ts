@@ -31,7 +31,7 @@ export default {
   "home.how.step1.title": "Carica i file",
   "home.how.step1.description": "Trascina i file nell'area di caricamento o selezionali dal dispositivo.",
   "home.how.step2.title": "Crea un link sicuro",
-  "home.how.step2.description": "Fai clic su «Crea link sicuro», scegli eventuali opzioni e crea il link sicuro.",
+  "home.how.step2.description": "Fai clic su «{actionLabel}», scegli eventuali opzioni e crea il link sicuro.",
   "home.how.step3.title": "Condividi il link sicuro",
   "home.how.step3.description": "Copia il link sicuro generato e invialo via e-mail ai destinatari desiderati.",
   // END /
@@ -235,7 +235,7 @@ export default {
   "upload.reverse-share.error.invalid.description": "Questa condivisione inversa è scaduta o non è valida.",
   // Dropzone.tsx
   "upload.dropzone.title": "Carica File",
-  "upload.dropzone.description": "Trascina qui i file (o selezionali) e poi fai clic su «Crea link sicuro» per creare il tuo link di caricamento. Dimensione totale massima: {maxSize}.",
+  "upload.dropzone.description": "Trascina qui i file (o selezionali) e poi fai clic su «{actionLabel}» per creare il tuo link di caricamento. Dimensione totale massima: {maxSize}.",
   "upload.dropzone.button.select": "Seleziona file",
   "upload.dropzone.notify.file-too-big": "I tuoi file superano la dimensione massima di condivisione di {maxSize}.",
   // FileList.tsx
@@ -544,7 +544,7 @@ export default {
   "common.text.navigate-to-link": "Visita il link",
   "common.text.or": "o",
   "common.text.redirecting": "Reindirizzamento...",
-  "upload.flow.hint.manual-open": "Passaggio 1: aggiungi i file. Passaggio 2: fai clic su Crea link sicuro per configurare e creare il link di caricamento.",
+  "upload.flow.hint.manual-open": "Passaggio 1: aggiungi i file. Passaggio 2: fai clic su «{actionLabel}» per configurare e creare il link di caricamento.",
   "common.button.go-back": "Torna indietro",
   "common.button.go-home": "Vai alla Home Page",
   "common.notify.copied": "Il tuo collegamento è stato copiato negli appunti",

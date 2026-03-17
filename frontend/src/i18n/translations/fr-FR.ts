@@ -31,7 +31,7 @@ export default {
   "home.how.step1.title": "Téléverser des fichiers",
   "home.how.step1.description": "Glissez des fichiers dans la zone de téléversement ou sélectionnez-les.",
   "home.how.step2.title": "Créer un lien sécurisé",
-  "home.how.step2.description": "Cliquez sur « Créer un lien sécurisé », choisissez des options si nécessaire, puis créez le lien sécurisé.",
+  "home.how.step2.description": "Cliquez sur « {actionLabel} », choisissez des options si nécessaire, puis créez le lien sécurisé.",
   "home.how.step3.title": "Partager le lien sécurisé",
   "home.how.step3.description": "Copiez le lien sécurisé généré et envoyez-le aux destinataires souhaités par e-mail.",
   // END /
@@ -235,7 +235,7 @@ export default {
   "upload.reverse-share.error.invalid.description": "Ce partage inversé a expiré ou n'est pas valide.",
   // Dropzone.tsx
   "upload.dropzone.title": "Téléverser des fichiers",
-  "upload.dropzone.description": "Glissez les fichiers ici (ou sélectionnez-les), puis cliquez sur « Créer un lien sécurisé » pour créer votre lien de téléversement. Taille totale maximale : {maxSize}.",
+  "upload.dropzone.description": "Glissez les fichiers ici (ou sélectionnez-les), puis cliquez sur « {actionLabel} » pour créer votre lien de téléversement. Taille totale maximale : {maxSize}.",
   "upload.dropzone.button.select": "Sélectionner des fichiers",
   "upload.dropzone.notify.file-too-big": "Vos fichiers dépassent la taille maximale de {maxSize}.",
   // FileList.tsx
@@ -544,7 +544,7 @@ export default {
   "common.text.navigate-to-link": "Visiter le lien",
   "common.text.or": "ou",
   "common.text.redirecting": "Redirection...",
-  "upload.flow.hint.manual-open": "Étape 1 : ajoutez des fichiers. Étape 2 : cliquez sur Créer un lien sécurisé pour configurer et créer votre lien de téléversement.",
+  "upload.flow.hint.manual-open": "Étape 1 : ajoutez des fichiers. Étape 2 : cliquez sur « {actionLabel} » pour configurer et créer votre lien de téléversement.",
   "common.button.go-back": "Précédent",
   "common.button.go-home": "Accueil",
   "common.notify.copied": "Votre lien a été copié dans le presse-papiers",
