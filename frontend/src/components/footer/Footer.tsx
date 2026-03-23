@@ -5,6 +5,10 @@ import useTranslate from "../../hooks/useTranslate.hook";
 const Footer = () => {
   const t = useTranslate();
   const config = useConfig();
+  const poweredByText = config.get("general.poweredByText") || "Swiss DataShare";
+  const poweredByUrl =
+    config.get("general.poweredByUrl") ||
+    "https://github.com/swissmakers/swiss-datashare";
   const hasImprint = !!(
     config.get("legal.imprintUrl") || config.get("legal.imprintText")
   );
@@ -29,11 +33,11 @@ const Footer = () => {
             <p className="text-xs text-gray-500 dark:text-gray-400">
               Powered by{" "}
               <Link
-                href="https://github.com/swissmakers/swiss-datashare"
+                href={poweredByUrl}
                 target="_blank"
                 className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
               >
-                Swiss DataShare
+                {poweredByText}
               </Link>
             </p>
           </div>

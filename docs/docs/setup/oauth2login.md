@@ -52,7 +52,7 @@ If our built-in providers don't meet your needs, you can create your own OAuth 2
 
 ### 1. Create config
 
-Add your config (client id, client secret, etc.) in [`config.seed.ts`](https://github.com/swissmakers/swiss-datashare/blob/main/backend/prisma/seed/config.seed.ts):
+Add your config (client id, client secret, etc.) in [`config-variables.ts`](https://github.com/swissmakers/swiss-datashare/blob/main/backend/prisma/seed/config-variables.ts):
 
 ```ts
 const configVariables: ConfigVariables = {

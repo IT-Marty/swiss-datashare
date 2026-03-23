@@ -444,6 +444,12 @@ export default {
   "admin.config.general.app-url": "App URL",
   "admin.config.general.app-url.description":
     "On which URL Swiss DataShare is available",
+  "admin.config.general.powered-by-text": "Footer brand text",
+  "admin.config.general.powered-by-text.description":
+    "Text shown as the linked brand in the footer after \"Powered by\".",
+  "admin.config.general.powered-by-url": "Footer brand URL",
+  "admin.config.general.powered-by-url.description":
+    "Link target used for the footer brand text after \"Powered by\".",
   "admin.config.general.secure-cookies": "Secure cookies",
   "admin.config.general.secure-cookies.description":
     "Whether to set the secure flag on cookies. If enabled, the site will not function when accessed over HTTP.",

@@ -12,7 +12,10 @@ import * as fs from "fs";
 import { PrismaService } from "src/prisma/prisma.service";
 import { stringToTimespan } from "src/utils/date.util";
 import { parse as yamlParse } from "yaml";
-import { YamlConfig } from "../../prisma/seed/config.seed";
+import {
+  configVariables,
+  YamlConfig,
+} from "../../prisma/seed/config-variables";
 import { CONFIG_FILE } from "src/constants";
 
 /**
@@ -33,10 +36,53 @@ export class ConfigService extends EventEmitter {
 
   // Initialize gets called by the ConfigModule
   async initialize() {
+    await this.ensureSchemaConfigRows();
+    this.configVariables = await this.prisma.config.findMany();
     await this.loadYamlConfig();
 
     if (this.yamlConfig) {
       await this.migrateInitUser();
+    }
+  }
+
+  /**
+   * Inserts any config keys from the schema that are missing in the DB (e.g. after upgrades)
+   * and re-aligns `order` with the schema so admin UI ordering stays correct.
+   */
+  private async ensureSchemaConfigRows(): Promise<void> {
+    for (const [category, configVariablesOfCategory] of Object.entries(
+      configVariables,
+    )) {
+      let order = 0;
+      for (const [name, properties] of Object.entries(
+        configVariablesOfCategory,
+      )) {
+        const existing = await this.prisma.config.findUnique({
+          where: { name_category: { name, category } },
+        });
+
+        if (!existing) {
+          await this.prisma.config.create({
+            data: {
+              order,
+              name,
+              category,
+              ...properties,
+            },
+          });
+        }
+        order++;
+      }
+    }
+
+    for (const [category, vars] of Object.entries(configVariables)) {
+      const keys = Object.keys(vars);
+      for (let i = 0; i < keys.length; i++) {
+        await this.prisma.config.updateMany({
+          where: { name: keys[i], category },
+          data: { order: i },
+        });
+      }
     }
   }
 
