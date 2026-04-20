@@ -31,14 +31,11 @@ function TotpForm({ redirectPath }: { redirectPath: string }) {
     validationSchema,
   });
 
-  const onSubmit = async () => {
+  const submitTotp = async (code: string) => {
     if (loading) return;
     setLoading(true);
     try {
-      await authService.signInTotp(
-        form.values.code,
-        router.query.loginToken as string,
-      );
+      await authService.signInTotp(code, router.query.loginToken as string);
       await refreshUser();
       await router.replace(safeRedirectPath(redirectPath));
     } catch (e) {
@@ -47,6 +44,10 @@ function TotpForm({ redirectPath }: { redirectPath: string }) {
     } finally {
       setLoading(false);
     }
+  };
+
+  const onSubmit = async () => {
+    await submitTotp(form.values.code);
   };
 
   return (
@@ -67,9 +68,9 @@ function TotpForm({ redirectPath }: { redirectPath: string }) {
                 onChange={(value) => {
                   if (!value) return;
                   form.setValue("code", value);
-                  if (value.length === 6) {
-                    onSubmit();
-                  }
+                }}
+                onComplete={(code) => {
+                  void submitTotp(code);
                 }}
               />
             </div>

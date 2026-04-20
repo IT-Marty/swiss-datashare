@@ -43,9 +43,14 @@ export class AuthTotpService {
       throw new BadRequestException("TOTP is not enabled");
     }
 
+    const totpToken = dto.totp.trim();
+    if (!/^\d{6}$/.test(totpToken)) {
+      throw new BadRequestException("Invalid code");
+    }
+
     const verifyResult = verifySync({
       secret: totpSecret,
-      token: dto.totp,
+      token: totpToken,
     });
 
     if (!verifyResult.valid) {
