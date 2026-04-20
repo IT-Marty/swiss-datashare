@@ -14,11 +14,12 @@ export default {
   // END navbar
 
   // /
-  "home.title": "Secure file sharing for teams and partners.",
+  "home.title": "Send and request files with clear, secure links.",
 
-  "home.description": "Upload files, create a secure link, and send it safely.",
+  "home.description":
+    "Create a share link to send files, or create a file request link so recipients can upload files back to you.",
 
-  "home.button.start": "Start secure data transfer",
+  "home.button.start": "Start sharing files",
   "home.button.source": "Source code",
   "home.trust.title": "Why organizations trust this service",
   "home.trust.residency.title": "Data location",
@@ -32,13 +33,15 @@ export default {
   "home.trust.hardened.description": "The platform is hardened to ensure reliability.",
   "home.trust.opensource.title": "Open-source",
   "home.trust.opensource.description": "The source code is publicly available via GitHub, so you can review how the system works.",
-  "home.how.title": "How to use it",
+  "home.how.title": "How it works",
   "home.how.step1.title": "1. Upload your files",
   "home.how.step1.description": "Drag files into the upload area or select them from your device.",
-  "home.how.step2.title": "2. Create a secure link",
-  "home.how.step2.description": "Click \"{actionLabel}\", choose optional settings, and create the secure link.",
-  "home.how.step3.title": "3. Share the link",
-  "home.how.step3.description": "Copy the generated link and send it to the intended recipient via email.",
+  "home.how.step2.title": "2. Create a share link",
+  "home.how.step2.description":
+    "Click \"{actionLabel}\", choose options like expiration and recipients, then create the link.",
+  "home.how.step3.title": "3. Send it to recipients",
+  "home.how.step3.description":
+    "Share the generated link manually, or email recipients directly from Swiss DataShare when enabled.",
   // END /
 
   // /auth/signin
@@ -155,7 +158,7 @@ export default {
   // END /account
 
   // /account/shares
-  "account.shares.title": "My shares",
+  "account.shares.title": "File shares",
   "account.shares.title.empty": "It's empty here 👀",
   "account.shares.description.empty": "You don't have any shares.",
   "account.shares.button.create": "Create one",
@@ -182,16 +185,16 @@ export default {
   // END /account/shares
 
   // /account/reverseShares
-  "account.reverseShares.title": "Reverse shares",
+  "account.reverseShares.title": "File requests",
   "account.reverseShares.description":
-    "Create an upload request link so external users can securely send files to you.",
+    "Create a request link so recipients can upload files to you.",
 
   "account.reverseShares.title.empty": "It's empty here 👀",
   "account.reverseShares.description.empty":
-    "You don't have any reverse shares.",
+    "You don't have any file requests yet.",
 
   // showCreateReverseShareModal.tsx
-  "account.reverseShares.modal.title": "Create reverse share",
+  "account.reverseShares.modal.title": "Create file request link",
   "account.reverseShares.modal.expiration.label": "Expiration",
   "account.reverseShares.modal.expiration.minute-singular": "Minute",
   "account.reverseShares.modal.expiration.minute-plural": "Minutes",
@@ -206,40 +209,40 @@ export default {
   "account.reverseShares.modal.expiration.year-singular": "Year",
   "account.reverseShares.modal.expiration.year-plural": "Years",
 
-  "account.reverseShares.modal.max-size.label": "Max share size",
+  "account.reverseShares.modal.max-size.label": "Maximum upload size",
 
-  "account.reverseShares.modal.send-email": "Send email notifications",
+  "account.reverseShares.modal.send-email": "Email me when completed",
   "account.reverseShares.modal.send-email.description":
-    "Sends you an email notification when a share is created with this reverse share link.",
+    "Receive an email when someone finishes uploading files with this request link.",
 
-  "account.reverseShares.modal.simplified": "Simple mode",
+  "account.reverseShares.modal.simplified": "Simple recipient flow",
   "account.reverseShares.modal.simplified.description":
-    "Make it easy for the person uploading the file to share it with you. They will only be able to customize the name and description of the share.",
+    "Recipients can upload files and finish. They do not need to configure a separate share.",
 
-  "account.reverseShares.modal.public-access": "Public access",
+  "account.reverseShares.modal.public-access": "Allow public access to uploaded share",
   "account.reverseShares.modal.public-access.description":
-    "Make the shares created with this reverse share public. If disabled, only you and the share creator will have access to view it.",
+    "If disabled, only you and the uploader can open the resulting share.",
 
   "account.reverseShares.modal.max-use.label": "Max uses",
   "account.reverseShares.modal.max-use.description":
-    "The maximum amount of times this URL can be used to create a share.",
+    "How many times this request link can be used.",
   "account.reverseShare.never-expires": "This reverse share will never expire.",
   "account.reverseShare.expires-on":
     "This reverse share will expire on {expiration}.",
 
-  "account.reverseShares.table.no-shares": "No shares created yet",
-  "account.reverseShares.table.count.singular": "share",
-  "account.reverseShares.table.count.plural": "shares",
-  "account.reverseShares.table.shares": "Shares",
-  "account.reverseShares.table.remaining": "Remaining uses",
-  "account.reverseShares.table.max-size": "Max share size",
+  "account.reverseShares.table.no-shares": "No uploads received yet",
+  "account.reverseShares.table.count.singular": "upload",
+  "account.reverseShares.table.count.plural": "uploads",
+  "account.reverseShares.table.shares": "Received uploads",
+  "account.reverseShares.table.remaining": "Uses left",
+  "account.reverseShares.table.max-size": "Max upload size",
   "account.reverseShares.table.expires": "Expires at",
 
-  "account.reverseShares.modal.reverse-share-link": "Reverse share link",
+  "account.reverseShares.modal.reverse-share-link": "File request link",
 
-  "account.reverseShares.modal.delete.title": "Delete reverse share",
+  "account.reverseShares.modal.delete.title": "Delete file request link",
   "account.reverseShares.modal.delete.description":
-    "Do you really want to delete this reverse share? If you do, the associated shares will be deleted as well.",
+    "Do you really want to delete this file request link? Uploaded shares linked to it will also be deleted.",
 
   // END /account/reverseShares
 
@@ -297,12 +300,12 @@ export default {
   // END /admin/shares
 
   // /upload
-  "upload.title": "Upload",
+  "upload.title": "Create file share",
 
   "upload.notify.confirm-leave":
     "Are you sure you want to leave this page? Your upload will be canceled.",
   "upload.notify.generic-error":
-    "An error occurred while finishing your share.",
+    "Something went wrong while finishing this share.",
   "upload.notify.count-failed": "{count} files failed to upload. Trying again.",
   "upload.reverse-share.error.invalid.title": "Invalid reverse share link",
   "upload.reverse-share.error.invalid.description":
@@ -311,7 +314,7 @@ export default {
   // Dropzone.tsx
   "upload.dropzone.title": "Upload files",
   "upload.dropzone.description":
-    "Drag and drop files here (or select files), then click \"{actionLabel}\" to create your upload link. Maximum total size: {maxSize}.",
+    "Drag and drop files here (or select files), then click \"{actionLabel}\" to create your share link. Maximum total size: {maxSize}.",
   "upload.dropzone.button.select": "Select files",
   "upload.dropzone.notify.file-too-big":
     "Your files exceed the maximum share size of {maxSize}.",
@@ -321,16 +324,16 @@ export default {
   "upload.filelist.size": "Size",
 
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Create upload link",
+  "upload.modal.title": "Create share link",
   "upload.modal.link.error.invalid":
     "Can only contain letters, numbers, underscores, and hyphens",
   "upload.modal.link.error.taken": "This link is already in use",
   "upload.modal.not-signed-in": "You're not signed in",
   "upload.modal.not-signed-in-description":
-    "Sign in to manage this upload later. Without sign-in, you cannot delete it manually or see visitor count.",
+    "Sign in to manage this share later. Without sign-in, you cannot delete it manually or see view count.",
 
   "upload.modal.expires.never": "never",
-  "upload.modal.expires.never-long": "Permanent share",
+  "upload.modal.expires.never-long": "Never expires",
   "upload.modal.expires.error.too-long":
     "Expiration date exceeds the maximum of {max}.",
 
@@ -349,28 +352,45 @@ export default {
   "upload.modal.expires.year-singular": "Year",
   "upload.modal.expires.year-plural": "Years",
 
-  "upload.modal.accordion.name-and-description.title": "Name and description",
+  "upload.modal.accordion.name-and-description.title": "Title and note",
   "upload.modal.accordion.name-and-description.name.placeholder": "Name",
   "upload.modal.accordion.name-and-description.description.placeholder":
-    "Note for the recipients of this share",
+    "Optional note for recipients",
 
-  "upload.modal.accordion.email.title": "Email recipients",
-  "upload.modal.accordion.email.placeholder": "Enter email recipients",
+  "upload.modal.accordion.email.title": "Recipients",
+  "upload.modal.accordion.email.placeholder": "Enter recipient email addresses",
   "upload.modal.accordion.email.invalid-email": "Invalid email address",
+  "upload.modal.accordion.email.helper":
+    "Leave this empty if you want to send the link yourself. Add recipients to send the link directly by email (if enabled).",
 
-  "upload.modal.accordion.security.title": "Security options",
-  "upload.modal.accordion.security.password.label": "Password protection",
+  "upload.modal.accordion.security.title": "Access options",
+  "upload.modal.accordion.security.password.label": "Require password",
   "upload.modal.accordion.security.password.placeholder": "No password",
-  "upload.modal.accordion.security.max-views.label": "Maximum views",
+  "upload.modal.accordion.security.max-views.label": "Maximum opens",
   "upload.modal.accordion.security.max-views.placeholder": "No limit",
 
   // showCompletedUploadModal.tsx
   "upload.modal.completed.never-expires": "This share will never expire.",
   "upload.modal.completed.expires-on":
     "This share will expire on {expiration}.",
-  "upload.modal.completed.share-ready": "Upload complete",
+  "upload.modal.completed.share-ready": "Share is ready",
+  "upload.modal.completed.reverse-share-finished":
+    "Your files were uploaded successfully.",
   "upload.modal.completed.notified-reverse-share-creator":
-    "We have notified the creator of the reverse share. You can also manually share this link with them through other means.",
+    "The file request creator has been notified. You can still copy and send the link manually if needed.",
+
+  "upload.reverse-share.title": "Upload requested files",
+  "upload.reverse-share.description":
+    "Upload files for the request owner. Add an optional note, then click \"Finish upload\".",
+  "upload.reverse-share.dropzone.title": "Files to upload",
+  "upload.reverse-share.dropzone.description":
+    "Add all files you want to send. Maximum total size: {maxSize}.",
+  "upload.reverse-share.note.label": "Message to the request owner (optional)",
+  "upload.reverse-share.note.placeholder":
+    "Add context for the files you are sending",
+  "upload.reverse-share.note.helper":
+    "Your message will be shown to the request owner when they are notified.",
+  "upload.reverse-share.button.finish": "Finish upload",
 
   // END /upload
 
@@ -759,16 +779,20 @@ export default {
   "common.button.cancel": "Cancel",
   "common.button.confirm": "Confirm",
   "common.button.disable": "Disable",
-  "common.button.share": "Create secure link",
+  "common.button.share": "Create share link",
   "common.button.generate": "Generate",
   "common.button.done": "Done",
   "common.text.link": "Link",
   "common.text.navigate-to-link": "Visit link",
   "common.text.or": "or",
   "common.text.redirecting": "Redirecting...",
-  "upload.flow.hint.manual-open": "Step 1: add files. Step 2: click \"{actionLabel}\" to configure and create your upload link.",
+  "upload.flow.hint.manual-open":
+    "Step 1: add files. Step 2: click \"{actionLabel}\" to configure and create your share link.",
   "common.button.go-back": "Go back",
   "common.button.go-home": "Go home",
+  "common.aria.copy-share-link": "Copy share link",
+  "common.aria.copy-request-link": "Copy file request link",
+  "common.aria.delete-request-link": "Delete file request link",
   "common.notify.copied": "Your link was copied to the clipboard",
   "common.success": "Success",
 

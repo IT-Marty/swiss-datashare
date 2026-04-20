@@ -16,12 +16,25 @@ import { FileUpload } from "../../types/File.type";
 import { CreateShare, Share } from "../../types/share.type";
 import toast from "../../utils/toast.util";
 import { useRouter } from "next/router";
-import { Button, Container } from "../../components/ui";
+import { Button, Container, Textarea } from "../../components/ui";
 import { useModals } from "../../contexts/ModalContext";
+import { byteToHumanSizeString } from "../../utils/fileSize.util";
 
 const promiseLimit = pLimit(3);
 let errorToastShown = false;
 let createdShare: Share;
+
+const generateShareId = (length: number = 16) => {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const randomArray = new Uint8Array(length >= 3 ? length : 3);
+  crypto.getRandomValues(randomArray);
+  randomArray.forEach((number) => {
+    result += chars[number % chars.length];
+  });
+  return result;
+};
 
 const Upload = ({
   maxShareSize,
@@ -39,6 +52,7 @@ const Upload = ({
   const { user } = useUser();
   const config = useConfig();
   const [files, setFiles] = useState<FileUpload[]>([]);
+  const [reverseShareNote, setReverseShareNote] = useState("");
   const [isUploading, setisUploading] = useState(false);
 
   useConfirmLeave({
@@ -55,6 +69,18 @@ const Upload = ({
 
   maxShareSize ??= parseInt(config.get("share.maxSize"));
   const autoOpenCreateUploadModal = config.get("share.autoOpenShareModal");
+  const shareIdLength = parseInt(config.get("share.shareIdLength")) || 8;
+
+  const generateAvailableLink = async (times: number = 10): Promise<string> => {
+    if (times <= 0) {
+      throw new Error("Could not generate available link");
+    }
+    const link = generateShareId(shareIdLength);
+    if (!(await shareService.isShareIdAvailable(link))) {
+      return await generateAvailableLink(times - 1);
+    }
+    return link;
+  };
 
   const uploadFiles = async (share: CreateShare, files: FileUpload[]) => {
     // Ensure chunkSize is valid at upload time
@@ -173,8 +199,35 @@ const Upload = ({
       }),
     );
 
-    Promise.all(fileUploadPromises);
+    await Promise.all(fileUploadPromises);
     console.log(`[Upload] All file upload promises initiated`);
+  };
+
+  const startReverseShareUpload = async () => {
+    if (isUploading) return;
+    setisUploading(true);
+
+    const link = await generateAvailableLink().catch(() => {
+      toast.error(t("upload.modal.link.error.taken"));
+      return undefined;
+    });
+
+    if (!link) {
+      setisUploading(false);
+      return;
+    }
+
+    await uploadFiles(
+      {
+        id: link,
+        name: undefined,
+        expiration: "never",
+        recipients: [],
+        description: reverseShareNote.trim() || undefined,
+        security: {},
+      },
+      files,
+    );
   };
 
   const showCreateUploadModalCallback = (files: FileUpload[]) => {
@@ -197,6 +250,11 @@ const Upload = ({
   };
 
   const handleDropzoneFilesChanged = (files: FileUpload[]) => {
+    if (isReverseShare) {
+      setFiles((oldArr) => [...oldArr, ...files]);
+      return;
+    }
+
     if (autoOpenCreateUploadModal) {
       setFiles(files);
       showCreateUploadModalCallback(files);
@@ -234,8 +292,12 @@ const Upload = ({
           setisUploading(false);
           showCompletedUploadModal(modals, share);
           setFiles([]);
+          setReverseShareNote("");
         })
-        .catch(() => toast.error(t("upload.notify.generic-error")));
+        .catch(() => {
+          setisUploading(false);
+          toast.error(t("upload.notify.generic-error"));
+        });
     }
   }, [files, modals, t]);
 
@@ -245,9 +307,15 @@ const Upload = ({
       <Container>
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h1 className="page-title">{t("upload.title")}</h1>
+            <h1 className="page-title">
+              {isReverseShare
+                ? t("upload.reverse-share.title")
+                : t("upload.title")}
+            </h1>
             <p className="body-text mt-1">
-              {!autoOpenCreateUploadModal
+              {isReverseShare
+                ? t("upload.reverse-share.description")
+                : !autoOpenCreateUploadModal
                 ? (
                   <FormattedMessage
                     id="upload.flow.hint.manual-open"
@@ -262,15 +330,46 @@ const Upload = ({
           <Button
             loading={isUploading}
             disabled={files.length <= 0}
-            onClick={() => showCreateUploadModalCallback(files)}
+            onClick={() => {
+              if (isReverseShare) {
+                void startReverseShareUpload();
+                return;
+              }
+              showCreateUploadModalCallback(files);
+            }}
           >
-            <FormattedMessage id="common.button.share" />
+            {isReverseShare
+              ? t("upload.reverse-share.button.finish")
+              : t("common.button.share")}
           </Button>
         </div>
+        {isReverseShare && (
+          <div className="mb-6">
+            <Textarea
+              label={t("upload.reverse-share.note.label")}
+              placeholder={t("upload.reverse-share.note.placeholder")}
+              value={reverseShareNote}
+              maxLength={512}
+              onChange={(e) => setReverseShareNote(e.target.value)}
+            />
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+              <FormattedMessage id="upload.reverse-share.note.helper" />
+            </p>
+          </div>
+        )}
         <Dropzone
           title={
-            !autoOpenCreateUploadModal && files.length > 0
+            isReverseShare
+              ? t("upload.reverse-share.dropzone.title")
+              : !autoOpenCreateUploadModal && files.length > 0
               ? t("share.edit.append-upload")
+              : undefined
+          }
+          description={
+            isReverseShare
+              ? t("upload.reverse-share.dropzone.description", {
+                  maxSize: byteToHumanSizeString(maxShareSize),
+                })
               : undefined
           }
           maxShareSize={maxShareSize}

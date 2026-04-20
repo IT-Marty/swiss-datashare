@@ -33,7 +33,12 @@ const Body = ({ share, modals }: { share: CompletedShare; modals: ModalContextTy
 
   return (
     <div className="space-y-4">
-      <CopyTextField link={link} />
+      {!isReverseShare && <CopyTextField link={link} />}
+      {isReverseShare && (
+        <p className="text-sm text-gray-600 dark:text-gray-400">
+          {t("upload.modal.completed.reverse-share-finished")}
+        </p>
+      )}
       {share.notifyReverseShareCreator === true && (
         <p className="text-sm text-gray-600 dark:text-gray-400">
           {t("upload.modal.completed.notified-reverse-share-creator")}

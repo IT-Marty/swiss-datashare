@@ -109,12 +109,22 @@ function App({ Component, pageProps }: AppProps) {
   }, [configVariables]);
 
   const mergedMessages = useMemo(
-    () =>
-      mergeMessagesForUseCase(
+    () => {
+      const englishMessages = mergeMessagesForUseCase(
+        LOCALES.ENGLISH.code,
+        LOCALES.ENGLISH.messages,
+        currentUseCase,
+      );
+      const localeMessages = mergeMessagesForUseCase(
         selectedLocale.code,
         selectedLocale.messages,
         currentUseCase,
-      ),
+      );
+      return {
+        ...englishMessages,
+        ...localeMessages,
+      };
+    },
     [selectedLocale, currentUseCase],
   );
 

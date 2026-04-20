@@ -10,11 +10,13 @@ import clsx from "clsx";
 
 const Dropzone = ({
   title,
+  description,
   isUploading,
   maxShareSize,
   onFilesChanged,
 }: {
   title?: string;
+  description?: string;
   isUploading: boolean;
   maxShareSize: number;
   onFilesChanged: (files: FileUpload[]) => void;
@@ -121,13 +123,17 @@ const Dropzone = ({
             {title || <FormattedMessage id="upload.dropzone.title" />}
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            <FormattedMessage
-              id="upload.dropzone.description"
-              values={{
-                maxSize: byteToHumanSizeString(maxShareSize),
-                actionLabel: t("common.button.share"),
-              }}
-            />
+            {description ? (
+              description
+            ) : (
+              <FormattedMessage
+                id="upload.dropzone.description"
+                values={{
+                  maxSize: byteToHumanSizeString(maxShareSize),
+                  actionLabel: t("common.button.share"),
+                }}
+              />
+            )}
           </p>
         </div>
       </div>

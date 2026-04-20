@@ -81,7 +81,11 @@ export class EmailService {
     );
   }
 
-  async sendMailToReverseShareCreator(recipientEmail: string, shareId: string) {
+  async sendMailToReverseShareCreator(
+    recipientEmail: string,
+    shareId: string,
+    note?: string,
+  ) {
     const shareUrl = `${this.config.get("general.appUrl")}/s/${shareId}`;
 
     await this.sendMail(
@@ -90,7 +94,8 @@ export class EmailService {
       this.config
         .get("email.reverseShareMessage")
         .replaceAll("\\n", "\n")
-        .replaceAll("{shareUrl}", shareUrl),
+        .replaceAll("{shareUrl}", shareUrl)
+        .replaceAll("{note}", note?.trim() || "No note provided"),
     );
   }
 

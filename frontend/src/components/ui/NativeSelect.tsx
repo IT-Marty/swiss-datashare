@@ -27,7 +27,7 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
           ref={ref}
           id={selectId}
           className={clsx(
-            "w-full px-4 py-2 text-base text-text bg-white border border-gray-300 rounded-lg",
+            "w-full px-4 py-2 text-base text-text bg-white rounded-lg",
             "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent",
             "disabled:bg-gray-100 disabled:cursor-not-allowed",
             "dark:bg-gray-800 dark:text-text-dark dark:border-gray-600 dark:focus:ring-primary-400",

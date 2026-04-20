@@ -148,7 +148,7 @@ const MyShares = () => {
                                         }
                                       }}
                                       className="p-1.5 text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:text-primary-400 dark:hover:text-primary-300 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
-                                      aria-label="Copy share link"
+                                      aria-label={t("common.aria.copy-share-link")}
                                     >
                                       <TbLink size={16} />
                                     </button>
@@ -166,7 +166,7 @@ const MyShares = () => {
                     </Table.Cell>
                     <Table.Cell>
                       {moment(reverseShare.shareExpiration).unix() === 0
-                        ? "Never"
+                        ? t("account.shares.table.expiry-never")
                         : moment(reverseShare.shareExpiration).format("LLL")}
                     </Table.Cell>
                     <Table.Cell>
@@ -188,7 +188,7 @@ const MyShares = () => {
                             }
                           }}
                           className="p-1.5 text-primary-600 hover:text-primary-700 hover:bg-primary-50 dark:text-primary-400 dark:hover:text-primary-300 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
-                          aria-label="Copy reverse share link"
+                          aria-label={t("common.aria.copy-request-link")}
                         >
                           <TbLink size={18} />
                         </button>
@@ -221,7 +221,7 @@ const MyShares = () => {
                             });
                           }}
                           className="p-1.5 text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-                          aria-label="Delete reverse share"
+                          aria-label={t("common.aria.delete-request-link")}
                         >
                           <TbTrash size={18} />
                         </button>

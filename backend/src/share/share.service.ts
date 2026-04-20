@@ -171,6 +171,7 @@ export class ShareService {
       await this.emailService.sendMailToReverseShareCreator(
         share.reverseShare.creator.email,
         share.id,
+        share.description,
       );
     }
 

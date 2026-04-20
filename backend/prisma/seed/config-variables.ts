@@ -152,7 +152,7 @@ export const configVariables = {
     reverseShareMessage: {
       type: "text",
       defaultValue:
-        "Hey!\n\nA share was just created with your reverse share link: {shareUrl}\n\nShared securely with Swiss DataShare",
+        "Hey!\n\nSomeone finished an upload request and sent files to you: {shareUrl}\n\nMessage from sender: {note}\n\nShared securely with Swiss DataShare",
     },
     resetPasswordSubject: {
       type: "string",

@@ -402,6 +402,9 @@ const CreateUploadModalBody = ({
                       }
                     }}
                   />
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                    <FormattedMessage id="upload.modal.accordion.email.helper" />
+                  </p>
                 </div>
               </Accordion.Panel>
             </Accordion.Item>
