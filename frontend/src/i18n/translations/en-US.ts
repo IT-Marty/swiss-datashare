@@ -6,7 +6,7 @@ export default {
   "navbar.signup": "Sign up",
 
   "navbar.links.shares": "My shares",
-  "navbar.links.reverse": "Reverse shares",
+  "navbar.links.reverse": "Data Requests",
 
   "navbar.avatar.account": "My account",
   "navbar.avatar.admin": "Administration",
@@ -17,7 +17,7 @@ export default {
   "home.title": "Send and request files with clear, secure links.",
 
   "home.description":
-    "Create a share link to send files, or create a file request link so recipients can upload files back to you.",
+    "Create a share link to send files, or create a data request link so recipients can upload files back to you.",
 
   "home.button.start": "Start sharing files",
   "home.button.source": "Source code",
@@ -36,7 +36,7 @@ export default {
   "home.how.title": "How it works",
   "home.how.step1.title": "1. Upload your files",
   "home.how.step1.description": "Drag files into the upload area or select them from your device.",
-  "home.how.step2.title": "2. Create a share link",
+  "home.how.step2.title": "2. Share Data",
   "home.how.step2.description":
     "Click \"{actionLabel}\", choose options like expiration and recipients, then create the link.",
   "home.how.step3.title": "3. Send it to recipients",
@@ -185,16 +185,16 @@ export default {
   // END /account/shares
 
   // /account/reverseShares
-  "account.reverseShares.title": "File requests",
+  "account.reverseShares.title": "Data Requests",
   "account.reverseShares.description":
     "Create a request link so recipients can upload files to you.",
 
   "account.reverseShares.title.empty": "It's empty here 👀",
   "account.reverseShares.description.empty":
-    "You don't have any file requests yet.",
+    "You don't have any data requests yet.",
 
   // showCreateReverseShareModal.tsx
-  "account.reverseShares.modal.title": "Create file request link",
+  "account.reverseShares.modal.title": "Create data request link",
   "account.reverseShares.modal.expiration.label": "Expiration",
   "account.reverseShares.modal.expiration.minute-singular": "Minute",
   "account.reverseShares.modal.expiration.minute-plural": "Minutes",
@@ -238,11 +238,11 @@ export default {
   "account.reverseShares.table.max-size": "Max upload size",
   "account.reverseShares.table.expires": "Expires at",
 
-  "account.reverseShares.modal.reverse-share-link": "File request link",
+  "account.reverseShares.modal.reverse-share-link": "Data request link",
 
-  "account.reverseShares.modal.delete.title": "Delete file request link",
+  "account.reverseShares.modal.delete.title": "Delete data request link",
   "account.reverseShares.modal.delete.description":
-    "Do you really want to delete this file request link? Uploaded shares linked to it will also be deleted.",
+    "Do you really want to delete this data request link? Uploaded shares linked to it will also be deleted.",
 
   // END /account/reverseShares
 
@@ -300,7 +300,7 @@ export default {
   // END /admin/shares
 
   // /upload
-  "upload.title": "Create file share",
+  "upload.title": "Share Data",
 
   "upload.notify.confirm-leave":
     "Are you sure you want to leave this page? Your upload will be canceled.",
@@ -314,7 +314,7 @@ export default {
   // Dropzone.tsx
   "upload.dropzone.title": "Upload files",
   "upload.dropzone.description":
-    "Drag and drop files here (or select files), then click \"{actionLabel}\" to create your share link. Maximum total size: {maxSize}.",
+    "Drag and drop files here (or select files), then click \"{actionLabel}\" to continue. Maximum total size: {maxSize}.",
   "upload.dropzone.button.select": "Select files",
   "upload.dropzone.notify.file-too-big":
     "Your files exceed the maximum share size of {maxSize}.",
@@ -324,7 +324,7 @@ export default {
   "upload.filelist.size": "Size",
 
   // showCreateUploadModal.tsx
-  "upload.modal.title": "Create share link",
+  "upload.modal.title": "Share Data",
   "upload.modal.link.error.invalid":
     "Can only contain letters, numbers, underscores, and hyphens",
   "upload.modal.link.error.taken": "This link is already in use",
@@ -377,14 +377,14 @@ export default {
   "upload.modal.completed.reverse-share-finished":
     "Your files were uploaded successfully.",
   "upload.modal.completed.notified-reverse-share-creator":
-    "The file request creator has been notified. You can still copy and send the link manually if needed.",
+    "The data request creator has been notified. You can still copy and send the link manually if needed.",
 
-  "upload.reverse-share.title": "Upload requested files",
+  "upload.reverse-share.title": "Upload your files here",
   "upload.reverse-share.description":
-    "Upload files for the request owner. Add an optional note, then click \"Finish upload\".",
-  "upload.reverse-share.dropzone.title": "Files to upload",
+    "Drag and drop your files or select them from your device. You can also add an optional note, then click \"Finish upload\" to securely send your files to the request owner.",
+  "upload.reverse-share.dropzone.title": "Upload your files",
   "upload.reverse-share.dropzone.description":
-    "Add all files you want to send. Maximum total size: {maxSize}.",
+    "Drag and drop all files here that you want to send. Maximum total size: {maxSize}.",
   "upload.reverse-share.note.label": "Message to the request owner (optional)",
   "upload.reverse-share.note.placeholder":
     "Add context for the files you are sending",
@@ -779,7 +779,7 @@ export default {
   "common.button.cancel": "Cancel",
   "common.button.confirm": "Confirm",
   "common.button.disable": "Disable",
-  "common.button.share": "Create share link",
+  "common.button.share": "Share Data",
   "common.button.generate": "Generate",
   "common.button.done": "Done",
   "common.text.link": "Link",
@@ -787,12 +787,12 @@ export default {
   "common.text.or": "or",
   "common.text.redirecting": "Redirecting...",
   "upload.flow.hint.manual-open":
-    "Step 1: add files. Step 2: click \"{actionLabel}\" to configure and create your share link.",
+    "Step 1: add files. Step 2: click \"{actionLabel}\" to configure options and continue.",
   "common.button.go-back": "Go back",
   "common.button.go-home": "Go home",
   "common.aria.copy-share-link": "Copy share link",
-  "common.aria.copy-request-link": "Copy file request link",
-  "common.aria.delete-request-link": "Delete file request link",
+  "common.aria.copy-request-link": "Copy data request link",
+  "common.aria.delete-request-link": "Delete data request link",
   "common.notify.copied": "Your link was copied to the clipboard",
   "common.success": "Success",
 
