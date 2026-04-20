@@ -350,60 +350,50 @@ const CreateUploadModalBody = ({
             </p>
           </>
         )}
+        {options.enableEmailRecepients && (
+          <div className="pt-4">
+            <MultiSelect
+              value={form.values.recipients}
+              onChange={(value) => form.setValue("recipients", value)}
+              placeholder={t("upload.modal.accordion.email.placeholder")}
+              searchable
+              creatable
+              getCreateLabel={(query) => `+ ${query}`}
+              onCreate={(query) => {
+                if (!query.match(/^\S+@\S+\.\S+$/)) {
+                  form.setErrors({
+                    recipients: t("upload.modal.accordion.email.invalid-email"),
+                  });
+                } else {
+                  form.setErrors({ recipients: undefined });
+                  const newRecipients = [...form.values.recipients, query];
+                  form.setValue("recipients", newRecipients);
+                  return query;
+                }
+              }}
+              inputMode="email"
+              onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                // Add email on comma or semicolon
+                if (e.key === "Enter" || e.key === "," || e.key === ";") {
+                  e.preventDefault();
+                  const inputValue = (e.target as HTMLInputElement).value.trim();
+                  if (inputValue.match(/^\S+@\S+\.\S+$/)) {
+                    const newRecipients = [...form.values.recipients, inputValue];
+                    form.setValue("recipients", newRecipients);
+                    (e.target as HTMLInputElement).value = "";
+                  }
+                } else if (e.key === " ") {
+                  e.preventDefault();
+                  (e.target as HTMLInputElement).value = "";
+                }
+              }}
+            />
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+              <FormattedMessage id="upload.modal.accordion.email.helper" />
+            </p>
+          </div>
+        )}
         <Accordion>
-          {options.enableEmailRecepients && (
-            <Accordion.Item value="recipients">
-              <Accordion.Control>
-                <FormattedMessage id="upload.modal.accordion.email.title" />
-              </Accordion.Control>
-              <Accordion.Panel>
-                <div className="pt-4">
-                  <MultiSelect
-                    value={form.values.recipients}
-                    onChange={(value) => form.setValue("recipients", value)}
-                    placeholder={t("upload.modal.accordion.email.placeholder")}
-                    searchable
-                    creatable
-                    getCreateLabel={(query) => `+ ${query}`}
-                    onCreate={(query) => {
-                      if (!query.match(/^\S+@\S+\.\S+$/)) {
-                        form.setErrors({
-                          recipients: t("upload.modal.accordion.email.invalid-email"),
-                        });
-                      } else {
-                        form.setErrors({ recipients: undefined });
-                        const newRecipients = [...form.values.recipients, query];
-                        form.setValue("recipients", newRecipients);
-                        return query;
-                      }
-                    }}
-                    inputMode="email"
-                    onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                      // Add email on comma or semicolon
-                      if (e.key === "Enter" || e.key === "," || e.key === ";") {
-                        e.preventDefault();
-                        const inputValue = (
-                          e.target as HTMLInputElement
-                        ).value.trim();
-                        if (inputValue.match(/^\S+@\S+\.\S+$/)) {
-                          const newRecipients = [...form.values.recipients, inputValue];
-                          form.setValue("recipients", newRecipients);
-                          (e.target as HTMLInputElement).value = "";
-                        }
-                      } else if (e.key === " ") {
-                        e.preventDefault();
-                        (e.target as HTMLInputElement).value = "";
-                      }
-                    }}
-                  />
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                    <FormattedMessage id="upload.modal.accordion.email.helper" />
-                  </p>
-                </div>
-              </Accordion.Panel>
-            </Accordion.Item>
-          )}
-
           <Accordion.Item value="security">
             <Accordion.Control>
               <FormattedMessage id="upload.modal.accordion.security.title" />

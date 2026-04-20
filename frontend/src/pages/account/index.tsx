@@ -29,6 +29,7 @@ const Account = () => {
   const { user, refreshUser } = useUser();
   const modals = useModals();
   const t = useTranslate();
+  const accountCardClass = "mb-6 p-[1.3rem]";
 
   const accountValidationSchema = yup.object().shape({
     email: yup.string().email(t("common.error.invalid-email")),
@@ -135,7 +136,7 @@ const Account = () => {
           <FormattedMessage id="account.title" />
         </h2>
         
-        <Card padding="lg" className="mb-6">
+        <Card padding="lg" className={accountCardClass}>
           <div className="flex items-center gap-2 mb-4">
             <h3 className="text-lg font-semibold text-text dark:text-text-dark">
               <FormattedMessage id="account.card.info.title" />
@@ -178,7 +179,7 @@ const Account = () => {
         </Card>
 
         {!user?.isLdap && (
-          <Card padding="lg" className="mb-6">
+          <Card padding="lg" className={accountCardClass}>
             <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
               <FormattedMessage id="account.card.password.title" />
             </h3>
@@ -219,7 +220,7 @@ const Account = () => {
         )}
 
         {oauth.length > 0 && (
-          <Card padding="lg" className="mb-6">
+          <Card padding="lg" className={accountCardClass}>
             <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
               <FormattedMessage id="account.card.oauth.title" />
             </h3>
@@ -289,7 +290,7 @@ const Account = () => {
           </Card>
         )}
 
-        <Card padding="lg" className="mb-6">
+        <Card padding="lg" className={accountCardClass}>
           <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
             <FormattedMessage id="account.card.security.title" />
           </h3>
@@ -364,14 +365,14 @@ const Account = () => {
           </Tabs>
         </Card>
 
-        <Card padding="lg" className="mb-6">
+        <Card padding="lg" className={accountCardClass}>
           <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
             <FormattedMessage id="account.card.language.title" />
           </h3>
           <LanguagePicker />
         </Card>
 
-        <Card padding="lg" className="mb-6">
+        <Card padding="lg" className={accountCardClass}>
           <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
             <FormattedMessage id="account.card.color.title" />
           </h3>

@@ -1,4 +1,4 @@
-import { TbTrash } from "react-icons/tb";
+import { TbLoader2, TbTrash } from "react-icons/tb";
 import { GrUndo } from "react-icons/gr";
 import { FileListItem } from "../../types/File.type";
 import { byteToHumanSizeString } from "../../utils/fileSize.util";
@@ -31,7 +31,23 @@ const FileListRow = ({
         deleted && "opacity-50 line-through"
       )}
     >
-      <Table.Cell>{file.name}</Table.Cell>
+      <Table.Cell>
+        <div
+          className={clsx(
+            "inline-flex items-center gap-2",
+            uploading && "text-gray-500 dark:text-gray-400",
+          )}
+        >
+          <span>{file.name}</span>
+          {uploading && (
+            <TbLoader2
+              size={16}
+              className="animate-spin text-primary-500 dark:text-primary-400"
+              aria-label="Uploading"
+            />
+          )}
+        </div>
+      </Table.Cell>
       <Table.Cell>{byteToHumanSizeString(+file.size)}</Table.Cell>
       <Table.Cell>
         <div className="flex items-center gap-2">

@@ -361,15 +361,15 @@ export default {
     "Optional note for recipients",
 
   "upload.modal.accordion.email.title": "Recipients",
-  "upload.modal.accordion.email.placeholder": "Enter recipient email addresses",
+  "upload.modal.accordion.email.placeholder": "Enter recipient email addresses (confirm with Enter)",
   "upload.modal.accordion.email.invalid-email": "Invalid email address",
   "upload.modal.accordion.email.helper":
-    "Leave this empty if you want to send the link yourself. Add recipients to send the link directly by email (if enabled).",
+    "Leave this empty if you want to send your data link yourself or add recipients here to send the link directly by email.",
 
   "upload.modal.accordion.security.title": "Access restrictions",
-  "upload.modal.accordion.security.password.label": "Require password",
+  "upload.modal.accordion.security.password.label": "Required password (if not set, no password is required)",
   "upload.modal.accordion.security.password.placeholder": "No password",
-  "upload.modal.accordion.security.max-views.label": "Maximum opens",
+  "upload.modal.accordion.security.max-views.label": "Maximum allowed views",
   "upload.modal.accordion.security.max-views.placeholder": "No limit",
 
   // showCompletedUploadModal.tsx
