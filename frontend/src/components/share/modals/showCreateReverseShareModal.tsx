@@ -63,7 +63,7 @@ const Body = ({
     initialValues: {
       maxShareSize: 104857600,
       maxUseCount: 1,
-      sendEmailNotification: false,
+      sendEmailNotification: true,
       expiration_num: 1,
       expiration_unit: "-days",
       simplified: !!(getCookie("reverse-share.simplified") ?? false),

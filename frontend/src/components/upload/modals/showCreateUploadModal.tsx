@@ -249,6 +249,25 @@ const CreateUploadModalBody = ({
         <p className="text-xs text-gray-500 dark:text-gray-400 truncate italic">
           {`${window.location.origin}/s/${form.values.link}`}
         </p>
+        <div className="space-y-4">
+          <Input
+            label={t("upload.modal.accordion.name-and-description.title")}
+            placeholder={t(
+              "upload.modal.accordion.name-and-description.name.placeholder",
+            )}
+            value={typeof form.values.name === "string" ? form.values.name : ""}
+            onChange={(e) => form.setValue("name", e.target.value)}
+            error={form.errors.name}
+          />
+          <Textarea
+            placeholder={t(
+              "upload.modal.accordion.name-and-description.description.placeholder",
+            )}
+            value={typeof form.values.description === "string" ? form.values.description : ""}
+            onChange={(e) => form.setValue("description", e.target.value)}
+            error={form.errors.description}
+          />
+        </div>
         {!options.isReverseShare && (
           <>
             <div className={clsx("grid grid-cols-2 gap-4", form.errors.expiration_num && "items-center")}>
@@ -332,31 +351,6 @@ const CreateUploadModalBody = ({
           </>
         )}
         <Accordion>
-          <Accordion.Item value="description">
-            <Accordion.Control>
-              <FormattedMessage id="upload.modal.accordion.name-and-description.title" />
-            </Accordion.Control>
-            <Accordion.Panel>
-              <div className="space-y-4 pt-4">
-                <Input
-                  placeholder={t(
-                    "upload.modal.accordion.name-and-description.name.placeholder",
-                  )}
-                  value={typeof form.values.name === "string" ? form.values.name : ""}
-                  onChange={(e) => form.setValue("name", e.target.value)}
-                  error={form.errors.name}
-                />
-                <Textarea
-                  placeholder={t(
-                    "upload.modal.accordion.name-and-description.description.placeholder",
-                  )}
-                  value={typeof form.values.description === "string" ? form.values.description : ""}
-                  onChange={(e) => form.setValue("description", e.target.value)}
-                  error={form.errors.description}
-                />
-              </div>
-            </Accordion.Panel>
-          </Accordion.Item>
           {options.enableEmailRecepients && (
             <Accordion.Item value="recipients">
               <Accordion.Control>

@@ -363,7 +363,7 @@ export default {
   "upload.modal.accordion.email.helper":
     "Leave this empty if you want to send the link yourself. Add recipients to send the link directly by email (if enabled).",
 
-  "upload.modal.accordion.security.title": "Access options",
+  "upload.modal.accordion.security.title": "Access restrictions",
   "upload.modal.accordion.security.password.label": "Require password",
   "upload.modal.accordion.security.password.placeholder": "No password",
   "upload.modal.accordion.security.max-views.label": "Maximum opens",
