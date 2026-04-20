@@ -12,6 +12,8 @@ general:
   showHomePage: "true"
   #Time after which a user must log in again (default: 3 months).
   sessionDuration: 3 months
+  #Use-case flags, comma-separated. Examples: default | lawyer | default,saas | lawyer,saas
+  useCase: default
 share:
   #Whether registration is allowed
   allowRegistration: "true"
@@ -29,6 +31,29 @@ share:
   chunkSize: "10000000"
   #The share creation modal automatically appears when a user selects files, eliminating the need to manually click the button.
   autoOpenShareModal: "false"
+saas:
+  #Enable SaaS billing features (works together with general.useCase containing "saas")
+  enabled: "false"
+  #Displayed monthly subscription price in CHF
+  monthlyPriceChf: "29.00"
+  #Displayed yearly subscription price in CHF
+  yearlyPriceChf: "290.00"
+  #Free trial period in days from user signup
+  trialDays: "60"
+  #Grace period in days before enforcement blocks upload/sharing
+  graceDays: "3"
+  #Whether overdue users are blocked from upload and sharing
+  enforceSubscription: "true"
+  #Stripe publishable key (pk_...)
+  stripePublishableKey: ""
+  #Stripe secret key (sk_...)
+  stripeSecretKey: ""
+  #Stripe webhook signing secret (whsec_...)
+  stripeWebhookSecret: ""
+  #Stripe recurring price ID for monthly billing
+  stripeMonthlyPriceId: ""
+  #Stripe recurring price ID for yearly billing
+  stripeYearlyPriceId: ""
 cache:
   #Normally Swiss DataShare caches information in memory. If you run multiple instances of Swiss DataShare, you need to enable Redis caching to share the cache between the instances.
   redis-enabled: "false"

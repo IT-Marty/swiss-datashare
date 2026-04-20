@@ -111,6 +111,61 @@ export const configVariables = {
       secret: false,
     },
   },
+  saas: {
+    enabled: {
+      type: "boolean",
+      defaultValue: "false",
+      secret: false,
+    },
+    monthlyPriceChf: {
+      type: "string",
+      defaultValue: "29.00",
+      secret: false,
+    },
+    yearlyPriceChf: {
+      type: "string",
+      defaultValue: "290.00",
+      secret: false,
+    },
+    trialDays: {
+      type: "number",
+      defaultValue: "60",
+      secret: false,
+    },
+    graceDays: {
+      type: "number",
+      defaultValue: "3",
+      secret: false,
+    },
+    enforceSubscription: {
+      type: "boolean",
+      defaultValue: "true",
+      secret: false,
+    },
+    stripePublishableKey: {
+      type: "string",
+      defaultValue: "",
+      secret: false,
+    },
+    stripeSecretKey: {
+      type: "string",
+      defaultValue: "",
+      obscured: true,
+    },
+    stripeWebhookSecret: {
+      type: "string",
+      defaultValue: "",
+      obscured: true,
+    },
+    stripeMonthlyPriceId: {
+      type: "string",
+      defaultValue: "",
+    },
+    stripeYearlyPriceId: {
+      type: "string",
+      defaultValue: "",
+    },
+  },
   cache: {
     "redis-enabled": {
       type: "boolean",

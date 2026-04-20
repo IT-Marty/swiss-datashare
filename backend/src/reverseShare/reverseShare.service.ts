@@ -3,6 +3,7 @@ import * as moment from "moment";
 import { ConfigService } from "src/config/config.service";
 import { FileService } from "src/file/file.service";
 import { PrismaService } from "src/prisma/prisma.service";
+import { SaasService } from "src/saas/saas.service";
 import { parseRelativeDateToAbsolute } from "src/utils/date.util";
 import { CreateReverseShareDTO } from "./dto/createReverseShare.dto";
 
@@ -12,6 +13,7 @@ export class ReverseShareService {
     private config: ConfigService,
     private prisma: PrismaService,
     private fileService: FileService,
+    private saasService: SaasService,
   ) {}
 
   async create(data: CreateReverseShareDTO, creatorId: string) {
@@ -96,8 +98,11 @@ export class ReverseShareService {
 
     const isExpired = new Date() > reverseShare.shareExpiration;
     const remainingUsesExceeded = reverseShare.remainingUses <= 0;
+    const creatorCompliant = await this.saasService.isUserBillingCompliant(
+      reverseShare.creatorId,
+    );
 
-    return !(isExpired || remainingUsesExceeded);
+    return !(isExpired || remainingUsesExceeded || !creatorCompliant);
   }
 
   async remove(id: string) {

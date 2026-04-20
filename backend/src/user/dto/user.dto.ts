@@ -33,6 +33,9 @@ export class UserDTO {
   @Expose()
   totpVerified: boolean;
 
+  @Expose()
+  billingExempt: boolean;
+
   from(partial: Partial<UserDTO>) {
     const result = plainToClass(UserDTO, partial, {
       excludeExtraneousValues: true,

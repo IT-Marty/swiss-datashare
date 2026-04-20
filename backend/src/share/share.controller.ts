@@ -85,10 +85,9 @@ export class ShareController {
   @Post(":id/complete")
   @HttpCode(202)
   @UseGuards(CreateShareGuard, ShareOwnerGuard)
-  async complete(@Param("id") id: string, @Req() request: Request) {
-    const { reverse_share_token } = request.cookies;
+  async complete(@Param("id") id: string) {
     return new CompletedShareDTO().from(
-      await this.shareService.complete(id, reverse_share_token),
+      await this.shareService.complete(id),
     );
   }
 

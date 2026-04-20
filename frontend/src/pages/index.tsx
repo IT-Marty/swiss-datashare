@@ -16,6 +16,7 @@ import useUser from "../hooks/user.hook";
 import useConfig from "../hooks/config.hook";
 import useTranslate from "../hooks/useTranslate.hook";
 import { Button, Container, Card } from "../components/ui";
+import { hasUseCase } from "../utils/useCase.util";
 
 export default function Home() {
   const { refreshUser } = useUser();
@@ -58,7 +59,7 @@ export default function Home() {
   } catch {
     useCase = "default";
   }
-  const isLawyerUseCase = useCase === "lawyer";
+  const isLawyerUseCase = hasUseCase(useCase, "lawyer");
 
   const trustItems = [
     {

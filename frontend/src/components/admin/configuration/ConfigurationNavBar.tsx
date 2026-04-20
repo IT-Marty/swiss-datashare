@@ -5,6 +5,7 @@ import {
   TbBinaryTree,
   TbBucket,
   TbMail,
+  TbReceipt2,
   TbScale,
   TbServerBolt,
   TbSettings,
@@ -13,8 +14,10 @@ import {
 } from "react-icons/tb";
 import { FormattedMessage } from "react-intl";
 import clsx from "clsx";
+import useConfig from "../../../hooks/config.hook";
+import { hasUseCase } from "../../../utils/useCase.util";
 
-const categories = [
+const baseCategories = [
   { name: "General", icon: TbSettings },
   { name: "Email", icon: TbMail },
   { name: "Share", icon: TbShare },
@@ -35,6 +38,17 @@ const ConfigurationNavBar = ({
   isMobileNavBarOpened: boolean;
   setIsMobileNavBarOpened: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const config = useConfig();
+  const useCaseRaw = config.get("general.useCase");
+
+  const categories = hasUseCase(useCaseRaw, "saas")
+    ? [
+        baseCategories[0],
+        { name: "SaaS", icon: TbReceipt2 },
+        ...baseCategories.slice(1),
+      ]
+    : baseCategories;
+
   return (
     <nav
       className={clsx(

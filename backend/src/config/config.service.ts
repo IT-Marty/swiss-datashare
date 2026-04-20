@@ -259,6 +259,16 @@ export class ConfigService extends EventEmitter {
         condition: (value: number) => value >= 0 && value <= 9,
         message: "Zip compression level must be between 0 and 9",
       },
+      {
+        key: "saas.trialDays",
+        condition: (value: number) => value >= 0 && value <= 3650,
+        message: "SaaS trial days must be between 0 and 3650",
+      },
+      {
+        key: "saas.graceDays",
+        condition: (value: number) => value >= 0 && value <= 365,
+        message: "SaaS grace days must be between 0 and 365",
+      },
       // TODO add validation for timespan type
     ];
 

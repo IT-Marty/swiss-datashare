@@ -101,7 +101,13 @@ export const mergeMessagesForUseCase = (
   baseMessages: Messages,
   useCase: string,
 ) => {
-  if (useCase !== "lawyer") {
+  const useCases = useCase
+    .toLowerCase()
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  if (!useCases.includes("lawyer")) {
     return baseMessages;
   }
   return {

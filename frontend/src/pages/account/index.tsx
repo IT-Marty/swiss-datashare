@@ -6,12 +6,16 @@ import Meta from "../../components/Meta";
 import LanguagePicker from "../../components/account/LanguagePicker";
 import ThemeSwitcher from "../../components/account/ThemeSwitcher";
 import showEnableTotpModal from "../../components/account/showEnableTotpModal";
+import useConfig from "../../hooks/config.hook";
 import useTranslate from "../../hooks/useTranslate.hook";
 import useUser from "../../hooks/user.hook";
 import authService from "../../services/auth.service";
+import saasService from "../../services/saas.service";
 import userService from "../../services/user.service";
+import { BillingStatus } from "../../types/saas.type";
 import { getOAuthIcon, getOAuthUrl, unlinkOAuth } from "../../utils/oauth.util";
 import toast from "../../utils/toast.util";
+import { hasUseCase } from "../../utils/useCase.util";
 import { Button, Container, Input, PasswordInput, Card, Badge, Tabs } from "../../components/ui";
 import { useForm } from "../../hooks/useForm";
 import { useModals } from "../../contexts/ModalContext";
@@ -29,6 +33,9 @@ const Account = () => {
   const { user, refreshUser } = useUser();
   const modals = useModals();
   const t = useTranslate();
+  const config = useConfig();
+  const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
+  const [billingActionLoading, setBillingActionLoading] = useState(false);
   const accountCardClass = "mb-6 p-[1.3rem]";
 
   const accountValidationSchema = yup.object().shape({
@@ -127,6 +134,16 @@ const Account = () => {
       .catch(toast.axiosError);
     refreshOAuthStatus();
   }, []);
+
+  useEffect(() => {
+    const useCaseRaw = config.get("general.useCase");
+    if (!hasUseCase(useCaseRaw, "saas")) return;
+
+    saasService
+      .getStatus()
+      .then((status) => setBillingStatus(status))
+      .catch(toast.axiosError);
+  }, [config]);
 
   return (
     <>
@@ -378,6 +395,103 @@ const Account = () => {
           </h3>
           <ThemeSwitcher />
         </Card>
+
+        {billingStatus?.enforced && !billingStatus.exempt && (
+          <Card padding="lg" className={accountCardClass}>
+            <h3 className="text-lg font-semibold mb-4 text-text dark:text-text-dark">
+              <FormattedMessage id="account.card.billing.title" />
+            </h3>
+            <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+              <p>
+                <FormattedMessage
+                  id="account.card.billing.status"
+                  values={{ status: billingStatus.status }}
+                />
+              </p>
+              {billingStatus.trialEndsAt && (
+                <p>
+                  <FormattedMessage
+                    id="account.card.billing.trial-ends"
+                    values={{
+                      date: new Date(billingStatus.trialEndsAt).toLocaleDateString(),
+                    }}
+                  />
+                </p>
+              )}
+              {billingStatus.graceEndsAt && !billingStatus.compliant && (
+                <p className="text-amber-600 dark:text-amber-400">
+                  <FormattedMessage
+                    id="account.card.billing.grace-ends"
+                    values={{
+                      date: new Date(billingStatus.graceEndsAt).toLocaleDateString(),
+                    }}
+                  />
+                </p>
+              )}
+            </div>
+            <div className="mt-4 flex gap-3">
+              {billingStatus.canCheckoutMonthly && (
+                <Button
+                  disabled={billingActionLoading}
+                  onClick={async () => {
+                    setBillingActionLoading(true);
+                    try {
+                      const { url } =
+                        await saasService.createCheckoutSession("monthly");
+                      if (url) window.location.href = url;
+                    } catch (error) {
+                      toast.axiosError(error);
+                    } finally {
+                      setBillingActionLoading(false);
+                    }
+                  }}
+                >
+                  <FormattedMessage id="account.card.billing.subscribe-monthly" />
+                </Button>
+              )}
+              {billingStatus.canCheckoutYearly && (
+                <Button
+                  variant="outline"
+                  disabled={billingActionLoading}
+                  onClick={async () => {
+                    setBillingActionLoading(true);
+                    try {
+                      const { url } =
+                        await saasService.createCheckoutSession("yearly");
+                      if (url) window.location.href = url;
+                    } catch (error) {
+                      toast.axiosError(error);
+                    } finally {
+                      setBillingActionLoading(false);
+                    }
+                  }}
+                >
+                  <FormattedMessage id="account.card.billing.subscribe-yearly" />
+                </Button>
+              )}
+              {billingStatus.canManagePortal && (
+                <Button
+                  variant="ghost"
+                  disabled={billingActionLoading}
+                  onClick={async () => {
+                    setBillingActionLoading(true);
+                    try {
+                      const { url } =
+                        await saasService.createBillingPortalSession();
+                      if (url) window.location.href = url;
+                    } catch (error) {
+                      toast.axiosError(error);
+                    } finally {
+                      setBillingActionLoading(false);
+                    }
+                  }}
+                >
+                  <FormattedMessage id="account.card.billing.manage" />
+                </Button>
+              )}
+            </div>
+          </Card>
+        )}
 
         <div className="flex justify-center mt-20 mb-6">
           <Button

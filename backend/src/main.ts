@@ -47,6 +47,15 @@ async function bootstrap() {
 
   const config = app.get<ConfigService>(ConfigService);
 
+  app.use(
+    bodyParser.json({
+      verify: (req: any, _res, buf) => {
+        req.rawBody = buf;
+      },
+    }),
+  );
+  app.use(bodyParser.urlencoded({ extended: true }));
+
   app.use((req: Request, res: Response, next: NextFunction) => {
     const chunkSize = config.get("share.chunkSize");
     bodyParser.raw({

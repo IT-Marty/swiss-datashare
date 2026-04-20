@@ -15,6 +15,7 @@ import { JobsModule } from "./jobs/jobs.module";
 import { OAuthModule } from "./oauth/oauth.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { ReverseShareModule } from "./reverseShare/reverseShare.module";
+import { SaasModule } from "./saas/saas.module";
 import { ShareModule } from "./share/share.module";
 import { UserModule } from "./user/user.module";
 
@@ -37,6 +38,7 @@ import { UserModule } from "./user/user.module";
     ScheduleModule.forRoot(),
     ClamScanModule,
     ReverseShareModule,
+    SaasModule,
     OAuthModule,
     AppCacheModule,
   ],

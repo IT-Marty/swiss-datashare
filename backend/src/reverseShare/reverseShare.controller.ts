@@ -13,6 +13,7 @@ import { User } from "@prisma/client";
 import { GetUser } from "src/auth/decorator/getUser.decorator";
 import { JwtGuard } from "src/auth/guard/jwt.guard";
 import { ConfigService } from "src/config/config.service";
+import { SaasSubscriptionGuard } from "src/saas/guard/saasSubscription.guard";
 import { CreateReverseShareDTO } from "./dto/createReverseShare.dto";
 import { ReverseShareDTO } from "./dto/reverseShare.dto";
 import { ReverseShareTokenWithShares } from "./dto/reverseShareTokenWithShares";
@@ -27,7 +28,7 @@ export class ReverseShareController {
   ) {}
 
   @Post()
-  @UseGuards(JwtGuard)
+  @UseGuards(JwtGuard, SaasSubscriptionGuard)
   async create(@Body() body: CreateReverseShareDTO, @GetUser() user: User) {
     const token = await this.reverseShareService.create(body, user.id);
 

@@ -12,10 +12,12 @@ import CenterLoader from "../../../components/core/CenterLoader";
 import useConfig from "../../../hooks/config.hook";
 import useTranslate from "../../../hooks/useTranslate.hook";
 import configService from "../../../services/config.service";
+import saasService from "../../../services/saas.service";
 import { AdminConfig, UpdateConfig } from "../../../types/config.type";
+import { ExemptUser, SaasPaymentHistoryResponse } from "../../../types/saas.type";
 import { camelToKebab } from "../../../utils/string.util";
 import toast from "../../../utils/toast.util";
-import { Container, Alert, Button } from "../../../components/ui";
+import { Container, Alert, Button, Input, Table } from "../../../components/ui";
 import clsx from "clsx";
 
 export default function AdminConfigPage() {
@@ -168,6 +170,7 @@ export default function AdminConfigPage() {
                       <LogoConfigInput logo={logo} setLogo={setLogo} />
                     </div>
                   )}
+                  {categoryId == "saas" && <SaasAdminPanel />}
                 </div>
                 <div className="flex justify-end gap-4 mt-8">
                   {categoryId == "smtp" && (
@@ -188,3 +191,158 @@ export default function AdminConfigPage() {
     </>
   );
 }
+
+const SaasAdminPanel = () => {
+  const t = useTranslate();
+  const [search, setSearch] = useState("");
+  const [users, setUsers] = useState<ExemptUser[]>([]);
+  const [payments, setPayments] = useState<SaasPaymentHistoryResponse | null>(null);
+
+  const load = () => {
+    saasService
+      .getExemptUsers(search)
+      .then(setUsers)
+      .catch(toast.axiosError);
+    saasService.getPayments().then(setPayments).catch(toast.axiosError);
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  return (
+    <div className="pt-6 space-y-8">
+      <div>
+        <h3 className="text-lg font-semibold mb-3 text-text dark:text-text-dark">
+          <FormattedMessage id="admin.config.saas.exempt-users.title" />
+        </h3>
+        <div className="flex gap-3 mb-4">
+          <Input
+            value={search}
+            placeholder={t("admin.config.saas.exempt-users.search")}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Button variant="outline" onClick={load}>
+            <FormattedMessage id="common.button.submit" />
+          </Button>
+        </div>
+        <div className="overflow-x-auto">
+          <Table>
+            <Table.Header>
+              <Table.Row>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.users.table.username" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.users.table.email" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.users.table.admin" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.config.saas.exempt-users.exempt" />
+                </Table.Cell>
+                <Table.Cell header></Table.Cell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {users.map((user) => (
+                <Table.Row key={user.id}>
+                  <Table.Cell>{user.username}</Table.Cell>
+                  <Table.Cell>{user.email}</Table.Cell>
+                  <Table.Cell>{user.isAdmin ? "Yes" : "No"}</Table.Cell>
+                  <Table.Cell>{user.billingExempt ? "Yes" : "No"}</Table.Cell>
+                  <Table.Cell>
+                    {!user.isAdmin && (
+                      <Button
+                        variant={user.billingExempt ? "outline" : "primary"}
+                        onClick={async () => {
+                          if (user.billingExempt) {
+                            await saasService.removeExemptUser(user.id);
+                          } else {
+                            await saasService.addExemptUser(user.id);
+                          }
+                          load();
+                        }}
+                      >
+                        {user.billingExempt
+                          ? t("admin.config.saas.exempt-users.remove")
+                          : t("admin.config.saas.exempt-users.add")}
+                      </Button>
+                    )}
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table>
+        </div>
+      </div>
+
+      <div>
+        <h3 className="text-lg font-semibold mb-3 text-text dark:text-text-dark">
+          <FormattedMessage id="admin.config.saas.payments.title" />
+        </h3>
+        {payments && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+            <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                <FormattedMessage id="admin.config.saas.payments.month" />
+              </p>
+              <p className="text-lg font-semibold">
+                CHF {(payments.totals.monthChfCents / 100).toFixed(2)}
+              </p>
+            </div>
+            <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                <FormattedMessage id="admin.config.saas.payments.year" />
+              </p>
+              <p className="text-lg font-semibold">
+                CHF {(payments.totals.yearChfCents / 100).toFixed(2)}
+              </p>
+            </div>
+            <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                <FormattedMessage id="admin.config.saas.payments.all-time" />
+              </p>
+              <p className="text-lg font-semibold">
+                CHF {(payments.totals.allTimeChfCents / 100).toFixed(2)}
+              </p>
+            </div>
+          </div>
+        )}
+        <div className="overflow-x-auto">
+          <Table>
+            <Table.Header>
+              <Table.Row>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.users.table.username" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.config.saas.payments.amount" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="admin.config.saas.payments.status" />
+                </Table.Cell>
+                <Table.Cell header>
+                  <FormattedMessage id="account.shares.table.createdAt" />
+                </Table.Cell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {(payments?.history || []).map((payment) => (
+                <Table.Row key={payment.id}>
+                  <Table.Cell>{payment.user.username}</Table.Cell>
+                  <Table.Cell>CHF {(payment.amountChfCents / 100).toFixed(2)}</Table.Cell>
+                  <Table.Cell>{payment.status}</Table.Cell>
+                  <Table.Cell>
+                    {new Date(payment.createdAt).toLocaleString()}
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table>
+        </div>
+      </div>
+    </div>
+  );
+};

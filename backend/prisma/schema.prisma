@@ -28,6 +28,16 @@ model User {
   resetPasswordToken ResetPasswordToken?
 
   oAuthUsers OAuthUser[]
+
+  billingExempt                  Boolean          @default(false)
+  billingTrialStartAt            DateTime         @default(now())
+  stripeCustomerId               String?          @unique
+  stripeSubscriptionId           String?          @unique
+  stripeSubscriptionStatus       String?
+  stripeCurrentPeriodEnd         DateTime?
+  stripeLastPaymentAt            DateTime?
+  saasPayments                   SaasPayment[]
+  saasWebhookEvents              SaasWebhookEvent[]
 }
 
 model RefreshToken {
@@ -160,4 +170,31 @@ model Config {
   order        Int
 
   @@id([name, category])
+}
+
+model SaasPayment {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  stripeInvoiceId      String? @unique
+  stripePaymentIntentId String? @unique
+  amountChfCents       Int
+  currency             String   @default("chf")
+  status               String
+  periodStart          DateTime?
+  periodEnd            DateTime?
+}
+
+model SaasWebhookEvent {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  userId String?
+  user   User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  stripeEventId String @unique
+  eventType     String
 }

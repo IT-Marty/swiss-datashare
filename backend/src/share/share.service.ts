@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ForbiddenException,
   Injectable,
+  Logger,
   NotFoundException,
 } from "@nestjs/common";
 import { JwtService, JwtSignOptions } from "@nestjs/jwt";
@@ -22,6 +23,8 @@ import { CreateShareDTO } from "./dto/createShare.dto";
 
 @Injectable()
 export class ShareService {
+  private readonly logger = new Logger(ShareService.name);
+
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService,
@@ -131,7 +134,7 @@ export class ShareService {
     await archive.finalize();
   }
 
-  async complete(id: string, reverseShareToken?: string) {
+  async complete(id: string) {
     const share = await this.prisma.share.findUnique({
       where: { id },
       include: {
@@ -142,6 +145,8 @@ export class ShareService {
       },
     });
 
+    if (!share) throw new NotFoundException("Share not found");
+
     if (await this.isShareCompleted(id))
       throw new BadRequestException("Share already completed");
 
@@ -150,21 +155,64 @@ export class ShareService {
         "You need at least on file in your share to complete it.",
       );
 
-    // Asynchronously create a zip of all files
-    if (share.files.length > 1)
-      this.createZip(id).then(() =>
-        this.prisma.share.update({ where: { id }, data: { isZipReady: true } }),
-      );
+    // Atomically lock the share first to make completion idempotent and prevent
+    // duplicate notification emails from parallel/retried completion calls.
+    const lockResult = await this.prisma.share.updateMany({
+      where: { id, uploadLocked: false },
+      data: { uploadLocked: true },
+    });
 
-    // Send email for each recipient
-    for (const recipient of share.recipients) {
-      await this.emailService.sendMailToShareRecipients(
-        recipient.email,
-        share.id,
-        share.creator,
-        share.description,
-        share.expiration,
-      );
+    if (lockResult.count === 0) {
+      throw new BadRequestException("Share already completed");
+    }
+
+    if (share.reverseShare) {
+      await this.prisma.reverseShare.update({
+        where: { id: share.reverseShare.id },
+        data: {
+          remainingUses:
+            share.reverseShare.remainingUses > 0
+              ? { decrement: 1 }
+              : undefined,
+        },
+      });
+    }
+
+    // Asynchronously create a zip of all files
+    if (share.files.length > 1) {
+      void this.createZip(id)
+        .then(() =>
+          this.prisma.share.update({ where: { id }, data: { isZipReady: true } }),
+        )
+        .catch((error) =>
+          this.logger.error(`Failed to create zip for share ${id}:`, error),
+        );
+    }
+
+    const uniqueRecipientEmails = [
+      ...new Set(
+        share.recipients
+          .map((recipient) => recipient.email?.trim().toLowerCase())
+          .filter(Boolean),
+      ),
+    ];
+
+    // Send email for each recipient (failures are logged but do not re-open completion)
+    for (const recipientEmail of uniqueRecipientEmails) {
+      try {
+        await this.emailService.sendMailToShareRecipients(
+          recipientEmail,
+          share.id,
+          share.creator,
+          share.description,
+          share.expiration,
+        );
+      } catch (error) {
+        this.logger.error(
+          `Failed to send share notification to ${recipientEmail} for share ${id}`,
+          error instanceof Error ? error.stack : undefined,
+        );
+      }
     }
 
     const notifyReverseShareCreator = share.reverseShare
@@ -173,26 +221,25 @@ export class ShareService {
       : undefined;
 
     if (notifyReverseShareCreator) {
-      await this.emailService.sendMailToReverseShareCreator(
-        share.reverseShare.creator.email,
-        share.id,
-        share.description,
-      );
+      try {
+        await this.emailService.sendMailToReverseShareCreator(
+          share.reverseShare.creator.email,
+          share.id,
+          share.description,
+        );
+      } catch (error) {
+        this.logger.error(
+          `Failed to notify reverse-share creator for share ${id}`,
+          error instanceof Error ? error.stack : undefined,
+        );
+      }
     }
 
     // Check if any file is malicious with ClamAV
     void this.clamScanService.checkAndRemove(share.id);
 
-    if (share.reverseShare) {
-      await this.prisma.reverseShare.update({
-        where: { token: reverseShareToken },
-        data: { remainingUses: { decrement: 1 } },
-      });
-    }
-
-    const updatedShare = await this.prisma.share.update({
+    const updatedShare = await this.prisma.share.findUnique({
       where: { id },
-      data: { uploadLocked: true },
     });
 
     return {

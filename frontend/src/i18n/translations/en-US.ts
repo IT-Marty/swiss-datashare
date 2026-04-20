@@ -145,6 +145,15 @@ export default {
   "account.card.language.description":
     "The project is translated by the community. Some languages might be incomplete.",
   "account.card.color.title": "Color scheme",
+  "account.card.billing.title": "Billing",
+  "account.card.billing.status": "Subscription status: {status}",
+  "account.card.billing.trial-ends": "Trial ends on {date}",
+  "account.card.billing.grace-ends": "Grace period ends on {date}",
+  "account.card.billing.subscribe-monthly": "Subscribe monthly",
+  "account.card.billing.subscribe-yearly": "Subscribe yearly",
+  "account.card.billing.manage": "Manage billing",
+  "account.card.billing.exempt-note":
+    "Billing actions are hidden because your account is exempt from subscription requirements.",
 
   // ThemeSwitcher.tsx
   "account.theme.dark": "Dark",
@@ -459,6 +468,7 @@ export default {
   "admin.config.category.share": "Share",
   "admin.config.category.cache": "Cache",
   "admin.config.category.email": "Email",
+  "admin.config.category.saas": "SaaS",
   "admin.config.category.smtp": "SMTP",
   "admin.config.category.oauth": "Social Login",
 
@@ -559,6 +569,52 @@ export default {
   "admin.config.share.auto-open-share-modal": "Auto open create share modal",
   "admin.config.share.auto-open-share-modal.description":
     "The share creation modal automatically appears when a user selects files, eliminating the need to manually click the button.",
+
+  "admin.config.saas.enabled": "Enable SaaS billing",
+  "admin.config.saas.enabled.description":
+    "Turns on SaaS billing features and subscription checks when use case contains 'saas'.",
+  "admin.config.saas.monthly-price-chf": "Monthly price (CHF)",
+  "admin.config.saas.monthly-price-chf.description":
+    "Displayed monthly subscription price in Swiss francs.",
+  "admin.config.saas.yearly-price-chf": "Yearly price (CHF)",
+  "admin.config.saas.yearly-price-chf.description":
+    "Displayed yearly subscription price in Swiss francs.",
+  "admin.config.saas.trial-days": "Trial period days",
+  "admin.config.saas.trial-days.description":
+    "Number of free days from user signup before subscription is required.",
+  "admin.config.saas.grace-days": "Grace period days",
+  "admin.config.saas.grace-days.description":
+    "Extra days after subscription expiry before upload/sharing is blocked.",
+  "admin.config.saas.enforce-subscription": "Enforce subscription",
+  "admin.config.saas.enforce-subscription.description":
+    "If enabled, overdue non-exempt non-admin users are blocked from upload and sharing actions.",
+  "admin.config.saas.stripe-publishable-key": "Stripe publishable key",
+  "admin.config.saas.stripe-publishable-key.description":
+    "Public Stripe key used by frontend billing flows.",
+  "admin.config.saas.stripe-secret-key": "Stripe secret key",
+  "admin.config.saas.stripe-secret-key.description":
+    "Private Stripe key used by backend to create checkout sessions and process subscriptions.",
+  "admin.config.saas.stripe-webhook-secret": "Stripe webhook secret",
+  "admin.config.saas.stripe-webhook-secret.description":
+    "Signing secret used to verify Stripe webhook events.",
+  "admin.config.saas.stripe-monthly-price-id": "Stripe monthly price ID",
+  "admin.config.saas.stripe-monthly-price-id.description":
+    "Price ID for monthly subscription in Stripe.",
+  "admin.config.saas.stripe-yearly-price-id": "Stripe yearly price ID",
+  "admin.config.saas.stripe-yearly-price-id.description":
+    "Price ID for yearly subscription in Stripe.",
+  "admin.config.saas.exempt-users.title": "Exempt users",
+  "admin.config.saas.exempt-users.search":
+    "Search users by username or email",
+  "admin.config.saas.exempt-users.exempt": "Exempt",
+  "admin.config.saas.exempt-users.add": "Exempt user",
+  "admin.config.saas.exempt-users.remove": "Remove exemption",
+  "admin.config.saas.payments.title": "Payments history",
+  "admin.config.saas.payments.month": "Total this month",
+  "admin.config.saas.payments.year": "Total this year",
+  "admin.config.saas.payments.all-time": "Total all-time",
+  "admin.config.saas.payments.amount": "Amount",
+  "admin.config.saas.payments.status": "Status",
 
   "admin.config.smtp.enabled": "Enable",
   "admin.config.smtp.enabled.description":
