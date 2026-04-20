@@ -1,6 +1,11 @@
-import { IsBoolean, IsString, Max, Min } from "class-validator";
+import { IsBoolean, IsOptional, IsString, Max, MaxLength, Min } from "class-validator";
 
 export class CreateReverseShareDTO {
+  @IsString()
+  @IsOptional()
+  @MaxLength(100)
+  name?: string;
+
   @IsBoolean()
   sendEmailNotification: boolean;
 

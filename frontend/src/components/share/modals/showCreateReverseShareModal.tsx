@@ -11,7 +11,7 @@ import { getExpirationPreview } from "../../../utils/date.util";
 import toast from "../../../utils/toast.util";
 import FileSizeInput from "../../core/FileSizeInput";
 import showCompletedReverseShareModal from "./showCompletedReverseShareModal";
-import { Button, NumberInput, Select, Switch } from "../../../components/ui";
+import { Button, Input, NumberInput, Select, Switch } from "../../../components/ui";
 import { useForm } from "../../../hooks/useForm";
 import { ModalContextType } from "../../../contexts/ModalContext";
 import clsx from "clsx";
@@ -51,6 +51,10 @@ const Body = ({
   const t = useTranslate();
 
   const validationSchema = yup.object().shape({
+    name: yup
+      .string()
+      .transform((value) => value || undefined)
+      .max(100, t("common.error.too-long", { length: 100 })),
     maxUseCount: yup
       .number()
       .typeError(t("common.error.invalid-number"))
@@ -61,6 +65,7 @@ const Body = ({
 
   const form = useForm({
     initialValues: {
+      name: "",
       maxShareSize: 104857600,
       maxUseCount: 1,
       sendEmailNotification: true,
@@ -102,6 +107,7 @@ const Body = ({
 
     shareService
       .createReverseShare(
+        values.name?.trim() || undefined,
         values.expiration_num + values.expiration_unit,
         values.maxShareSize,
         values.maxUseCount,
@@ -118,6 +124,20 @@ const Body = ({
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
+      <div className={clsx("grid grid-cols-2 gap-4", form.errors.name && "items-center")}>
+        <Input
+          label={t("account.reverseShares.modal.name.label")}
+          placeholder={t("account.reverseShares.modal.name.placeholder")}
+          value={form.values.name}
+          onChange={(e) => form.setValue("name", e.target.value)}
+          error={form.errors.name}
+        />
+        <FileSizeInput
+          label={t("account.reverseShares.modal.max-size.label")}
+          value={form.values.maxShareSize}
+          onChange={(number) => form.setValue("maxShareSize", number)}
+        />
+      </div>
       <div>
         <div className={clsx("grid grid-cols-2 gap-4", form.errors.expiration_num && "items-center")}>
           <NumberInput
@@ -191,11 +211,6 @@ const Body = ({
           )}
         </p>
       </div>
-      <FileSizeInput
-        label={t("account.reverseShares.modal.max-size.label")}
-        value={form.values.maxShareSize}
-        onChange={(number) => form.setValue("maxShareSize", number)}
-      />
       <NumberInput
         min={1}
         max={1000}

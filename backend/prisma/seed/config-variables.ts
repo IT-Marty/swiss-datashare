@@ -147,7 +147,7 @@ export const configVariables = {
     },
     reverseShareSubject: {
       type: "string",
-      defaultValue: "Reverse share link used",
+      defaultValue: "Data request upload completed!",
     },
     reverseShareMessage: {
       type: "text",

@@ -42,6 +42,7 @@ export type MyShare = Omit<Share, "hasPassword"> & {
 
 export type MyReverseShare = {
   id: string;
+  name?: string;
   maxShareSize: string;
   shareExpiration: Date;
   remainingUses: number;

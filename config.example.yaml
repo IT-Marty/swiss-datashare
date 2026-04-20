@@ -65,14 +65,13 @@ email:
 
 
     Shared securely with Swiss DataShare
-  #Subject of the sent email when someone created a share with your reverse share link.
-  reverseShareSubject: Reverse share link used
-  #Message which gets sent when someone created a share with your reverse share link. {shareUrl} will be replaced with the creator's name and the share URL.
+  #Subject of the sent email when someone finished an upload request.
+  reverseShareSubject: Data request upload completed!
+  #Message which gets sent when someone finished an upload request. {shareUrl} will be replaced with the creator's name and the share URL.
   reverseShareMessage: |-
     Hey!
-
-    A share was just created with your reverse share link: {shareUrl}
-
+    Someone finished an upload request and sent files to you: {shareUrl}
+    Message from sender: {note}
     Shared securely with Swiss DataShare
   #Subject of the sent email when a user requests a password reset.
   resetPasswordSubject: Swiss DataShare password reset

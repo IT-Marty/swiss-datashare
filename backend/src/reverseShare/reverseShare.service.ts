@@ -44,16 +44,19 @@ export class ReverseShareService {
         `Max share size can't be greater than ${globalMaxShareSize} bytes.`,
       );
 
+    const reverseShareData = {
+      name: data.name?.trim() || null,
+      shareExpiration: expirationDate,
+      remainingUses: data.maxUseCount,
+      maxShareSize: data.maxShareSize,
+      sendEmailNotification: data.sendEmailNotification,
+      simplified: data.simplified,
+      publicAccess: data.publicAccess,
+      creatorId,
+    } as any;
+
     const reverseShare = await this.prisma.reverseShare.create({
-      data: {
-        shareExpiration: expirationDate,
-        remainingUses: data.maxUseCount,
-        maxShareSize: data.maxShareSize,
-        sendEmailNotification: data.sendEmailNotification,
-        simplified: data.simplified,
-        publicAccess: data.publicAccess,
-        creatorId,
-      },
+      data: reverseShareData,
     });
 
     return reverseShare.token;

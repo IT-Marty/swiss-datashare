@@ -102,6 +102,7 @@ model ReverseShare {
   createdAt DateTime @default(now())
 
   token                 String   @unique @default(uuid())
+  name                  String?
   shareExpiration       DateTime
   maxShareSize          String
   sendEmailNotification Boolean

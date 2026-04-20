@@ -51,6 +51,11 @@ export class ShareService {
       await this.reverseShareService.getByToken(reverseShareToken);
     if (reverseShare) {
       expirationDate = reverseShare.shareExpiration;
+      const reverseShareName = (reverseShare as any).name?.trim();
+      // For reverse-share uploads, default the share name to the request name.
+      if (!share.name?.trim() && reverseShareName) {
+        share.name = reverseShareName;
+      }
     } else {
       const parsedExpiration = parseRelativeDateToAbsolute(share.expiration);
 

@@ -57,7 +57,7 @@ const Body = ({ share, modals }: { share: CompletedShare; modals: ModalContextTy
         onClick={() => {
           modals.closeAll();
           if (isReverseShare) {
-            router.reload();
+            router.push("/");
           } else {
             router.push("/upload");
           }

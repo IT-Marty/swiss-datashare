@@ -195,6 +195,8 @@ export default {
 
   // showCreateReverseShareModal.tsx
   "account.reverseShares.modal.title": "Create data request link",
+  "account.reverseShares.modal.name.label": "Name",
+  "account.reverseShares.modal.name.placeholder": "Optional name for this data request",
   "account.reverseShares.modal.expiration.label": "Expiration",
   "account.reverseShares.modal.expiration.minute-singular": "Minute",
   "account.reverseShares.modal.expiration.minute-plural": "Minutes",
@@ -209,7 +211,7 @@ export default {
   "account.reverseShares.modal.expiration.year-singular": "Year",
   "account.reverseShares.modal.expiration.year-plural": "Years",
 
-  "account.reverseShares.modal.max-size.label": "Maximum upload size",
+  "account.reverseShares.modal.max-size.label": "Maximum allowed to upload",
 
   "account.reverseShares.modal.send-email": "Email me when completed",
   "account.reverseShares.modal.send-email.description":
@@ -231,6 +233,7 @@ export default {
     "This reverse share will expire on {expiration}.",
 
   "account.reverseShares.table.no-shares": "No uploads received yet",
+  "account.reverseShares.table.name": "Name",
   "account.reverseShares.table.count.singular": "upload",
   "account.reverseShares.table.count.plural": "uploads",
   "account.reverseShares.table.shares": "Received uploads",
