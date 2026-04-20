@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LanguagePicker from "../account/LanguagePicker";
 import useConfig from "../../hooks/config.hook";
 import useTranslate from "../../hooks/useTranslate.hook";
 
@@ -30,16 +31,20 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="hidden sm:block"></div>
           <div className="text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              Powered by{" "}
-              <Link
-                href={poweredByUrl}
-                target="_blank"
-                className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
-              >
-                {poweredByText}
-              </Link>
-            </p>
+            <div className="inline-flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+              <p>
+                Powered by{" "}
+                <Link
+                  href={poweredByUrl}
+                  target="_blank"
+                  className="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
+                >
+                  {poweredByText}
+                </Link>
+              </p>
+              <span aria-hidden>•</span>
+              <LanguagePicker compact />
+            </div>
           </div>
           <div className="text-center sm:text-right">
             {config.get("legal.enabled") && (
