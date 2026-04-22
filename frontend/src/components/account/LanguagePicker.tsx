@@ -1,13 +1,16 @@
 import { getCookie } from "cookies-next";
 import { useState } from "react";
 import useTranslate from "../../hooks/useTranslate.hook";
+import useUser from "../../hooks/user.hook";
 import { LOCALES } from "../../i18n/locales";
+import userService from "../../services/user.service";
 import i18nUtil from "../../utils/i18n.util";
 import userPreferences from "../../utils/userPreferences.util";
 import { Select } from "../ui";
 
 const LanguagePicker = ({ compact = false }: { compact?: boolean }) => {
   const t = useTranslate();
+  const { user, refreshUser } = useUser();
   const [selectedLanguage, setSelectedLanguage] = useState(
     getCookie("language")?.toString() ?? LOCALES.ENGLISH.code,
   );
@@ -17,10 +20,16 @@ const LanguagePicker = ({ compact = false }: { compact?: boolean }) => {
     label: locale.name,
   }));
 
-  const onChangeLanguage = (value: string) => {
+  const onChangeLanguage = async (value: string) => {
     setSelectedLanguage(value);
     i18nUtil.setLanguageCookie(value);
     userPreferences.set("locale", value);
+    if (user) {
+      await userService
+        .updateCurrentUser({ locale: value })
+        .then(refreshUser)
+        .catch(() => null);
+    }
     location.reload();
   };
 
@@ -29,7 +38,7 @@ const LanguagePicker = ({ compact = false }: { compact?: boolean }) => {
       <select
         aria-label={t("account.card.language.title")}
         value={selectedLanguage}
-        onChange={(e) => onChangeLanguage(e.target.value)}
+        onChange={(e) => void onChangeLanguage(e.target.value)}
         className="text-xs bg-transparent border border-gray-300 dark:border-gray-700 rounded px-2 py-1 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:ring-1 focus:ring-primary-500"
       >
         {languages.map((language) => (
@@ -49,7 +58,7 @@ const LanguagePicker = ({ compact = false }: { compact?: boolean }) => {
       options={languages}
       onChange={(e) => {
         if (!e) return;
-        onChangeLanguage(e.target.value);
+        void onChangeLanguage(e.target.value);
       }}
     />
   );

@@ -13,6 +13,7 @@ model User {
 
   username String  @unique
   email    String  @unique
+  locale   String  @default("en-US")
   password String?
   isAdmin  Boolean @default(false)
   ldapDN   String? @unique

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { TbInfoCircle } from "react-icons/tb";
 import { FormattedMessage } from "react-intl";
+import { getCookie } from "cookies-next";
 import Meta from "../../../components/Meta";
 import AdminConfigInput from "../../../components/admin/configuration/AdminConfigInput";
 import ConfigurationHeader from "../../../components/admin/configuration/ConfigurationHeader";
@@ -11,6 +12,7 @@ import TestEmailButton from "../../../components/admin/configuration/TestEmailBu
 import CenterLoader from "../../../components/core/CenterLoader";
 import useConfig from "../../../hooks/config.hook";
 import useTranslate from "../../../hooks/useTranslate.hook";
+import useUser from "../../../hooks/user.hook";
 import configService from "../../../services/config.service";
 import saasService from "../../../services/saas.service";
 import { AdminConfig, UpdateConfig } from "../../../types/config.type";
@@ -19,10 +21,69 @@ import { camelToKebab } from "../../../utils/string.util";
 import toast from "../../../utils/toast.util";
 import { Container, Alert, Button, Input, Table } from "../../../components/ui";
 import clsx from "clsx";
+import { LOCALES } from "../../../i18n/locales";
+import { Select } from "../../../components/ui";
+
+const LOCALIZABLE_EMAIL_KEYS = [
+  "email.shareRecipientsSubject",
+  "email.shareRecipientsMessage",
+  "email.reverseShareSubject",
+  "email.reverseShareMessage",
+  "email.resetPasswordSubject",
+  "email.resetPasswordMessage",
+  "email.inviteSubject",
+  "email.inviteMessage",
+] as const;
+
+const EMAIL_KEY_TO_TRANSLATION: Record<string, string> = {
+  "email.shareRecipientsSubject": "email.shareRecipientsSubject",
+  "email.shareRecipientsMessage": "email.shareRecipientsMessage",
+  "email.reverseShareSubject": "email.reverseShareSubject",
+  "email.reverseShareMessage": "email.reverseShareMessage",
+  "email.resetPasswordSubject": "email.resetPasswordSubject",
+  "email.resetPasswordMessage": "email.resetPasswordMessage",
+  "email.inviteSubject": "email.inviteSubject",
+  "email.inviteMessage": "email.inviteMessage",
+};
+
+const parseLocalizedValue = (rawValue?: string) => {
+  if (!rawValue) return { "en-US": "" };
+  try {
+    const parsed = JSON.parse(rawValue);
+    if (typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)) {
+      return Object.entries(parsed).reduce<Record<string, string>>(
+        (acc, [locale, value]) => {
+          if (typeof value === "string") acc[locale] = value;
+          return acc;
+        },
+        {},
+      );
+    }
+  } catch {
+    // Legacy plain value: interpret as English override.
+  }
+
+  return { "en-US": rawValue };
+};
+
+const getLocalizedDisplayValue = (
+  locale: string,
+  localizedMap: Record<string, string>,
+) => {
+  const baseLanguage = locale.split("-")[0];
+  if (localizedMap[locale] !== undefined) return localizedMap[locale];
+  if (localizedMap[baseLanguage] !== undefined) return localizedMap[baseLanguage];
+  if (locale.startsWith("en") && localizedMap["en-US"] !== undefined)
+    return localizedMap["en-US"];
+  if (locale.startsWith("en") && localizedMap.en !== undefined)
+    return localizedMap.en;
+  return "";
+};
 
 export default function AdminConfigPage() {
   const router = useRouter();
   const t = useTranslate();
+  const { user } = useUser();
 
   const [isMobileNavBarOpened, setIsMobileNavBarOpened] = useState(false);
   const config = useConfig();
@@ -33,8 +94,13 @@ export default function AdminConfigPage() {
   const [updatedConfigVariables, setUpdatedConfigVariables] = useState<
     UpdateConfig[]
   >([]);
+  const [selectedEmailLocale, setSelectedEmailLocale] = useState(
+    getCookie("language")?.toString() ?? LOCALES.ENGLISH.code,
+  );
 
   const [logo, setLogo] = useState<File | null>(null);
+  const [isResettingEmailTranslations, setIsResettingEmailTranslations] =
+    useState(false);
 
   const isEditingAllowed = (): boolean => {
     return !configVariables || configVariables[0].allowEdit;
@@ -75,10 +141,12 @@ export default function AdminConfigPage() {
     );
 
     if (index > -1) {
-      updatedConfigVariables[index] = {
-        ...updatedConfigVariables[index],
+      const next = [...updatedConfigVariables];
+      next[index] = {
+        ...next[index],
         ...configVariable,
       };
+      setUpdatedConfigVariables(next);
     } else {
       setUpdatedConfigVariables([...updatedConfigVariables, configVariable]);
     }
@@ -88,11 +156,136 @@ export default function AdminConfigPage() {
     return url.endsWith("/") ? url.slice(0, -1) : url;
   };
 
+  const getConfigValue = (key: string, fallback: string) => {
+    const updated = updatedConfigVariables.find((item) => item.key === key);
+    return updated?.value ?? fallback;
+  };
+
+  const renderConfigBlock = (configVariable: AdminConfig) => (
+    <div
+      key={configVariable.key}
+      className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 border-b border-gray-200 dark:border-gray-700 last:border-0"
+    >
+      <div className="flex-1 sm:max-w-[40%]">
+        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">
+          <FormattedMessage
+            id={`admin.config.${camelToKebab(configVariable.key)}`}
+          />
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
+          <FormattedMessage
+            id={`admin.config.${camelToKebab(configVariable.key)}.description`}
+            values={{ br: <br /> }}
+          />
+        </p>
+      </div>
+      <div className="w-full sm:w-[50%]">
+        <AdminConfigInput
+          key={configVariable.key}
+          configVariable={configVariable}
+          updateConfigVariable={updateConfigVariable}
+        />
+      </div>
+    </div>
+  );
+
+  const renderLocalizedEmailBlock = (configVariable: AdminConfig) => {
+    const rawValue = getConfigValue(
+      configVariable.key,
+      configVariable.value ?? configVariable.defaultValue,
+    );
+    const localizedMap = parseLocalizedValue(rawValue);
+    const currentValue = getLocalizedDisplayValue(
+      selectedEmailLocale,
+      localizedMap,
+    );
+    const translationKey =
+      EMAIL_KEY_TO_TRANSLATION[configVariable.key] ?? configVariable.key;
+
+    return (
+      <div
+        key={configVariable.key}
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 border-b border-gray-200 dark:border-gray-700 last:border-0"
+      >
+        <div className="flex-1 sm:max-w-[40%]">
+          <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">
+            <FormattedMessage id={`admin.config.${camelToKebab(translationKey)}`} />
+          </h3>
+          <p className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line">
+            <FormattedMessage
+              id={`admin.config.${camelToKebab(translationKey)}.description`}
+              values={{ br: <br /> }}
+            />
+          </p>
+        </div>
+        <div className="w-full sm:w-[50%]">
+          {configVariable.type === "text" ? (
+            <textarea
+              className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 shadow-sm focus:border-primary-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+              disabled={!configVariable.allowEdit}
+              rows={5}
+              value={currentValue}
+              onChange={(event) => {
+                const nextMap = {
+                  ...localizedMap,
+                  [selectedEmailLocale]: event.target.value,
+                };
+                updateConfigVariable({
+                  key: configVariable.key,
+                  value: JSON.stringify(nextMap),
+                });
+              }}
+            />
+          ) : (
+            <Input
+              className="w-full"
+              disabled={!configVariable.allowEdit}
+              value={currentValue}
+              onChange={(event) => {
+                const nextMap = {
+                  ...localizedMap,
+                  [selectedEmailLocale]: event.target.value,
+                };
+                updateConfigVariable({
+                  key: configVariable.key,
+                  value: JSON.stringify(nextMap),
+                });
+              }}
+            />
+          )}
+        </div>
+      </div>
+    );
+  };
+
   useEffect(() => {
     configService.getByCategory(categoryId).then((configVariables) => {
       setConfigVariables(configVariables);
     });
   }, [categoryId]);
+
+  useEffect(() => {
+    if (user?.locale) setSelectedEmailLocale(user.locale);
+  }, [user?.locale]);
+
+  const resetEmailTranslationsToDefault = async () => {
+    const shouldReset = window.confirm(
+      "Reset all email translations to default templates for every language?",
+    );
+    if (!shouldReset) return;
+
+    setIsResettingEmailTranslations(true);
+    await configService
+      .resetEmailTranslations()
+      .then(async () => {
+        setUpdatedConfigVariables([]);
+        const reloadedConfig = await configService.getByCategory(categoryId);
+        setConfigVariables(reloadedConfig);
+        toast.success("Email translations reset to defaults");
+      })
+      .catch(toast.axiosError)
+      .finally(() => setIsResettingEmailTranslations(false));
+  };
 
   return (
     <>
@@ -109,7 +302,7 @@ export default function AdminConfigPage() {
         />
         <main
           className={clsx(
-            "pt-16 transition-all",
+            "transition-all",
             "sm:ml-64 lg:ml-80"
           )}
         >
@@ -132,39 +325,34 @@ export default function AdminConfigPage() {
                   <h2 className="page-title mb-6">
                     {t("admin.config.category." + categoryId)}
                   </h2>
-                  {configVariables.map((configVariable) => (
-                    <div
-                      key={configVariable.key}
-                      className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 border-b border-gray-200 dark:border-gray-700 last:border-0"
-                    >
-                      <div className="flex-1 sm:max-w-[40%]">
-                        <h3 className="text-base font-semibold text-text dark:text-text-dark mb-1">
-                          <FormattedMessage
-                            id={`admin.config.${camelToKebab(
-                              configVariable.key,
-                            )}`}
-                          />
-                        </h3>
-                        <p
-                          className="text-sm text-gray-600 dark:text-gray-300 whitespace-pre-line"
-                        >
-                          <FormattedMessage
-                            id={`admin.config.${camelToKebab(
-                              configVariable.key,
-                            )}.description`}
-                            values={{ br: <br /> }}
-                          />
-                        </p>
-                      </div>
-                      <div className="w-full sm:w-[50%]">
-                        <AdminConfigInput
-                          key={configVariable.key}
-                          configVariable={configVariable}
-                          updateConfigVariable={updateConfigVariable}
-                        />
-                      </div>
+                  {categoryId === "email" && (
+                    <div className="pb-2">
+                      <Select
+                        label={t("account.card.language.title")}
+                        helperText={t("account.card.language.description")}
+                        value={selectedEmailLocale}
+                        options={Object.values(LOCALES).map((locale) => ({
+                          value: locale.code,
+                          label: locale.name,
+                        }))}
+                        onChange={(event) => {
+                          if (!event) return;
+                          setSelectedEmailLocale(event.target.value);
+                        }}
+                      />
                     </div>
-                  ))}
+                  )}
+                  {configVariables.map((configVariable) => {
+                    if (
+                      categoryId === "email" &&
+                      LOCALIZABLE_EMAIL_KEYS.includes(
+                        configVariable.key as (typeof LOCALIZABLE_EMAIL_KEYS)[number],
+                      )
+                    ) {
+                      return renderLocalizedEmailBlock(configVariable);
+                    }
+                    return renderConfigBlock(configVariable);
+                  })}
                   {categoryId == "general" && (
                     <div className="py-4 border-b border-gray-200 dark:border-gray-700">
                       <LogoConfigInput logo={logo} setLogo={setLogo} />
@@ -173,6 +361,15 @@ export default function AdminConfigPage() {
                   {categoryId == "saas" && <SaasAdminPanel />}
                 </div>
                 <div className="flex justify-end gap-4 mt-8">
+                  {categoryId == "email" && (
+                    <Button
+                      variant="danger"
+                      onClick={resetEmailTranslationsToDefault}
+                      loading={isResettingEmailTranslations}
+                    >
+                      Reset translations to default
+                    </Button>
+                  )}
                   {categoryId == "smtp" && (
                     <TestEmailButton
                       configVariablesChanged={updatedConfigVariables.length != 0}

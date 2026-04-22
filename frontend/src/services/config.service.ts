@@ -49,6 +49,10 @@ const sendTestEmail = async (email: string) => {
   await api.post("/configs/admin/testEmail", { email });
 };
 
+const resetEmailTranslations = async (): Promise<AdminConfig[]> => {
+  return (await api.post("/configs/admin/email/resetTranslations")).data;
+};
+
 const isNewReleaseAvailable = async () => {
   const response = (await (
     await fetch(
@@ -71,6 +75,7 @@ export default {
   get,
   finishSetup,
   sendTestEmail,
+  resetEmailTranslations,
   isNewReleaseAvailable,
   changeLogo,
 };

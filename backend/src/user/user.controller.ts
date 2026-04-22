@@ -109,8 +109,12 @@ export class UserController {
 
   @Post()
   @UseGuards(JwtGuard, AdministratorGuard)
-  async create(@Body() user: CreateUserDTO) {
-    return new UserDTO().from(await this.userService.create(user));
+  async create(@Body() user: CreateUserDTO, @GetUser() currentUser: User) {
+    return new UserDTO().from(
+      await this.userService.create(user, {
+        locale: (currentUser as { locale?: string })?.locale,
+      }),
+    );
   }
 
   @Patch(":id")

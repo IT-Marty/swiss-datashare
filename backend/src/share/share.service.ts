@@ -226,6 +226,7 @@ export class ShareService {
           share.reverseShare.creator.email,
           share.id,
           share.description,
+          (share.creator as { locale?: string } | null)?.locale,
         );
       } catch (error) {
         this.logger.error(

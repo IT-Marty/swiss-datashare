@@ -12,7 +12,9 @@ import {
   UseInterceptors,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { User } from "@prisma/client";
 import { SkipThrottle } from "@nestjs/throttler";
+import { GetUser } from "src/auth/decorator/getUser.decorator";
 import { AdministratorGuard } from "src/auth/guard/isAdmin.guard";
 import { JwtGuard } from "src/auth/guard/jwt.guard";
 import { EmailService } from "src/email/email.service";
@@ -53,10 +55,21 @@ export class ConfigController {
     );
   }
 
+  @Post("admin/email/resetTranslations")
+  @UseGuards(JwtGuard, AdministratorGuard)
+  async resetEmailTranslations() {
+    return new AdminConfigDTO().fromList(
+      await this.configService.resetEmailTranslationsToDefault(),
+    );
+  }
+
   @Post("admin/testEmail")
   @UseGuards(JwtGuard, AdministratorGuard)
-  async testEmail(@Body() { email }: TestEmailDTO) {
-    await this.emailService.sendTestMail(email);
+  async testEmail(@Body() { email }: TestEmailDTO, @GetUser() user: User) {
+    await this.emailService.sendTestMail(
+      email,
+      (user as { locale?: string })?.locale,
+    );
   }
 
   @Post("admin/logo")

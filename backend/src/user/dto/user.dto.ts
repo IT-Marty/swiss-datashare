@@ -1,5 +1,7 @@
 import { Expose, plainToClass } from "class-transformer";
-import { IsEmail, Length, Matches, MinLength } from "class-validator";
+import { IsEmail, IsIn, IsOptional, Length, Matches, MinLength } from "class-validator";
+
+const SUPPORTED_LOCALES = ["en-US", "de-DE", "fr-FR", "es-ES", "it-IT"] as const;
 
 export class UserDTO {
   @Expose()
@@ -15,6 +17,11 @@ export class UserDTO {
   @Expose()
   @IsEmail()
   email: string;
+
+  @Expose()
+  @IsOptional()
+  @IsIn(SUPPORTED_LOCALES)
+  locale: string;
 
   @Expose()
   hasPassword: boolean;

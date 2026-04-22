@@ -13,6 +13,10 @@ import { PrismaService } from "src/prisma/prisma.service";
 import { stringToTimespan } from "src/utils/date.util";
 import { parse as yamlParse } from "yaml";
 import {
+  buildDefaultEmailConfigTranslations,
+  EmailConfigTranslationKey,
+} from "src/email/i18n/messages";
+import {
   configVariables,
   YamlConfig,
 } from "../../prisma/seed/config-variables";
@@ -195,6 +199,36 @@ export class ConfigService extends EventEmitter {
     }
 
     return response;
+  }
+
+  async resetEmailTranslationsToDefault() {
+    if (!this.isEditAllowed())
+      throw new BadRequestException(
+        "You are only allowed to update config variables via the config.yaml file",
+      );
+
+    const defaults = buildDefaultEmailConfigTranslations();
+    const keys = Object.keys(defaults) as EmailConfigTranslationKey[];
+    const updated: Config[] = [];
+
+    for (const key of keys) {
+      const configVariable = await this.prisma.config.update({
+        where: {
+          name_category: {
+            category: "email",
+            name: key,
+          },
+        },
+        data: {
+          value: JSON.stringify(defaults[key]),
+        },
+      });
+      updated.push(configVariable);
+      this.emit("update", `email.${key}`, configVariable.value);
+    }
+
+    this.configVariables = await this.prisma.config.findMany();
+    return updated;
   }
 
   async update(key: string, value: string | number | boolean) {

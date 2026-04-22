@@ -31,14 +31,18 @@ export class UserSevice {
     return await this.prisma.user.findUnique({ where: { id } });
   }
 
-  async create(dto: CreateUserDTO) {
+  async create(dto: CreateUserDTO, inviter?: { locale?: string }) {
     let hash: string;
 
     // The password can be undefined if the user is invited by an admin
     if (!dto.password) {
       const randomPassword = crypto.randomUUID();
       hash = await argon.hash(randomPassword);
-      await this.emailService.sendInviteEmail(dto.email, randomPassword);
+      await this.emailService.sendInviteEmail(
+        dto.email,
+        randomPassword,
+        inviter?.locale,
+      );
     } else {
       hash = await argon.hash(dto.password);
     }

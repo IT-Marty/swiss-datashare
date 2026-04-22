@@ -2,6 +2,7 @@ type User = {
   id: string;
   username: string;
   email: string;
+  locale: string;
   isAdmin: boolean;
   isLdap: boolean;
   totpVerified: boolean;
@@ -14,6 +15,7 @@ type User = {
 export type CreateUser = {
   username: string;
   email: string;
+  locale?: string;
   password?: string;
   isAdmin?: boolean;
 };
@@ -21,6 +23,7 @@ export type CreateUser = {
 export type UpdateUser = {
   username?: string;
   email?: string;
+  locale?: string;
   password?: string;
   isAdmin?: boolean;
 };
@@ -28,6 +31,7 @@ export type UpdateUser = {
 export type UpdateCurrentUser = {
   username?: string;
   email?: string;
+  locale?: string;
 };
 
 export type CurrentUser = User & {};
