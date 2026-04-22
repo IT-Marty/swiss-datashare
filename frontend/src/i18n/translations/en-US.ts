@@ -30,7 +30,7 @@ export default {
   "home.trust.no-analysis.title": "No data analysis",
   "home.trust.no-analysis.description": "The data is not analyzed or used for any other purpose.",
   "home.trust.hardened.title": "Security hardened",
-  "home.trust.hardened.description": "The platform is hardened to ensure reliability.",
+  "home.trust.hardened.description": "The platform is security-hardened to protect against threats and ensure resilience.",
   "home.trust.opensource.title": "Open-source",
   "home.trust.opensource.description": "The source code is publicly available via GitHub, so you can review how the system works.",
   "home.how.title": "How it works",
@@ -122,7 +122,7 @@ export default {
   "account.card.oauth.unlinked": "Unlinked",
   "account.modal.unlink.title": "Unlink account",
   "account.modal.unlink.description":
-    "Unlinking your social accounts may cause you to lose your account if you don't remember your login credentials",
+    "Unlinking your social accounts may cause you to lose access to your account if you don't remember your login credentials.",
   "account.notify.oauth.unlinked.success": "Unlinked successfully",
 
   "account.card.security.title": "Security",
@@ -142,6 +142,8 @@ export default {
   "account.notify.totp.enable": "TOTP enabled successfully",
 
   "account.card.language.title": "Language",
+  "account.card.language.description":
+    "The project is translated by the community. Some languages might be incomplete.",
   "account.card.color.title": "Color scheme",
   "account.card.billing.title": "Billing",
   "account.card.billing.status": "Subscription status: {status}",
@@ -338,7 +340,7 @@ export default {
   "upload.notify.count-failed": "{count} files failed to upload. Trying again.",
   "upload.reverse-share.error.invalid.title": "Invalid reverse share link",
   "upload.reverse-share.error.invalid.description":
-    "If your already uploaded your files on a onetime share, this message is normal. It means this reverse share is now expired or the link is invalid.",
+    "If you've already uploaded your files via a one-time link, this is expected — the request link has expired or is no longer valid.",
 
   // Dropzone.tsx
   "upload.dropzone.title": "Upload files",
@@ -437,7 +439,7 @@ export default {
     "The share you're looking for doesn't exist.",
   "share.error.access-denied.title": "Private share",
   "share.error.access-denied.description":
-    "The current account does not have permission to access this share",
+    "The current account does not have permission to access this share.",
 
   "share.modal.password.title": "Password required",
   "share.modal.password.description":
@@ -505,7 +507,7 @@ export default {
     "Whether to set the secure flag on cookies. If enabled, the site will not function when accessed over HTTP.",
   "admin.config.general.show-home-page": "Show home page",
   "admin.config.general.show-home-page.description":
-    "Whether to show the home page",
+    "Whether to show the home page.",
   "admin.config.general.session-duration": "Session Duration",
   "admin.config.general.session-duration.description":
     "Time after which a user must log in again (default: 3 months).",
@@ -522,7 +524,7 @@ export default {
 
   "admin.config.cache.ttl": "TTL",
   "admin.config.cache.ttl.description":
-    "Time in second to keep information inside the cache.",
+    "Time in seconds to keep items in the cache.",
   "admin.config.cache.max-items": "Maximum items",
   "admin.config.cache.max-items.description":
     "Maximum number of items inside the cache.",
@@ -531,7 +533,7 @@ export default {
     "Normally Swiss DataShare caches information in memory. If you run multiple instances of Swiss DataShare, you need to enable Redis caching to share the cache between the instances.",
   "admin.config.cache.redis-url": "Redis URL",
   "admin.config.cache.redis-url.description":
-    "Url to connect to the Redis instance used for caching.",
+    "URL to connect to the Redis instance used for caching.",
 
   "admin.config.email.enable-share-email-recipients":
     "Enable email recipient sharing",
@@ -548,7 +550,7 @@ export default {
     "Subject of the sent email when someone created a share with your reverse share link.",
   "admin.config.email.reverse-share-message": "Reverse share message",
   "admin.config.email.reverse-share-message.description":
-    "Message which gets sent when someone created a share with your reverse share link. {shareUrl} will be replaced with the creator's name and the share URL.",
+    "Message which gets sent when someone uploads files via your data request link. {shareUrl} will be replaced with the URL of the resulting share.",
   "admin.config.email.reset-password-subject": "Reset password subject",
   "admin.config.email.reset-password-subject.description":
     "Subject of the sent email when a user requests a password reset.",
@@ -564,11 +566,11 @@ export default {
 
   "admin.config.share.allow-registration": "Allow registration",
   "admin.config.share.allow-registration.description":
-    "Whether registration is allowed",
+    "Whether registration is allowed.",
   "admin.config.share.allow-unauthenticated-shares":
     "Allow unauthenticated shares",
   "admin.config.share.allow-unauthenticated-shares.description":
-    "Whether unauthenticated users can create shares",
+    "Whether unauthenticated users can create shares.",
   "admin.config.share.max-expiration": "Max expiration",
   "admin.config.share.max-expiration.description":
     "Maximum share expiration. Set to 0 to allow unlimited expiration.",
@@ -655,16 +657,16 @@ export default {
 
   "admin.config.oauth.allow-registration": "Allow registration",
   "admin.config.oauth.allow-registration.description":
-    "Allow users to register via social login",
+    "Allow users to register via social login.",
   "admin.config.oauth.ignore-totp": "Ignore TOTP",
   "admin.config.oauth.ignore-totp.description":
-    "Whether to ignore TOTP when user using social login",
+    "Whether to skip TOTP verification when a user signs in via social login.",
   "admin.config.oauth.disable-password": "Disable password login",
   "admin.config.oauth.disable-password.description":
     "Whether to disable password login\nMake sure that an OAuth provider is properly configured before activating this configuration to avoid being locked out.",
   "admin.config.oauth.github-enabled": "GitHub",
   "admin.config.oauth.github-enabled.description":
-    "Whether GitHub login is enabled",
+    "Whether GitHub login is enabled.",
   "admin.config.oauth.github-client-id": "GitHub Client ID",
   "admin.config.oauth.github-client-id.description":
     "Client ID of the GitHub OAuth app",
@@ -673,7 +675,7 @@ export default {
     "Client secret of the GitHub OAuth app",
   "admin.config.oauth.google-enabled": "Google",
   "admin.config.oauth.google-enabled.description":
-    "Whether Google login is enabled",
+    "Whether Google login is enabled.",
   "admin.config.oauth.google-client-id": "Google Client ID",
   "admin.config.oauth.google-client-id.description":
     "Client ID of the Google OAuth app",
@@ -682,7 +684,7 @@ export default {
     "Client secret of the Google OAuth app",
   "admin.config.oauth.microsoft-enabled": "Microsoft",
   "admin.config.oauth.microsoft-enabled.description":
-    "Whether Microsoft login is enabled",
+    "Whether Microsoft login is enabled.",
   "admin.config.oauth.microsoft-tenant": "Microsoft Tenant",
   "admin.config.oauth.microsoft-tenant.description":
     "Tenant ID of the Microsoft OAuth app\ncommon: Users with both a personal Microsoft account and a work or school account from Microsoft Entra ID can sign in to the application. organizations: Only users with work or school accounts from Microsoft Entra ID can sign in to the application.\nconsumers: Only users with a personal Microsoft account can sign in to the application.\ndomain name of the Microsoft Entra tenant or the tenant ID in GUID format: Only users from a specific Microsoft Entra tenant (directory members with a work or school account or directory guests with a personal Microsoft account) can sign in to the application.",
@@ -694,7 +696,7 @@ export default {
     "Client secret of the Microsoft OAuth app",
   "admin.config.oauth.discord-enabled": "Discord",
   "admin.config.oauth.discord-enabled.description":
-    "Whether Discord login is enabled",
+    "Whether Discord login is enabled.",
   "admin.config.oauth.discord-limited-users": "Discord limited users",
   "admin.config.oauth.discord-limited-users.description":
     "Limit signing in to specific users by their Discord ID. Leave it blank to disable.",
@@ -709,7 +711,7 @@ export default {
     "Client secret of the Discord OAuth app",
   "admin.config.oauth.oidc-enabled": "OpenID Connect",
   "admin.config.oauth.oidc-enabled.description":
-    "Whether OpenID Connect login is enabled",
+    "Whether OpenID Connect login is enabled.",
   "admin.config.oauth.oidc-discovery-uri": "OpenID Connect Discovery URI",
   "admin.config.oauth.oidc-discovery-uri.description":
     "Discovery URI of the OpenID Connect OAuth app",
@@ -747,7 +749,7 @@ export default {
   "admin.config.category.ldap": "LDAP",
   "admin.config.ldap.enabled": "Enable LDAP",
   "admin.config.ldap.enabled.description":
-    "Use LDAP authentication for user login",
+    "Use LDAP authentication for user login.",
   "admin.config.ldap.url": "Server URL",
   "admin.config.ldap.url.description": "URL of the LDAP server",
   "admin.config.ldap.bind-dn": "Bind DN",
@@ -767,10 +769,10 @@ export default {
     "Group required for administrative access.",
   "admin.config.ldap.field-name-member-of": "User groups attribute name",
   "admin.config.ldap.field-name-member-of.description":
-    "LDAP attribute name for the groups, an user is a member of. This is used when checking for the admin group.",
+    "LDAP attribute name for the groups a user belongs to. This is used when checking for the admin group.",
   "admin.config.ldap.field-name-email": "User email attribute name",
   "admin.config.ldap.field-name-email.description":
-    "LDAP attribute name for the email of an user.",
+    "LDAP attribute name for the user's email address.",
   "admin.config.notify.success": "Configuration updated successfully.",
   "admin.config.notify.logo-success":
     "Logo updated successfully. It may take a few minutes to update on the website.",
