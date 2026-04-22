@@ -198,7 +198,11 @@ export class EmailService {
     if (!this.config.get("email.enableShareEmailRecipients"))
       throw new InternalServerErrorException("Email service disabled");
 
-    const locale = await this.resolveLocale(recipientEmail, creator?.locale);
+    // Share notification emails should follow the sender's language preference.
+    // This keeps recipient emails consistent with the creator's account language.
+    const locale = creator?.locale
+      ? normalizeEmailLocale(creator.locale)
+      : await this.resolveLocale(recipientEmail);
     const copy = getEmailCopy(locale);
     const branding = this.buildBranding(copy.common.footerPrefix);
     const shareUrl = `${branding.appUrl}/s/${shareId}`;
