@@ -37,6 +37,15 @@ const Account = () => {
   const [billingStatus, setBillingStatus] = useState<BillingStatus | null>(null);
   const [billingActionLoading, setBillingActionLoading] = useState(false);
   const accountCardClass = "mb-6 p-[1.3rem]";
+  const statusClassName = billingStatus
+    ? ["active", "trialing"].includes(billingStatus.status)
+      ? "text-green-600 dark:text-green-400"
+      : ["past_due", "unpaid", "canceled", "incomplete_expired"].includes(
+            billingStatus.status,
+          )
+        ? "text-red-600 dark:text-red-400"
+        : "text-gray-700 dark:text-gray-300"
+    : "";
 
   const accountValidationSchema = yup.object().shape({
     email: yup.string().email(t("common.error.invalid-email")),
@@ -402,13 +411,15 @@ const Account = () => {
               <FormattedMessage id="account.card.billing.title" />
             </h3>
             <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-              <p>
+              <p className={statusClassName}>
                 <FormattedMessage
                   id="account.card.billing.status"
-                  values={{ status: billingStatus.status }}
+                  values={{
+                    status: t(`account.card.billing.status-value.${billingStatus.status}`),
+                  }}
                 />
               </p>
-              {billingStatus.trialEndsAt && (
+              {billingStatus.status === "none" && billingStatus.trialEndsAt && (
                 <p>
                   <FormattedMessage
                     id="account.card.billing.trial-ends"
@@ -418,6 +429,31 @@ const Account = () => {
                   />
                 </p>
               )}
+              {billingStatus.subscriptionCurrentPeriodEnd && (
+                <p>
+                  <FormattedMessage
+                    id="account.card.billing.next-payment"
+                    values={{
+                      date: new Date(
+                        billingStatus.subscriptionCurrentPeriodEnd,
+                      ).toLocaleDateString(),
+                    }}
+                  />
+                </p>
+              )}
+              {billingStatus.cancelAtPeriodEnd &&
+                billingStatus.subscriptionCurrentPeriodEnd && (
+                  <p className="text-amber-600 dark:text-amber-400">
+                    <FormattedMessage
+                      id="account.card.billing.cancel-scheduled"
+                      values={{
+                        date: new Date(
+                          billingStatus.subscriptionCurrentPeriodEnd,
+                        ).toLocaleDateString(),
+                      }}
+                    />
+                  </p>
+                )}
               {billingStatus.graceEndsAt && !billingStatus.compliant && (
                 <p className="text-amber-600 dark:text-amber-400">
                   <FormattedMessage
@@ -430,9 +466,9 @@ const Account = () => {
               )}
             </div>
             <div className="mt-4 flex gap-3">
-              {billingStatus.canCheckoutMonthly && (
+              {!!billingStatus.monthlyPriceChf && (
                 <Button
-                  disabled={billingActionLoading}
+                  disabled={billingActionLoading || !billingStatus.canCheckoutMonthly}
                   onClick={async () => {
                     setBillingActionLoading(true);
                     try {
@@ -449,10 +485,10 @@ const Account = () => {
                   <FormattedMessage id="account.card.billing.subscribe-monthly" />
                 </Button>
               )}
-              {billingStatus.canCheckoutYearly && (
+              {!!billingStatus.yearlyPriceChf && (
                 <Button
                   variant="outline"
-                  disabled={billingActionLoading}
+                  disabled={billingActionLoading || !billingStatus.canCheckoutYearly}
                   onClick={async () => {
                     setBillingActionLoading(true);
                     try {
@@ -471,7 +507,7 @@ const Account = () => {
               )}
               {billingStatus.canManagePortal && (
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   disabled={billingActionLoading}
                   onClick={async () => {
                     setBillingActionLoading(true);
@@ -490,6 +526,11 @@ const Account = () => {
                 </Button>
               )}
             </div>
+            {billingStatus.hasOngoingSubscription && (
+              <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
+                <FormattedMessage id="account.card.billing.subscribe-locked" />
+              </p>
+            )}
           </Card>
         )}
 

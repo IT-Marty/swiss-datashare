@@ -80,6 +80,41 @@ export class SaasService {
     return !!status && ["active", "trialing"].includes(status);
   }
 
+  private async getStripeSubscriptionSnapshot(user: any): Promise<{
+    status: string | null;
+    currentPeriodEnd: Date | null;
+    cancelAtPeriodEnd: boolean;
+    cancelAt: Date | null;
+  } | null> {
+    if (!(user as any)?.stripeSubscriptionId) return null;
+    if (!(this.config.get("saas.stripeSecretKey") as string)) return null;
+
+    try {
+      const stripe = this.getStripeClient();
+      const subscription = (await stripe.subscriptions.retrieve(
+        (user as any).stripeSubscriptionId,
+      )) as any;
+
+      if (!subscription) return null;
+
+      return {
+        status: subscription.status || null,
+        currentPeriodEnd: subscription.current_period_end
+          ? new Date(subscription.current_period_end * 1000)
+          : null,
+        cancelAtPeriodEnd: !!subscription.cancel_at_period_end,
+        cancelAt: subscription.cancel_at
+          ? new Date(subscription.cancel_at * 1000)
+          : null,
+      };
+    } catch (error) {
+      this.logger.warn(
+        `Failed to fetch Stripe subscription snapshot for user ${user.id}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      return null;
+    }
+  }
+
   async isUserBillingCompliant(userId: string): Promise<boolean> {
     if (!this.isBillingEnforced()) return true;
 
@@ -111,7 +146,7 @@ export class SaasService {
     }
   }
 
-  async getBillingStatus(userId: string) {
+  async getBillingStatus(userId: string, options?: { syncStripe?: boolean }) {
     const user = await this.getBillingUser(userId);
     if (!user) throw new BadRequestException("User not found");
 
@@ -122,18 +157,54 @@ export class SaasService {
     const monthlyPriceId = this.config.get("saas.stripeMonthlyPriceId") as string;
     const yearlyPriceId = this.config.get("saas.stripeYearlyPriceId") as string;
     const canManagePortal = !!(user as any).stripeCustomerId;
+    let subscriptionStatus = ((user as any).stripeSubscriptionStatus ||
+      "none") as string;
+    let subscriptionCurrentPeriodEnd =
+      ((user as any).stripeCurrentPeriodEnd as Date | null) || null;
+    let cancelAtPeriodEnd = false;
+    let cancelAt: Date | null = null;
+
+    if (options?.syncStripe !== false) {
+      const stripeSnapshot = await this.getStripeSubscriptionSnapshot(user);
+      if (stripeSnapshot) {
+        subscriptionStatus = stripeSnapshot.status || "none";
+        subscriptionCurrentPeriodEnd = stripeSnapshot.currentPeriodEnd;
+        cancelAtPeriodEnd = stripeSnapshot.cancelAtPeriodEnd;
+        cancelAt = stripeSnapshot.cancelAt;
+
+        await this.prisma.$executeRawUnsafe(
+          `UPDATE "User"
+           SET stripeSubscriptionStatus = ?, stripeCurrentPeriodEnd = ?
+           WHERE id = ?`,
+          subscriptionStatus,
+          subscriptionCurrentPeriodEnd,
+          user.id,
+        );
+      }
+    }
+
+    const hasOngoingSubscription = [
+      "active",
+      "trialing",
+      "past_due",
+      "unpaid",
+      "incomplete",
+    ].includes(subscriptionStatus);
 
     return {
       enforced: this.isBillingEnforced(),
       exempt,
       compliant,
-      status: (user as any).stripeSubscriptionStatus || "none",
+      status: subscriptionStatus,
       trialEndsAt,
       graceEndsAt,
-      subscriptionCurrentPeriodEnd: (user as any).stripeCurrentPeriodEnd,
-      canCheckoutMonthly: !exempt && !!monthlyPriceId,
-      canCheckoutYearly: !exempt && !!yearlyPriceId,
+      subscriptionCurrentPeriodEnd,
+      canCheckoutMonthly: !exempt && !hasOngoingSubscription && !!monthlyPriceId,
+      canCheckoutYearly: !exempt && !hasOngoingSubscription && !!yearlyPriceId,
       canManagePortal: !exempt && canManagePortal,
+      hasOngoingSubscription,
+      cancelAtPeriodEnd,
+      cancelAt,
       publishableKey: this.config.get("saas.stripePublishableKey") as string,
       monthlyPriceChf: this.config.get("saas.monthlyPriceChf") as string,
       yearlyPriceChf: this.config.get("saas.yearlyPriceChf") as string,

@@ -6,6 +6,9 @@ type User = {
   isLdap: boolean;
   totpVerified: boolean;
   hasPassword: boolean;
+  billingExempt?: boolean;
+  billingCompliant?: boolean;
+  billingSubscriptionStatus?: string;
 };
 
 export type CreateUser = {

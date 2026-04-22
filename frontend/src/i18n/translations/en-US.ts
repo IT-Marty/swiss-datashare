@@ -147,10 +147,25 @@ export default {
   "account.card.color.title": "Color scheme",
   "account.card.billing.title": "Billing",
   "account.card.billing.status": "Subscription status: {status}",
+  "account.card.billing.status-value.none": "No subscription",
+  "account.card.billing.status-value.active": "Active",
+  "account.card.billing.status-value.trialing": "Trialing",
+  "account.card.billing.status-value.past_due": "Payment overdue",
+  "account.card.billing.status-value.unpaid": "Unpaid",
+  "account.card.billing.status-value.canceled": "Canceled",
+  "account.card.billing.status-value.incomplete": "Incomplete",
+  "account.card.billing.status-value.incomplete_expired":
+    "Incomplete (expired)",
+  "account.card.billing.status-value.paused": "Paused",
   "account.card.billing.trial-ends": "Trial ends on {date}",
+  "account.card.billing.next-payment": "Next payment on {date}",
+  "account.card.billing.cancel-scheduled":
+    "Your subscription is canceled and remains active until {date}.",
   "account.card.billing.grace-ends": "Grace period ends on {date}",
   "account.card.billing.subscribe-monthly": "Subscribe monthly",
   "account.card.billing.subscribe-yearly": "Subscribe yearly",
+  "account.card.billing.subscribe-locked":
+    "Subscription options are disabled while your current subscription is still active.",
   "account.card.billing.manage": "Manage billing",
   "account.card.billing.exempt-note":
     "Billing actions are hidden because your account is exempt from subscription requirements.",
@@ -270,6 +285,10 @@ export default {
   "admin.users.title": "User management",
   "admin.users.table.username": "Username",
   "admin.users.table.email": "Email",
+  "admin.users.table.subscription": "Subscription",
+  "admin.users.table.subscription.valid": "Valid",
+  "admin.users.table.subscription.invalid": "Not valid",
+  "admin.users.table.subscription.exempt": "Exempt",
   "admin.users.table.admin": "Admin",
 
   "admin.users.edit.update.title": "Edit user: {username}",

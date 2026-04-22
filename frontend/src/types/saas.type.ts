@@ -9,6 +9,9 @@ export type BillingStatus = {
   canCheckoutMonthly: boolean;
   canCheckoutYearly: boolean;
   canManagePortal: boolean;
+  hasOngoingSubscription: boolean;
+  cancelAtPeriodEnd: boolean;
+  cancelAt: string | null;
   publishableKey?: string;
   monthlyPriceChf?: string;
   yearlyPriceChf?: string;

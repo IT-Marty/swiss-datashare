@@ -10,11 +10,13 @@ const ManageUserTable = ({
   getUsers,
   deleteUser,
   isLoading,
+  showBillingStatus,
 }: {
   users: User[];
   getUsers: () => void;
   deleteUser: (user: User) => void;
   isLoading: boolean;
+  showBillingStatus: boolean;
 }) => {
   const modals = useModals();
 
@@ -29,6 +31,11 @@ const ManageUserTable = ({
             <Table.Cell header>
               <FormattedMessage id="admin.users.table.email" />
             </Table.Cell>
+            {showBillingStatus && (
+              <Table.Cell header>
+                <FormattedMessage id="admin.users.table.subscription" />
+              </Table.Cell>
+            )}
             <Table.Cell header>
               <FormattedMessage id="admin.users.table.admin" />
             </Table.Cell>
@@ -49,6 +56,32 @@ const ManageUserTable = ({
                     </div>
                   </Table.Cell>
                   <Table.Cell>{user.email}</Table.Cell>
+                  {showBillingStatus && (
+                    <Table.Cell>
+                      {user.billingExempt ? (
+                        <span className="text-blue-600 dark:text-blue-400">
+                          <FormattedMessage id="admin.users.table.subscription.exempt" />
+                        </span>
+                      ) : user.billingCompliant ? (
+                        <span className="text-green-600 dark:text-green-400">
+                          <FormattedMessage
+                            id="admin.users.table.subscription.valid"
+                          />
+                        </span>
+                      ) : (
+                        <span className="text-red-600 dark:text-red-400">
+                          <FormattedMessage
+                            id="admin.users.table.subscription.invalid"
+                          />
+                        </span>
+                      )}
+                      {user.billingSubscriptionStatus && (
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {user.billingSubscriptionStatus}
+                        </p>
+                      )}
+                    </Table.Cell>
+                  )}
                   <Table.Cell>
                     {user.isAdmin && <TbCheck className="text-green-600 dark:text-green-400" size={18} />}
                   </Table.Cell>
@@ -89,6 +122,9 @@ const skeletonRows = [...Array(10)].map((v, i) => (
     </Table.Cell>
     <Table.Cell>
       <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-40" />
+    </Table.Cell>
+    <Table.Cell>
+      <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-20" />
     </Table.Cell>
     <Table.Cell>
       <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded animate-pulse w-6" />

@@ -36,6 +36,12 @@ export class UserDTO {
   @Expose()
   billingExempt: boolean;
 
+  @Expose()
+  billingCompliant?: boolean;
+
+  @Expose()
+  billingSubscriptionStatus?: string;
+
   from(partial: Partial<UserDTO>) {
     const result = plainToClass(UserDTO, partial, {
       excludeExtraneousValues: true,

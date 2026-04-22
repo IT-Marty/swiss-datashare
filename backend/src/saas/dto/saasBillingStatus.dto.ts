@@ -31,6 +31,15 @@ export class SaasBillingStatusDTO {
   @Expose()
   canManagePortal: boolean;
 
+  @Expose()
+  hasOngoingSubscription: boolean;
+
+  @Expose()
+  cancelAtPeriodEnd: boolean;
+
+  @Expose()
+  cancelAt: Date | null;
+
   from(partial: Partial<SaasBillingStatusDTO>) {
     return plainToClass(SaasBillingStatusDTO, partial, {
       excludeExtraneousValues: true,

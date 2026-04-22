@@ -11,6 +11,7 @@ import User from "../../types/user.type";
 import toast from "../../utils/toast.util";
 import { Button, Container } from "../../components/ui";
 import { useModals } from "../../contexts/ModalContext";
+import { hasUseCase } from "../../utils/useCase.util";
 
 const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -19,6 +20,7 @@ const Users = () => {
   const config = useConfig();
   const modals = useModals();
   const t = useTranslate();
+  const showBillingStatus = hasUseCase(config.get("general.useCase"), "saas");
 
   const getUsers = () => {
     setIsLoading(true);
@@ -79,6 +81,7 @@ const Users = () => {
           getUsers={getUsers}
           deleteUser={deleteUser}
           isLoading={isLoading}
+          showBillingStatus={showBillingStatus}
         />
       </Container>
     </>

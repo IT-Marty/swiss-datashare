@@ -16,6 +16,7 @@ import { GetUser } from "src/auth/decorator/getUser.decorator";
 import { AdministratorGuard } from "src/auth/guard/isAdmin.guard";
 import { JwtGuard } from "src/auth/guard/jwt.guard";
 import { ConfigService } from "../config/config.service";
+import { SaasService } from "../saas/saas.service";
 import { CreateUserDTO } from "./dto/createUser.dto";
 import { UpdateOwnUserDTO } from "./dto/updateOwnUser.dto";
 import { UpdateUserDto } from "./dto/updateUser.dto";
@@ -27,6 +28,7 @@ export class UserController {
   constructor(
     private userService: UserSevice,
     private config: ConfigService,
+    private saasService: SaasService,
   ) {}
 
   // Own user operations
@@ -75,7 +77,34 @@ export class UserController {
   @Get()
   @UseGuards(JwtGuard, AdministratorGuard)
   async list() {
-    return new UserDTO().fromList(await this.userService.list());
+    const users = await this.userService.list();
+    const useCase = (this.config.get("general.useCase") || "default")
+      .toString()
+      .toLowerCase();
+    const isSaasEnabled = useCase
+      .split(",")
+      .map((item) => item.trim())
+      .includes("saas");
+
+    if (!isSaasEnabled) {
+      return new UserDTO().fromList(users);
+    }
+
+    const usersWithBilling = await Promise.all(
+      users.map(async (user) => {
+        const status = await this.saasService.getBillingStatus(user.id, {
+          syncStripe: false,
+        });
+        return {
+          ...user,
+          billingExempt: status.exempt,
+          billingCompliant: status.compliant,
+          billingSubscriptionStatus: status.status,
+        };
+      }),
+    );
+
+    return new UserDTO().fromList(usersWithBilling);
   }
 
   @Post()
